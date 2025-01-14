@@ -1,13 +1,13 @@
 const Navbar = () => {
   return (
-    <div className="flex w-full justify-between items-center rounded-xl px-6 py-4 bg-[#FFFFFF] text-black">
+    <div className="flex justify-between items-center rounded-xl px-[8vw] py-4">
       {/* Left Section */}
-      <section className="text-lg font-bold border-gray-200 border-2 px-8 py-2 rounded-xl mx-24">
+      <section className="text-lg font-bold border-gray-200 border-2 px-8 py-2 rounded-xl">
         <h4>LOGO</h4>
       </section>
 
       {/* Middle Section */}
-      <section className="hidden md:block mx-24">
+      <section className="hidden md:block">
         <ul className="flex space-x-16">
           <li className="hover:text-gray-400 cursor-pointer">Home</li>
           <li className="hover:text-gray-400 cursor-pointer">Bills</li>

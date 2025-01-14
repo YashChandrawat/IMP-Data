@@ -10,6 +10,7 @@ body {
   box-sizing: border-box;
   font-family: "Outfit", serif;
   background-color: #f8f8f8;
+  color: black;
 }
 
 .pressStart {
