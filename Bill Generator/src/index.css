@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", serif;
+  background-color: #f8f8f8;
+}
+
+.pressStart {
+  font-family: "Press Start 2P", serif;
+}
+
+width: 1440px;
+height: 1008px;
+gap: 0px;
+opacity: 0px;
+
+
+.group-11 {
+  width: 637px;
+  height: 510px;
+  top: 239px;
+  left: 777.12px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.group-7 {
+  /* Group 7 */
+
+  position: absolute;
+  width: 320.85px;
+  height: 146.71px;
+  left: 1093.27px;
+  top: 271.24px;
+
+  filter: drop-shadow(0px 4.96061px 91.7713px rgba(150, 172, 255, 0.16));
+}
+
+.group-8 {
+  width: 503.91px;
+  height: 295.97px;
+  top: 340.13px;
+  left: 803.68px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.group-9 {
+  width: 351.46px;
+  height: 179.24px;
+  top: 569.76px;
+  left: 777.12px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.group-13 {
+  width: 470.11px;
+  height: 258.72px;
+  top: 239px;
+  left: 787.4px;
+  gap: 0px;
+  opacity: 0px;
+}
+
+.group-12 {
+  width: 640px;
+  height: 620px;
+  top: 188px;
+  left: 776px;
+  gap: 0px;
+  opacity: 0px;
+}
+
