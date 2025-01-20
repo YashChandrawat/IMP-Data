@@ -16,7 +16,7 @@ const MedicalBill = () => {
   return (
     <div className="max-w-[100%] mx-auto p-6 rounded-lg space-y-8 mt-12">
       <h2 className="text-3xl font-semibold border-b-2 py-4 text-gray-800">
-        E-Commerce Invoice
+        Medical Invoice
       </h2>
 
       <div className="space-y-4">
