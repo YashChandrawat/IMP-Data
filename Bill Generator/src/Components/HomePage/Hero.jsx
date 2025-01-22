@@ -4,6 +4,7 @@ import feedBack1 from "../../Assests/feedBack1.png";
 import feedBack2 from "../../Assests/feedBack2.png";
 import feedBack3 from "../../Assests/feedBack3.png";
 import feedBack4 from "../../Assests/feedBack4.png";
+import feedbackMobile from "../../Assests/feedbackMobile.png";
 import dImg from "../../Assests/dImg.png";
 import { useNavigate } from "react-router";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
@@ -276,96 +277,136 @@ const Hero = () => {
       </div>
 
       {/* Other section */}
-      <div className="flex flex-col items-start h-[400vh] py-24 mt-10">
+      <div className="flex flex-col h-[300vh] py-24 mt-10">
         <div className="flex flex-col justify-between items-center w-full gap-4">
           <p className="w-[128px] h-[35px] bg-[#4935D914] text-[#4935D9] rounded-[20px] px-[16px] py-[8px]">
             Client History
           </p>
-          <h2 className="text-4xl font-medium">Our Satisfied Clients</h2>
+          <h2 className="text-3xl font-medium md:text-5xl sm:text-2xl">
+            Our Satisfied Clients
+          </h2>
         </div>
         <img
           src={nextImage}
           alt=""
-          className="absolute left-[1vw] w-[calc(100%-1vw)] z-[20]"
+          className="absolute left-[1vw] w-[calc(100%-1vw)] z-[20] md:mt-10 sm:mt-10 lg:mt-10 mt-16"
         />
-        <div className="h-[300vh] rounded-3xl lg:w-[1392px] md:w-[712px] sm:w-[344px] absolute bottom-[176rem] left-16 overflow-hidden">
-          <div className="w-[704px] h-[704px] rounded-full absolute bg-[#FFE3EC] blur-[250px] z-10 opacity-60 -top-40 -left-16"></div>
-          <div className="w-[704px] h-[704px] rounded-full bg-[#96ACFF] absolute blur-[250px] z-10 opacity-60 -top-40 right-0"></div>
-          <div className="flex gap-4 items-center h-[200vh] py-24 absolute z-30 left-16">
-            <div>
-              <img src={feedBack1} alt="" className="w-[286px] h-[791px]" />
-            </div>
-            <div className="flex flex-col gap-12 justify-between items-center">
-              <h1 className="text-4xl font-medium text-center w-[60%]">
-                Here's what our users are saying about us
-              </h1>
-              <div className="flex gap-4">
-                <img src={feedBack2} alt="" className="w-[286px] h-[581px]" />
-                <img src={feedBack3} alt="" className="w-[286px] h-[560px]" />
-              </div>
-            </div>
-            <div>
-              <img src={feedBack4} alt="" className="w-[286px] h-[791px]" />
-            </div>
-          </div>
-          <div className="flex flex-col h-[100vh] absolute bottom-0 w-full">
-            <div className="mx-auto text-center px-4 flex flex-col items-center space-y-6">
-              <span className="w-[126px] h-[35px] rounded-[20px] px-[16px] py-[8px] bg-[#4935D914] text-[#4935D9]">
-                How it’s work
-              </span>
-              <h2 className="mt-6 text-5xl font-medium text-gray-900 w-[70%]">
-                Effortless Billing For Every Business Need
-              </h2>
-              <p className="mt-4 text-gray-500 w-[60%]">
-                Say goodbye to manual billing and paperwork—generate
-                professional invoices in just a few clicks and focus on growing
-                your business.
-              </p>
-            </div>
+        <div className="h-auto lg:h-[200vh] rounded-3xl w-[100%] relative lg:bottom-[88rem] md:top-[26rem] overflow-hidden">
+          {/* Background Ellipses */}
+          <div className="w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full absolute bg-[#FFE3EC] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-10 sm:-top-20 lg:-top-40 -left-4 sm:-left-8 lg:-left-16"></div>
+          <div className="w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full absolute bg-[#96ACFF] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-10 sm:-top-20 lg:-top-40 -right-4 sm:-right-16"></div>
 
-            <div className="mt-12 grid items-center justify-center grid-cols-3 gap-8 px-20 w-[1,192px]">
-              {features.map((feature, index) => (
-                <div key={index} className="text-center p-6">
-                  <div className="flex items-center justify-center border  border-[#EAECF5] shadow-sm w-12 h-12 mx-auto mb-4 rounded-xl text-lg font-semibold bg-white">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-2xl font-medium text-gray-900 text-center">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-2 text-gray-500">{feature.description}</p>
+          {/* Feedback Section */}
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-4 h-auto lg:h-[200vh] py-12 lg:py-96 md:py-48 relative z-30 px-16">
+            {/* <div className="flex sm:hidden md:flex lg:flex">
+              <div className="flex justify-center w-full lg:w-auto lg:flex md:hidden sm:hidden">
+                <img
+                  src={feedBack1}
+                  alt=""
+                  className="w-[180px] sm:w-[240px] lg:w-[286px] h-auto"
+                />
+              </div>
+
+              <div className="flex flex-col justify-center gap-8- items-center">
+                <h1 className="text-xl sm:text-2xl lg:text-4xl font-medium text-center w-[90%] mb-8">
+                  Here's what our users are saying about us
+                </h1>
+                <div className="flex flex-col lg:flex-row gap-4 items-center">
+                  <img
+                    src={feedBack2}
+                    alt=""
+                    className="w-[180px] sm:w-[240px] lg:w-[286px] h-auto"
+                  />
+                  <img
+                    src={feedBack3}
+                    alt=""
+                    className="w-[180px] sm:w-[240px] lg:w-[286px] h-auto"
+                  />
                 </div>
-              ))}
-            </div>
+              </div>
+
+              <div className="flex justify-center w-full lg:w-auto lg:flex md:hidden sm:hidden">
+                <img
+                  src={feedBack4}
+                  alt=""
+                  className="w-[180px] sm:w-[240px] lg:w-[286px] h-auto"
+                />
+              </div>
+            </div> */}
+            
           </div>
+
+          {/* Features Section */}
         </div>
       </div>
 
-      <div className="h-screen flex flex-col justify-center items-center">
-        <div className="mx-auto text-center px-4 flex flex-col items-center space-y-6">
-          <span className="w-[126px] h-[35px] rounded-[20px] px-[16px] py-[8px] bg-[#4935D914] text-[#4935D9]">
+      <div className="flex flex-col h-auto lg:h-[100vh] w-full px-4 sm:px-8 lg:px-20">
+        {/* Header */}
+        <div className="mx-auto text-center flex flex-col items-center space-y-6">
+          <span className="bg-[#4935D914] text-[#4935D9] rounded-[20px] px-4 py-2 text-sm sm:text-base lg:text-lg">
+            How it’s work
+          </span>
+          <h2 className="mt-6 text-2xl sm:text-3xl lg:text-5xl font-medium text-gray-900 w-[90%] sm:w-[70%] lg:w-[60%]">
+            Effortless Billing For Every Business Need
+          </h2>
+          <p className="mt-4 text-gray-500 text-sm sm:text-base lg:text-lg w-[90%] sm:w-[70%] lg:w-[60%]">
+            Say goodbye to manual billing and paperwork—generate professional
+            invoices in just a few clicks and focus on growing your business.
+          </p>
+        </div>
+
+        {/* Feature Grid */}
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-7xl mx-auto">
+          {features.map((feature, index) => (
+            <div key={index} className="text-center p-4 sm:p-6">
+              {/* Icon Wrapper */}
+              <div className="flex items-center justify-center border border-[#EAECF5] shadow-sm w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 mx-auto mb-4 rounded-xl text-base sm:text-lg lg:text-xl font-semibold bg-white">
+                {feature.icon}
+              </div>
+              {/* Title */}
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-medium text-gray-900">
+                {feature.title}
+              </h3>
+              {/* Description */}
+              <p className="mt-2 text-gray-500 text-sm sm:text-base lg:text-lg">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="min-h-[180vh] flex flex-col justify-center items-center px-4 sm:px-8 lg:px-20">
+        {/* Header */}
+        <div className="mx-auto text-center flex flex-col items-center space-y-6">
+          <span className="w-[126px] h-[35px] rounded-[20px] px-4 py-2 bg-[#4935D914] text-[#4935D9] text-sm sm:text-base">
             Why Us
           </span>
-          <h2 className="mt-6 text-5xl font-medium text-gray-900 ">
+          <h2 className="mt-6 text-2xl sm:text-3xl lg:text-5xl font-medium text-gray-900">
             Why Bill Generator?
           </h2>
-          <p className="mt-4 text-gray-500 ">
+          <p className="mt-4 text-gray-500 text-sm sm:text-base lg:text-lg">
             You want to generate perfect bills. We are here to help you achieve
             them.
           </p>
         </div>
-        <div className="flex text-center justify-evenly gap-6 mt-10 relative">
+
+        {/* Features Section */}
+        <div className="flex flex-col sm:flex-row sm:justify-center text-center gap-6 mt-10 relative w-full max-w-7xl">
           {whyUs.map((item, index) => (
             <div
               key={index}
-              className={`flex flex-col gap-4 justify-evenly items-center bg-white rounded-xl shadow-2xl shadow-[#4935D90F] px-10 py-10 relative ${
-                index === 1 ? "top-10" : "top-0"
-              }`}
+              className={`flex flex-col gap-4 justify-evenly items-center bg-white rounded-xl shadow-2xl shadow-[#4935D90F] px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12 ${
+                index === 1 ? "sm:top-10 sm:translate-y-0" : "sm:top-0"
+              } ${index === 1 ? "translate-y-0" : "translate-y-0"}`}
             >
-              <p className="bg-[#4935D90F] rounded-lg p-4 text-center">
+              <p className="bg-[#4935D90F] rounded-lg p-4 text-center text-lg sm:text-xl lg:text-2xl">
                 {item.icon}
               </p>
-              <h1 className="text-2xl font-medium ">{item.title}</h1>
-              <p className="text-sm text-gray-500 w-[80%]">
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-medium">
+                {item.title}
+              </h1>
+              <p className="text-sm sm:text-base lg:text-lg text-gray-500 w-[90%] sm:w-[80%]">
                 {item.description}
               </p>
             </div>
@@ -373,41 +414,44 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="h-screen flex flex-col justify-center gap-10">
-        <div className="mx-auto text-center px-4 flex flex-col items-center space-y-6">
-          <span className="w-[126px] h-[35px] rounded-[20px] px-[16px] py-[8px] bg-[#4935D914] text-[#4935D9]">
+      <div className="min-h-screen flex flex-col justify-center gap-10 px-4 sm:px-8 lg:px-20">
+        {/* Header */}
+        <div className="mx-auto text-center flex flex-col items-center space-y-6">
+          <span className="w-[126px] h-[35px] rounded-[20px] px-4 py-2 bg-[#4935D914] text-[#4935D9] text-sm sm:text-base">
             F&Q's
           </span>
-          <h2 className="mt-6 text-5xl font-medium text-gray-900 w-[100%]">
+          <h2 className="mt-6 text-2xl sm:text-3xl lg:text-5xl font-medium text-gray-900 w-full sm:w-[80%] lg:w-[60%]">
             Know More By FAQ
           </h2>
-          <p className="mt-4 text-gray-500 w-[100%]">
-            The Bill Generator is the simple tool that create simple bill with
-            proper format.
+          <p className="mt-4 text-gray-500 text-sm sm:text-base lg:text-lg w-full sm:w-[80%] lg:w-[60%]">
+            The Bill Generator is the simple tool that creates simple bills with
+            the proper format.
           </p>
         </div>
+
+        {/* FAQ Section */}
         <div className="w-full max-w-3xl mx-auto">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-gray-200 rounded-xl mb-4 overflow-hidden"
+              className="border border-gray-200 rounded-xl mb-4 overflow-hidden shadow-sm"
             >
               <div
-                className="flex justify-between items-center px-6 py-4  cursor-pointer"
+                className="flex justify-between items-center px-4 sm:px-6 py-4 cursor-pointer bg-white"
                 onClick={() => toggleFAQ(index)}
               >
-                <h3 className="text-lg font-normal text-gray-900">
+                <h3 className="text-base sm:text-lg font-medium text-gray-900">
                   {faq.question}
                 </h3>
                 <span
-                  className={`text-3xl font-light  transform transition-transform duration-300 ${
+                  className={`text-xl sm:text-2xl font-light transform transition-transform duration-300 ${
                     activeIndex === index ? "rotate-45" : ""
                   }`}
                 >
                   {activeIndex === index ? (
-                    <Add className="w-6 h-6" />
+                    <Add className="w-5 h-5 sm:w-6 sm:h-6" />
                   ) : (
-                    <Add className="w-6 h-6" />
+                    <Add className="w-5 h-5 sm:w-6 sm:h-6" />
                   )}
                 </span>
               </div>
@@ -418,7 +462,7 @@ const Hero = () => {
                     : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="px-6 py-4 bg-gray-50 text-gray-700 text-sm">
+                <div className="px-4 sm:px-6 py-4 bg-gray-50 text-gray-700 text-sm sm:text-base">
                   {faq.answer}
                 </div>
               </div>
@@ -427,26 +471,32 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="main-box">
-        {/* <div className="absolute -inset-x-[40px] -inset-y-[-120px] rounded-lg bg-custom-bg opacity-25 blur"></div> */}
-        {/* <div className="bg-white relative shadow-3xl customShadow rounded-3xl p-20 text-center flex flex-col items-center gap-6  box-container w-[100%]"> */}
-        <div className="box py-16 rounded-2xl shadow-2xl" id="demo">
+      <div className="main-box flex justify-center items-center h-auto py-8 sm:py-16 px-4 sm:px-8">
+        <div
+          className="box py-8 sm:py-16 px-4 sm:px-8 rounded-2xl shadow-2xl bg-white flex flex-col items-center space-y-6 max-w-lg w-full"
+          id="demo"
+        >
+          {/* Image */}
           <img
             src={dImg}
             alt=""
-            className="h-16 w-16 p-4 rounded-xl bg-white shadow-2xl object-cover"
+            className="h-12 sm:h-16 w-12 sm:w-16 p-4 rounded-xl bg-white shadow-2xl object-cover"
           />
-          <div className="flex flex-col gap-10 items-center">
-            <div className="flex flex-col gap-2 text-center">
-              <h1 className="text-4xl font-medium">Let’s Start Now</h1>
-              <p className="text-gray-500">
-                Generate your bills and invoices with a simple process.
-              </p>
-            </div>
-            <button className="bg-[#4935D9] text-white w-[40%]  py-2 px-4 rounded-lg hover:bg-purple-700">
-              Let’s started
-            </button>
+
+          {/* Text Content */}
+          <div className="flex flex-col gap-4 text-center">
+            <h1 className="text-2xl sm:text-4xl font-medium">
+              Let’s Start Now
+            </h1>
+            <p className="text-sm sm:text-base text-gray-500">
+              Generate your bills and invoices with a simple process.
+            </p>
           </div>
+
+          {/* Button */}
+          <button className="bg-[#4935D9] text-white w-full sm:w-[40%] py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-300">
+            Let’s Get Started
+          </button>
         </div>
       </div>
 
