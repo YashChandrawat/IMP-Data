@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import contactUs from "../../Assests/contactUs.png";
 import dImg from "../../Assests/dImg.png";
 import InputField from "../Reuseable Components/InputField";
 import Footer from "./Footer";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+  const form = useRef();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -18,6 +20,23 @@ const Contact = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_h926hie", "YOUR_TEMPLATE_ID", form.current, {
+        publicKey: "YOUR_PUBLIC_KEY",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
   };
 
   return (
@@ -50,7 +69,12 @@ const Contact = () => {
 
         {/* Form */}
         <div className="p-6 sm:p-10 bg-white rounded-b-3xl sm:rounded-r-3xl sm:rounded-bl-none w-full">
-          <form action="" className="flex flex-col gap-4">
+          <form
+            ref={form}
+            action=""
+            className="flex flex-col gap-4"
+            onSubmit={sendEmail}
+          >
             <div className="flex flex-col sm:flex-row gap-6">
               <InputField
                 label={"Your Name"}
