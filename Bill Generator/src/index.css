@@ -104,6 +104,15 @@ opacity: 0px;
   height: 100vh;
   /* background: #f3f4f8;  */
 }
+.main-box2 {
+  /* margin: 0; */
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  /* background: #f3f4f8;  */
+}
 
 #demo {
   background: white;

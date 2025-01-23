@@ -3,15 +3,15 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className=" relative w-[100vw] -left-32 border-t py-16">
-      <div className="mx-auto px-4 sm:px-6 lg:px-[8vw]">
-        <div className="flex justify-between gap-8">
+    <footer className="w-full border-t py-10 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-8">
           {/* Logo and Contact Section */}
           <div>
-            <section className="text-lg font-bold border-gray-200 w-[100%] border-2 px-8 py-2 rounded-xl text-center">
+            <section className="text-lg font-bold border-gray-200 border-2 px-8 py-2 rounded-xl text-center">
               <h4>LOGO</h4>
             </section>
-            <div className="mt-16 ml-1">
+            <div className="mt-8">
               <p className="text-lg font-medium">Contact us</p>
               <p className="text-sm text-gray-600">Koramangala,</p>
               <p className="text-sm text-gray-600">Bangalore, 560034 India</p>
@@ -38,14 +38,15 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex w-[55%] justify-between">
+          {/* Links Sections */}
+          <div className="flex flex-wrap justify-between lg:gap-16 gap-8 w-full lg:w-[55%]">
             {/* Useful Links Section */}
             <div>
               <h4 className="text-base font-semibold text-gray-800">
                 Useful Links
               </h4>
-              <div className="flex gap-10">
-                <ul className="mt-4 space-y-2 text-sm text-gray-600">
+              <div className="grid grid-cols-2 gap-4 mt-4">
+                <ul className="space-y-2 text-sm text-gray-600">
                   <li>
                     <a href="#" className="hover:text-gray-900">
                       Fuel Bill
@@ -58,7 +59,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a href="#" className="hover:text-gray-900">
-                      Daily Helper bill
+                      Daily Helper Bill
                     </a>
                   </li>
                   <li>
@@ -87,7 +88,7 @@ const Footer = () => {
                     </a>
                   </li>
                 </ul>
-                <ul className="mt-4 space-y-2 text-sm text-gray-600">
+                <ul className="space-y-2 text-sm text-gray-600">
                   <li>
                     <a href="#" className="hover:text-gray-900">
                       E-Commerce Invoice
@@ -100,7 +101,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a href="#" className="hover:text-gray-900">
-                      Recharge Recipt
+                      Recharge Receipt
                     </a>
                   </li>
                   <li>
@@ -110,7 +111,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a href="#" className="hover:text-gray-900">
-                      Stationary Bill
+                      Stationery Bill
                     </a>
                   </li>
                   <li>
@@ -199,9 +200,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-8 border-t pt-4 flex flex-col md:flex-row justify-between items-center text-sm ">
+        <div className="mt-8 border-t pt-4 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
           <p>&copy; Thinkprocess. All rights reserved.</p>
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 mt-4 md:mt-0">
             <a href="#" className="hover:text-gray-900 underline">
               Privacy Policy
             </a>

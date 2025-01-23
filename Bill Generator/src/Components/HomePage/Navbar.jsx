@@ -1,16 +1,23 @@
 import { useState } from "react";
 import Dropdown from "./DropDown";
+import { HiBars3, HiBars3BottomRight } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
-    <div className=" inline w-full">
-      <div className=" mt-4 bg-gray-100 w-[95%] mx-auto flex justify-between items-center rounded-xl px-[5.5vw] py-4">
+    <div className="inline w-full">
+      <div className="mt-4 bg-gray-100 w-[95%] mx-auto flex justify-between items-center rounded-xl px-[5.5vw] py-4">
         {/* Left Section */}
         <section className="text-lg font-bold border-gray-200 border-2 px-8 py-2 rounded-xl">
           <h4>LOGO</h4>
@@ -19,11 +26,15 @@ const Navbar = () => {
         {/* Middle Section */}
         <section className="hidden md:block">
           <ul className="flex space-x-16">
-            <li className="hover:text-gray-400 cursor-pointer">Home</li>
+            <li className="hover:text-gray-400 cursor-pointer">
+              <Link to={"/"}>Home</Link>
+            </li>
             <li className="relative hover:text-gray-400 cursor-pointer">
               <Dropdown />
             </li>
-            <li className="hover:text-gray-400 cursor-pointer">Contact</li>
+            <li className="hover:text-gray-400 cursor-pointer">
+              <Link to={"/contact"}>Contact</Link>
+            </li>
           </ul>
         </section>
 
@@ -34,35 +45,33 @@ const Navbar = () => {
             aria-label="Toggle Menu"
             onClick={toggleMobileMenu}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="black"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
+            {isMobileMenuOpen ? (
+              <HiBars3BottomRight className="text-black size-6" />
+            ) : (
+              <HiBars3 className="text-black size-6" />
+            )}
           </button>
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <div
         className={`${
-          isMobileMenuOpen ? "block" : "hidden"
-        } md:hidden absolute top-20 left-0 w-full bg-white shadow-lg z-40`}
+          isMobileMenuOpen
+            ? "translate-x-0 opacity-100"
+            : "-translate-x-full opacity-0"
+        } transition-all duration-300 ease-in-out absolute top-20 left-0 w-full bg-slate-100 shadow-lg z-40`}
       >
-        <ul className="flex flex-col space-y-4 py-4 px-6">
-          <li className="hover:text-gray-400 cursor-pointer">Home</li>
+        <ul className="flex flex-col space-y-4 py-4 px-12">
+          <li className="hover:text-gray-400 cursor-pointer">
+            <Link to={"/"}>Home</Link>
+          </li>
           <li className="relative hover:text-gray-400 cursor-pointer">
             <Dropdown />
           </li>
-          <li className="hover:text-gray-400 cursor-pointer">Contact</li>
+          <li className="hover:text-gray-400 cursor-pointer">
+            <Link to={"/contact"}>Contact</Link>
+          </li>
         </ul>
       </div>
     </div>
