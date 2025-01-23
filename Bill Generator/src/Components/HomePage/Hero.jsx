@@ -4,7 +4,11 @@ import feedBack1 from "../../Assests/feedBack1.png";
 import feedBack2 from "../../Assests/feedBack2.png";
 import feedBack3 from "../../Assests/feedBack3.png";
 import feedBack4 from "../../Assests/feedBack4.png";
-import feedbackMobile from "../../Assests/feedbackMobile.png";
+import feedbackTablet1 from "../../Assests/feedbackTablet1.png";
+import feedbackTablet2 from "../../Assests/feedbackTablet2.png";
+import feedbackTablet3 from "../../Assests/feedbackTablet3.png";
+import feedbackMobile1 from "../../Assests/feedbackMobile1.png";
+import feedbackMobile2 from "../../Assests/feedbackMobile2.png";
 import dImg from "../../Assests/dImg.png";
 import { useNavigate } from "react-router";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
@@ -276,7 +280,7 @@ const Hero = () => {
         <div className="w-[300px] h-[300px] lg:w-[671px] lg:h-[671px] rounded-full bg-[#96ACFF] blur-[100px] lg:blur-[250px] z-10 opacity-50 absolute -bottom-20 right-0"></div>
       </div>
 
-      {/* Other section */}
+      {/* Other section - Update Here*/}
       <div className="flex flex-col h-[300vh] py-24 mt-10">
         <div className="flex flex-col justify-between items-center w-full gap-4">
           <p className="w-[128px] h-[35px] bg-[#4935D914] text-[#4935D9] rounded-[20px] px-[16px] py-[8px]">
@@ -285,20 +289,19 @@ const Hero = () => {
           <h2 className="text-3xl font-medium md:text-5xl sm:text-2xl">
             Our Satisfied Clients
           </h2>
+          <img
+            src={nextImage}
+            alt=""
+            className="absolute left-[1vw] w-[calc(100%-1vw)] z-[20] md:mt-10 sm:mt-10 lg:mt-10 mt-16"
+          />
         </div>
-        <img
-          src={nextImage}
-          alt=""
-          className="absolute left-[1vw] w-[calc(100%-1vw)] z-[20] md:mt-10 sm:mt-10 lg:mt-10 mt-16"
-        />
-        <div className="h-auto lg:h-[200vh] rounded-3xl w-[100%] relative lg:bottom-[88rem] md:top-[26rem] overflow-hidden">
-          {/* Background Ellipses */}
+
+        {/* <div className="h-auto lg:h-[200vh] rounded-3xl w-[100%] relative lg:bottom-[88rem] md:top-[26rem] overflow-hidden">
           <div className="w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full absolute bg-[#FFE3EC] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-10 sm:-top-20 lg:-top-40 -left-4 sm:-left-8 lg:-left-16"></div>
           <div className="w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full absolute bg-[#96ACFF] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-10 sm:-top-20 lg:-top-40 -right-4 sm:-right-16"></div>
 
-          {/* Feedback Section */}
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-4 h-auto lg:h-[200vh] py-12 lg:py-96 md:py-48 relative z-30 px-16">
-            {/* <div className="flex sm:hidden md:flex lg:flex">
+            <div className="flex sm:hidden md:flex lg:flex">
               <div className="flex justify-center w-full lg:w-auto lg:flex md:hidden sm:hidden">
                 <img
                   src={feedBack1}
@@ -332,11 +335,85 @@ const Hero = () => {
                   className="w-[180px] sm:w-[240px] lg:w-[286px] h-auto"
                 />
               </div>
-            </div> */}
-            
+            </div>
           </div>
 
-          {/* Features Section */}
+        </div> */}
+        <div className=" h-[200vh] rounded-3xl md:w-[95vw] relative overflow-hidden flex justify-center sm:py-64 sm:top-96 top-24 py-24 sm:w-[100vw] right-3 md:right-24 md:top-96 md:py-72 md:px-20">
+          {/* Background Blurs */}
+          <div className="absolute w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full bg-[#FFE3EC] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-20 -left-8"></div>
+          <div className="absolute w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full bg-[#96ACFF] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-20 -right-8"></div>
+
+          {/* Content */}
+          <div className="overflow-hidden rounded-3xl w-full max-w-7xl">
+            {/* Large Screens */}
+            <div className="hidden lg:flex justify-between items-center gap-8">
+              <img src={feedBack1} alt="" className="w-[286px] h-auto z-50" />
+
+              <div className="flex flex-col items-center text-center">
+                <h1 className="text-4xl font-medium mb-8 z-50">
+                  Here's what our users are saying about us
+                </h1>
+                <div className="flex gap-4">
+                  <img
+                    src={feedBack2}
+                    alt=""
+                    className="w-[286px] h-auto z-50"
+                  />
+                  <img
+                    src={feedBack3}
+                    alt=""
+                    className="w-[286px] h-auto z-50"
+                  />
+                </div>
+              </div>
+
+              <img src={feedBack4} alt="" className="w-[286px] h-auto z-50" />
+            </div>
+
+            {/* Tablet Screens */}
+            <div className="hidden md:flex lg:hidden justify-center">
+              <img
+                src={feedbackTablet1}
+                alt=""
+                className="w-[186.67px] h-[598px]"
+              />
+              <div className="flex flex-col items-center text-center">
+                <h1 className="text-xl font-semibold mb-4 w-[60%]">
+                  Here's what our users are saying about us
+                </h1>
+                <img
+                  src={feedbackTablet2}
+                  alt=""
+                  className="w-[186.67px] h-[616px]"
+                />
+              </div>
+              <img
+                src={feedbackTablet3}
+                alt=""
+                className="w-[186.67px] h-[760px]"
+              />
+            </div>
+
+            {/* Mobile Screens */}
+            <div className="flex md:hidden flex-col items-center gap-6">
+              <h1 className="text-xl font-semibold text-center w-[80%] z-50">
+                Here's what our users are saying about us
+              </h1>
+              <div className="flex">
+                <img
+                  src={feedbackMobile1}
+                  alt=""
+                  className="w-[156px] h-auto z-50"
+                />
+                <img
+                  src={feedbackMobile2}
+                  alt=""
+                  className="w-[156px] h-auto z-50"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
