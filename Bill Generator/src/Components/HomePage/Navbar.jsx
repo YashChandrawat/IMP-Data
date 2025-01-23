@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <div className="inline w-full">
-      <div className="mt-4 bg-gray-100 w-[95%] mx-auto flex justify-between items-center rounded-xl px-[5.5vw] py-4">
+      <div className="bg-gray-100 w-full mx-auto flex justify-between items-center rounded-xl px-[5.5vw] box-border py-4">
         {/* Left Section */}
         <section className="text-lg font-bold border-gray-200 border-2 px-8 py-2 rounded-xl">
           <h4>LOGO</h4>

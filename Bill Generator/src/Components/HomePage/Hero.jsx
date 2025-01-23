@@ -206,23 +206,25 @@ const Hero = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  const containerCss = "px-[5.5vw] box-border"
+
   return (
-    <div className="flex flex-col px-[8vw] sm:px-4 md:px-6 lg:px-[8vw] box-border w-full overflow-x-hidden overflow-y-hidden relative">
+    <div className="flex flex-col items-center gap-20 overflow-x-hidden">
       {/* Hero section */}
-      <div className="flex flex-col justify-between items-center lg:items-start h-auto lg:h-screen py-12 lg:py-24 relative">
+      <div className={`flex flex-col justify-between items-center lg:items-start h-auto lg:h-screen py-12 lg:py-24 relative px-[5.5vw] box-border ${containerCss}`}>
         <div className="flex flex-col lg:flex-row items-center lg:justify-between w-full relative">
           {/* Background Blur */}
           <div className="sm:w-[455px] sm:h-[455px] lg:w-[701px] lg:h-[701px] rounded-full bg-[#FFE3EC] blur-[100px] lg:blur-[100px] z-10 opacity-60 absolute lg:-left-48 lg:-top-14 -top-48 "></div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-1/2 flex flex-col gap-6 lg:gap-10 text-center lg:text-left relative z-30 px-4 lg:px-0">
+          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start gap-6 lg:gap-10 text-center lg:text-left relative z-30 px-4 lg:px-0">
             <span className="px-4 py-2 border border-transparent rounded-full bg-[#4935D914] text-[#4935D9] text-xs lg:text-sm font-medium inline-block w-fit mx-auto md:mx-auto lg:mx-0">
               Generate Unlimited Number of Bills for Free
             </span>
-            <h1 className="font-bold text-5xl sm:text-6xl lg:text-6xl  text-balance text-gray-900 leading-tight w-[100%]">
+            <h1 className="font-bold text-5xl sm:text-6xl lg:text-6xl  text-balance text-gray-900 leading-tight w-[100%] max-w-[80vw]">
               Accurate, fast and Secure Bill Generator
             </h1>
-            <p className="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed lg:text-justify w-[85%] mx-auto sm:w-full">
+            <p className="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed lg:text-justify w-[85%] max-w-[80vw] mx-auto sm:w-full">
               Bill Generator lets you quickly create receipts, bills, and
               invoices with attractive templates straight from your web browser.
             </p>
@@ -281,8 +283,8 @@ const Hero = () => {
       </div>
 
       {/* Other section - Update Here*/}
-      <div className="flex flex-col h-[300vh] py-24 mt-10">
-        <div className="flex flex-col justify-between items-center w-full gap-4">
+      <div className="flex flex-col w-full items-center">
+        <div className="flex flex-col justify-between items-center w-full gap-4 relative z-50">
           <p className="w-[128px] h-[35px] bg-[#4935D914] text-[#4935D9] rounded-[20px] px-[16px] py-[8px]">
             Client History
           </p>
@@ -292,86 +294,90 @@ const Hero = () => {
           <img
             src={nextImage}
             alt=""
-            className="absolute left-[1vw] w-[calc(100%-1vw)] z-[20] md:mt-10 sm:mt-10 lg:mt-10 mt-16"
+            className=" relative left-[1vw] w-[calc(100%-1vw)] z-[20] -mt-28"
           />
         </div>
 
-        <div className=" h-[200vh] rounded-3xl md:w-[95vw] relative overflow-hidden flex justify-center sm:py-64 sm:top-96 top-24 py-24 sm:w-[100vw] right-3 md:right-24 md:top-96 md:py-72 md:px-20">
-          {/* Background Blurs */}
-          <div className="absolute w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full bg-[#FFE3EC] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-20 -left-8"></div>
-          <div className="absolute w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full bg-[#96ACFF] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-20 -right-8"></div>
+        <div className="w-full px-6 -mt-[40vh] relative z-10">
+          <div className="rounded-3xl relative flex items-center justify-center bg-white w-full overflow-hidden pt-80">
+            {/* Background Blurs */}
+            <div className="absolute w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full bg-[#FFE3EC] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-20 -left-8"></div>
+            <div className="absolute w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full bg-[#96ACFF] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-20 -right-8"></div>
 
-          {/* Content */}
-          <div className="overflow-hidden rounded-3xl w-full max-w-7xl">
-            {/* Large Screens */}
-            <div className="hidden lg:flex justify-between items-center gap-8">
-              <img src={feedBack1} alt="" className="w-[286px] h-auto z-50" />
+            {/* Content */}
+            <div className="overflow-hidden rounded-3xl w-full max-w-7xl">
+              {/* Large Screens */}
+              <div className="hidden lg:flex justify-between items-center gap-8">
+                <img src={feedBack1} alt="" className="w-[286px] h-auto z-50" />
 
-              <div className="flex flex-col items-center text-center">
-                <h1 className="text-4xl font-medium mb-8 z-50">
-                  Here's what our users are saying about us
-                </h1>
-                <div className="flex gap-4">
+                <div className="flex flex-col items-center text-center">
+                  <h1 className="text-4xl font-medium mb-8 z-50">
+                    Here's what our users are saying about us
+                  </h1>
+                  <div className="flex gap-4">
+                    <img
+                      src={feedBack2}
+                      alt=""
+                      className="w-[286px] h-auto z-50"
+                    />
+                    <img
+                      src={feedBack3}
+                      alt=""
+                      className="w-[286px] h-auto z-50"
+                    />
+                  </div>
+                </div>
+
+                <img src={feedBack4} alt="" className="w-[286px] h-auto z-50" />
+              </div>
+
+              {/* Tablet Screens */}
+              <div className="hidden md:flex lg:hidden justify-center">
+                <img
+                  src={feedbackTablet1}
+                  alt=""
+                  className="w-[186.67px]"
+                />
+                <div className="flex flex-col items-center text-center">
+                  <h1 className="text-xl font-semibold mb-4 w-[60%]">
+                    Here's what our users are saying about us
+                  </h1>
                   <img
-                    src={feedBack2}
+                    src={feedbackTablet2}
                     alt=""
-                    className="w-[286px] h-auto z-50"
-                  />
-                  <img
-                    src={feedBack3}
-                    alt=""
-                    className="w-[286px] h-auto z-50"
+                    className="w-[186.67px] h-[616px]"
                   />
                 </div>
+                <img
+                  src={feedbackTablet3}
+                  alt=""
+                  className="w-[186.67px] h-[760px]"
+                />
               </div>
 
-              <img src={feedBack4} alt="" className="w-[286px] h-auto z-50" />
-            </div>
-
-            {/* Tablet Screens */}
-            <div className="hidden md:flex lg:hidden justify-center">
-              <img
-                src={feedbackTablet1}
-                alt=""
-                className="w-[186.67px] h-[598px]"
-              />
-              <div className="flex flex-col items-center text-center">
-                <h1 className="text-xl font-semibold mb-4 w-[60%]">
+              {/* Mobile Screens */}
+              <div className="flex md:hidden flex-col items-center gap-6">
+                <h1 className="text-xl font-semibold text-center w-[80%] z-50">
                   Here's what our users are saying about us
                 </h1>
-                <img
-                  src={feedbackTablet2}
-                  alt=""
-                  className="w-[186.67px] h-[616px]"
-                />
-              </div>
-              <img
-                src={feedbackTablet3}
-                alt=""
-                className="w-[186.67px] h-[760px]"
-              />
-            </div>
-
-            {/* Mobile Screens */}
-            <div className="flex md:hidden flex-col items-center gap-6">
-              <h1 className="text-xl font-semibold text-center w-[80%] z-50">
-                Here's what our users are saying about us
-              </h1>
-              <div className="flex">
-                <img
-                  src={feedbackMobile1}
-                  alt=""
-                  className="w-[156px] h-auto z-50"
-                />
-                <img
-                  src={feedbackMobile2}
-                  alt=""
-                  className="w-[156px] h-auto z-50"
-                />
+                <div className="flex">
+                  <img
+                    src={feedbackMobile1}
+                    alt=""
+                    className="w-[156px] h-auto z-50"
+                  />
+                  <img
+                    src={feedbackMobile2}
+                    alt=""
+                    className="w-[156px] h-auto z-50"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* <div className="h-[200vh] rounded-3xl md:w-[95vw]  overflow-hidden flex justify-center sm:py-64 sm:top-96 top-24 py-24 sm:w-[100vw] right-3 md:right-24 md:top-96 md:py-72 md:px-20"></div> */}
       </div>
 
       <div className="flex flex-col h-auto lg:h-[100vh] w-full px-4 sm:px-8 lg:px-20">
