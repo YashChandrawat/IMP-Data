@@ -5,6 +5,11 @@ import CustomerDetailsEcom from "../Common/CustomerDetailsEcom";
 import printBill from "../../Utils/printBill";
 import OrderDetails from "../../RestaurentBill/Common/OrderDetails";
 import PaymentDetailsEcom from "../Common/PaymentDetailsEcom";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const ECommerceTemplate = ({ template1, template2, template3 }) => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -127,8 +132,8 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
     return ((total - temp) / 2).toFixed(2);
   }
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-white p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Please fill the details
         </h2>
@@ -192,7 +197,7 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
       </div>
 
       {/* Bill Preview */}
-      <div className="w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
@@ -216,7 +221,7 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
                 </p>
               </div>
 
-              <div className="flex justify-between mt-2 ">
+              <div className="flex flex-col sm:flex-row justify-between mt-2">
                 {/* Invoice To */}
                 <div className="mb-6">
                   <p className="text-gray-700 text-md font-semibold">
@@ -276,7 +281,7 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
               </div>
 
               {/* Payment Info */}
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
                 <div>
                   <p className="text-md">Payment Info:</p>
                   <p>{formData.paymentMethod}</p>
@@ -305,9 +310,9 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
                 <img
                   src={formData.logoUrl}
                   alt="Logo"
-                  className="w-16 h-16 mr-4"
+                  className="w-16 h-16 mr-4 mx-auto sm:mx-0"
                 />
-                <div className="space-y-2">
+                <div className="space-y-2 text-center sm:text-left">
                   <h1 className="text-3xl font-semibold">
                     {"Your order is confirmed!"}
                   </h1>
@@ -319,54 +324,52 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
 
               {/* Order Details */}
               <div className="mb-6 text-sm">
-                <div className="flex gap-4 flex-col">
-                  <div className="flex gap-4 justify-between">
-                    <div>
-                      <p>
-                        <span className="font-semibold">Order date </span>
-                        <p className="text-lg">{formData.date}</p>
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        <span className="font-semibold">GST No </span>
-                        <p className="text-lg">{formData.gstIn}</p>
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        <span className="font-semibold">Payment method </span>
-                        <p className="text-lg">{formData.paymentMethod}</p>
-                      </p>
-                    </div>
+                <div className="flex gap-4 flex-col sm:flex-row">
+                  <div className="sm:w-1/3">
+                    <p>
+                      <span className="font-semibold">Order date</span>
+                      <p className="text-lg">{formData.date}</p>
+                    </p>
                   </div>
-                  <div className="flex gap-4 justify-between w-[66%]">
-                    <div>
-                      <p>
-                        <span className="font-semibold">Order number </span>
-                        <p className="text-lg">ORD1552145241</p>
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        <span className="font-semibold">Shipping Address </span>
-                        <p className="text-lg">{formData.shippingAddress}</p>
-                      </p>
-                    </div>
+                  <div className="sm:w-1/3">
+                    <p>
+                      <span className="font-semibold">GST No</span>
+                      <p className="text-lg">{formData.gstIn}</p>
+                    </p>
                   </div>
-                  <div className="flex gap-4 justify-between w-[66%]">
-                    <div>
-                      <p>
-                        <span className="font-semibold">Mobile number </span>
-                        <p className="text-lg">{formData.mobileNo}</p>
-                      </p>
-                    </div>
-                    <div>
-                      <p>
-                        <span className="font-semibold">Sold By </span>
-                        <p className="text-lg">{formData.soldByDetails}</p>
-                      </p>
-                    </div>
+                  <div className="sm:w-1/3">
+                    <p>
+                      <span className="font-semibold">Payment method</span>
+                      <p className="text-lg">{formData.paymentMethod}</p>
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4 justify-between sm:w-[66%]">
+                  <div>
+                    <p>
+                      <span className="font-semibold">Order number</span>
+                      <p className="text-lg">ORD1552145241</p>
+                    </p>
+                  </div>
+                  <div>
+                    <p>
+                      <span className="font-semibold">Shipping Address</span>
+                      <p className="text-lg">{formData.shippingAddress}</p>
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4 justify-between sm:w-[66%]">
+                  <div>
+                    <p>
+                      <span className="font-semibold">Mobile number</span>
+                      <p className="text-lg">{formData.mobileNo}</p>
+                    </p>
+                  </div>
+                  <div>
+                    <p>
+                      <span className="font-semibold">Sold By</span>
+                      <p className="text-lg">{formData.soldByDetails}</p>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -442,16 +445,17 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
             </div>
           </div>
         )}
+
         {template1 && (
           <div id="eComTemp1">
             <div className="font-nunito max-w-4xl mx-auto p-10 bg-white shadow-md border border-gray-300 rounded-md">
               {/* Header */}
               <div className="flex justify-between items-center mb-4">
-                <div className="border-b-4 py-3 w-[100%]">
+                <div className="border-b-4 py-3 w-full sm:w-[50%]">
                   <img
                     src={formData.logoUrl}
                     alt="Logo"
-                    className="w-16 h-16"
+                    className="w-16 h-16 mx-auto sm:mx-0"
                   />
                 </div>
               </div>
@@ -470,8 +474,8 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
               </div>
 
               {/* Sold By & Bill To */}
-              <div className="flex justify-between text-sm">
-                <div className="mb-6 mt-2 flex flex-col gap-6">
+              <div className="flex flex-col sm:flex-row justify-between text-sm">
+                <div className="mb-6 sm:mt-2 flex flex-col gap-6">
                   <div>
                     <p className="font-bold text-lg">Sold By,</p>
                     <p className="">{formData.soldByDetails}</p>
@@ -494,7 +498,7 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
               </div>
 
               {/* Items Table */}
-              <table className="text-xs mb-4">
+              <table className="text-xs mb-4 w-full">
                 <thead>
                   <tr>
                     <th className="border border-gray-500 p-2">Description</th>
@@ -514,14 +518,14 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
                         key={index}
                         className="border-b border-gray-300 text-center"
                       >
-                        <td className=" p-2">{item.desc}</td>
-                        <td className=" p-2">₹ {item.itemPrice}</td>
-                        <td className=" p-2">{item.quantity}</td>
-                        <td className=" p-2">{item.tax / 2} %</td>
-                        <td className=" p-2">₹ {calculateCGST(item)}</td>
-                        <td className=" p-2">{item.tax / 2} %</td>
-                        <td className=" p-2">₹ {calculateCGST(item)}</td>
-                        <td className=" p-2">₹ {calculateItemTotal(item)}</td>
+                        <td className="p-2">{item.desc}</td>
+                        <td className="p-2">₹ {item.itemPrice}</td>
+                        <td className="p-2">{item.quantity}</td>
+                        <td className="p-2">{item.tax / 2} %</td>
+                        <td className="p-2">₹ {calculateCGST(item)}</td>
+                        <td className="p-2">{item.tax / 2} %</td>
+                        <td className="p-2">₹ {calculateCGST(item)}</td>
+                        <td className="p-2">₹ {calculateItemTotal(item)}</td>
                       </tr>
                     );
                   })}
@@ -530,7 +534,7 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
 
               {/* Total Amount */}
               <div className="flex justify-end mb-6">
-                <div className=" border-y border-gray-400 py-2 flex gap-10 ">
+                <div className="border-y border-gray-400 py-2 flex gap-10">
                   <p className="text-gray-700 text-sm font-semibold">
                     Total Amount:
                   </p>
@@ -566,6 +570,7 @@ const ECommerceTemplate = ({ template1, template2, template3 }) => {
             </div>
           </div>
         )}
+
         <p className="mt-2 px-6 text-gray-500">
           Watermark will be removed from actual pdf
         </p>

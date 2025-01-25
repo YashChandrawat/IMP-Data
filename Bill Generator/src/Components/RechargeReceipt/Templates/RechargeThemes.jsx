@@ -6,6 +6,11 @@ import ProviderDetails from "../Common/ProviderDetails";
 import OtherDetails from "../Common/OtherDetails";
 import RechargeCustomerDetails from "../Common/RechargeCustomerDetails";
 import RechargePaymentDetails from "../Common/RechargePaymentDetails";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -83,8 +88,8 @@ const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
   }
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-white p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Please fill the details
         </h2>
@@ -137,21 +142,21 @@ const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
       </div>
 
       {/* Bill Preview */}
-      <div className="w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
         <div id="rechargeTemplate1">
-          <div className="font-nunito max-w-4xl mx-auto border border-gray-300 rounded-md shadow-lg p-6 mt-8 ">
+          <div className="font-nunito max-w-4xl mx-auto border border-gray-300 rounded-md shadow-lg p-6 mt-8">
             <div className="border border-black">
               {/* Header */}
-              <div className="flex justify-between pb-2 px-2">
+              <div className="flex justify-between pb-2 px-2 flex-wrap">
                 <img
                   src={formData.logoUrl} // Replace with the actual logo
                   alt="Logo"
                   className="w-16 h-16"
                 />
-                <div className="text-right">
+                <div className="text-right w-full sm:w-auto mt-2 sm:mt-0">
                   <p
                     className={`font-semibold ${
                       theme1
@@ -161,7 +166,7 @@ const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
                         : theme3
                         ? "text-yellow-400"
                         : "text-green-500"
-                    } text-xs mr-10`}
+                    } text-xs sm:mr-10`}
                   >
                     Original Copy for Recipient - Tax Invoice
                   </p>
@@ -169,8 +174,8 @@ const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
               </div>
 
               {/* Invoice Details */}
-              <div className="grid grid-cols-2 gap-4 px-2 w-[100%] text-xs">
-                <div className="flex">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 px-2 w-full text-xs">
+                <div className="flex flex-col sm:flex-row">
                   <div className="mr-14">
                     <p>
                       Invoice No:{" "}
@@ -243,7 +248,7 @@ const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
               {/* Account Summary */}
               <div className="mt-1 px-2">
                 <h3
-                  className={`text-xs font-medium  pb-2 ${
+                  className={`text-xs font-medium pb-2 ${
                     theme1
                       ? "text-red-500"
                       : theme2
@@ -255,8 +260,8 @@ const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
                 >
                   Your Account Summary
                 </h3>
-                <div className="flex gap-4 text-center mt-4 text-xs">
-                  <div className="px-3 py-1 bg-gray-200 border rounded-3xl flex flex-col justify-between shadow ">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center mt-4 text-xs">
+                  <div className="px-3 py-1 bg-gray-200 border rounded-3xl flex flex-col justify-between shadow">
                     <p>Previous Bill</p>
                     <p className="font-medium text-sm">
                       {formData.currencyType} {formData.previousBalance}
@@ -294,7 +299,7 @@ const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
               {/* This Month Charge */}
               <div className="mt-6">
                 <h3
-                  className={`text-xs font-medium  pb-2 ${
+                  className={`text-xs font-medium pb-2 ${
                     theme1
                       ? "text-red-500"
                       : theme2
@@ -306,8 +311,8 @@ const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
                 >
                   This Month Charge
                 </h3>
-                <div className="flex gap-4 mt-4 text-xs n">
-                  <div className="p-4 border rounded-3xl bg-gray-200 shadow-sm w-[100%] leading-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 text-xs">
+                  <div className="p-4 border rounded-3xl bg-gray-200 shadow-sm w-full leading-6">
                     <p>
                       Monthly Charges: {formData.currencyType} {amtExceptTax()}
                     </p>
@@ -323,7 +328,7 @@ const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
                       <span className="font-bold">₹ {formData.amount}</span>
                     </p>
                   </div>
-                  <div className="text-center  justify-items-end">
+                  <div className="text-center justify-items-end">
                     <p
                       className={`${
                         theme1
@@ -363,7 +368,7 @@ const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
               </div>
 
               {/* Payment and Provider Details */}
-              <div className="grid grid-cols-2 pb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 pb-6 gap-4">
                 {/* Pay on the Go */}
                 <div
                   className={`border-4 ${
@@ -399,90 +404,46 @@ const RechargeThemes = ({ theme1, theme2, theme3, theme4 }) => {
                   </ul>
                 </div>
 
-                {/* Provider Details */}
-                <div
-                  className={`border-4 ${
-                    theme1
-                      ? "border-red-500"
-                      : theme2
-                      ? "border-blue-500"
-                      : theme3
-                      ? "border-yellow-400"
-                      : "border-green-500"
-                  } rounded-md p-4`}
-                >
-                  <h3
-                    className={`${
-                      theme1
-                        ? "text-red-400"
-                        : theme2
-                        ? "text-blue-400"
-                        : theme3
-                        ? "text-yellow-300"
-                        : "text-green-400"
-                    } font-semibold text-xs mb-2`}
-                  >
-                    Provider Details
-                  </h3>
-                  <ul className="text-gray-600 text-xs space-y-1">
-                    <li>{formData.providerName}</li>
-                    <li>{formData.providerAddress}</li>
-                    <li>{formData.service}</li>
-                  </ul>
-                </div>
-              </div>
+                {/* Account Number */}
+                <div className="flex flex-col sm:flex-row justify-between gap-4">
+                  <div className="w-full sm:w-[40%]">
+                    <h3
+                      className={`${
+                        theme1
+                          ? "text-red-500"
+                          : theme2
+                          ? "text-blue-500"
+                          : theme3
+                          ? "text-yellow-400"
+                          : "text-green-500"
+                      } font-semibold text-xs mb-2`}
+                    >
+                      Account Number:
+                    </h3>
+                    <p className="font-semibold text-xs">
+                      {formData.accountNumber}
+                    </p>
+                  </div>
 
-              {/* Acknowledgement Slip */}
-              <div className="mt-2 bg-gray-200 rounded-md">
-                <h3
-                  className={`text-center text-white font-semibold text-sm ${
-                    theme1
-                      ? "bg-red-500"
-                      : theme2
-                      ? "bg-blue-500"
-                      : theme3
-                      ? "bg-yellow-400"
-                      : "bg-green-500"
-                  } mb-4`}
-                >
-                  Acknowledgement Slip
-                </h3>
-                <div className="flex flex-col gap-2 text-gray-700 text-xs px-2">
-                  <div className="flex justify-between">
-                    <div className="flex gap-6">
-                      <p className="font-medium">Customer Id:</p>
-                      <p>{formData.customerId}</p>
-                    </div>
-                    <div className="flex gap-6 justify-center text-xs px-1">
-                      <p className="font-medium w-[26%] text-end">
-                        Customer Name:
-                      </p>
-                      <p className="w-[26%] text-start">
-                        {formData.customerName}
-                      </p>
-                    </div>
-                    <div className="flex gap-2">
-                      <p className="font-medium">Amount:</p>
-                      <p>
-                        {formData.currencyType} {formData.amount}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between w-[64%]">
-                    <div className="flex gap-6 px-1">
-                      <p className="font-medium">Invoice No:</p>
-                      <p>{formData.invoiceNo}</p>
-                    </div>
-                    <div className="flex gap-4">
-                      <p className="font-medium">Service:</p>
-                      <p>{formData.service}</p>
-                    </div>
+                  <div className="w-full sm:w-[40%]">
+                    <h3
+                      className={`${
+                        theme1
+                          ? "text-red-500"
+                          : theme2
+                          ? "text-blue-500"
+                          : theme3
+                          ? "text-yellow-400"
+                          : "text-green-500"
+                      } font-semibold text-xs mb-2`}
+                    >
+                      Bill Date:
+                    </h3>
+                    <p className="font-semibold text-xs">
+                      {formData.billingDate}
+                    </p>
                   </div>
                 </div>
-                <p className="text-[10px] text-black mt-2 px-4">
-                  * This is a computer-generated invoice. Signature not
-                  required. Created at 28 Dec 2024 at 09:43.
-                </p>
               </div>
             </div>
           </div>

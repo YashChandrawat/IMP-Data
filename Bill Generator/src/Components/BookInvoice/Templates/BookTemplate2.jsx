@@ -4,6 +4,11 @@ import BookDetails from "../Common/BookDetails";
 import CustomerDetails from "../Common/CustomerDetails";
 import BookPaymentDetails from "./BookPaymentDetails";
 import printBill from "../../Utils/printBill";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const BookTemplate2 = () => {
   const template2 = true;
@@ -34,8 +39,8 @@ const BookTemplate2 = () => {
     return formData.quantity * formData.bookPrice;
   }
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-[#fffff] p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6 ">
           Please fill the details
         </h2>
@@ -72,7 +77,7 @@ const BookTemplate2 = () => {
       </div>
 
       {/* Bill Preview */}
-      <div className="lg:w-1/2w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>

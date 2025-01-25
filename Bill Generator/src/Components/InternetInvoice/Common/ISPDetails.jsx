@@ -1,87 +1,84 @@
+import { useState } from "react";
+import CollapseWrapper from "../../Reuseable Components/CollapseWrapper";
+import Heading from "../../Reuseable Components/Heading";
+import InputField from "../../Reuseable Components/InputField";
+import Wrapper from "../../Reuseable Components/Wrapper";
+
 const ISPDetails = ({ formData, handleChange, template2 }) => {
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
   return (
-    <div className="bg-white rounded-2xl border-2 border-gray-200 shadow-lg">
+    <Wrapper>
       {/* Header */}
-      <h3 className="text-lg px-6 font-semibold border-b-2 py-4 mb-4 text-gray-800 border-gray-200">
-        Internet Provider Details
-      </h3>
-
-      <div className="px-6 pb-6 flex gap-6">
-        {/* ISP Name */}
-        <div className="flex flex-col gap-2 w-[50%]">
-          <label className="text-md font-medium text-gray-600">
-            Internet Service Provider Name
-          </label>
-          <input
-            type="text"
-            name="ispName"
-            value={formData.ispName}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
-          />
-        </div>
-        {/* ISP Address */}
-        <div className="flex flex-col gap-2 w-[50%]">
-          <label className="text-md font-medium text-gray-600">
-            Internet Service Provider Address
-          </label>
-          <input
-            type="text"
-            name="ispAddress"
-            value={formData.ispAddress}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-
-      {template2 && (
+      <Heading
+        name={"Internet Provider Details"}
+        toggleContent={toggleContent}
+        isCollapsed={!isVisible}
+        isVisible={isVisible}
+      />
+      <CollapseWrapper isVisible={isVisible}>
         <div className="px-6 pb-6 flex gap-6">
-          {/* Description */}
-          <div className="flex flex-col gap-2 w-[100%]">
-            <label className="text-md font-medium text-gray-600">
-              Description
-            </label>
-            <input
+          {/* ISP Name */}
+          <InputField
+            label={"Internet Service Provider Name"}
+            type="text"
+            name={"ispName"}
+            value={formData.ispName}
+            handleChange={handleChange}
+            placeholder="Airtel, Idea"
+          />
+
+          {/* ISP Address */}
+          <InputField
+            label={"Internet Service Provider Address"}
+            type="text"
+            name={"ispAddress"}
+            value={formData.ispAddress}
+            handleChange={handleChange}
+            placeholder="Mumbai, Maharashtra"
+          />
+        </div>
+
+        {template2 && (
+          <div className="px-6 pb-6 flex gap-6">
+            {/* Description */}
+            <InputField
+              label={"Description"}
               type="text"
-              name="description"
+              name={"description"}
               value={formData.description}
-              className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-              onChange={handleChange}
+              handleChange={handleChange}
+              placeholder=""
             />
           </div>
-        </div>
-      )}
+        )}
 
-      <div className="px-6 pb-6 flex gap-6">
-        {/* Bill Account Number */}
-        <div className="flex flex-col gap-2 w-[50%]">
-          <label className="text-md font-medium text-gray-600">
-            Bill Account Number
-          </label>
-          <input
+        <div className="px-6 pb-6 flex gap-6">
+          {/* Bill Account Number */}
+          <InputField
+            label={"Bill Account Number"}
             type="text"
-            name="billAccNumber"
+            name={"billAccNumber"}
             value={formData.billAccNumber}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
+            handleChange={handleChange}
+            placeholder="57YHK897"
           />
-        </div>
-        {/* Billing Date */}
-        <div className="flex flex-col gap-2 w-[50%]">
-          <label className="text-md font-medium text-gray-600">
-            Billing Date
-          </label>
-          <input
+
+          {/* Billing Date */}
+          <InputField
+            label={"Billing Date"}
             type="date"
-            name="billingDate"
+            name={"billingDate"}
             value={formData.billingDate}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
+            handleChange={handleChange}
+            placeholder=""
           />
         </div>
-      </div>
-    </div>
+      </CollapseWrapper>
+    </Wrapper>
   );
 };
 

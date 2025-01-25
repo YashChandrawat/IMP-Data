@@ -1,85 +1,75 @@
+import { useState } from "react";
+import CollapseWrapper from "../../../Reuseable Components/CollapseWrapper";
+import Heading from "../../../Reuseable Components/Heading";
+import Wrapper from "../../../Reuseable Components/Wrapper";
+import SelectField from "../../../Reuseable Components/SelectField";
+import { CURRENCY_TYPE } from "../../../Utils/constants";
+import InputField from "../../../Reuseable Components/InputField";
+
 const PaymentDetail = ({ formData, setFormData, handleChange }) => {
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
   return (
     <>
-      <div className="bg-white rounded-[2rem] border-2 border-gray-200 space-y-4">
-        <h3 className="text-lg px-6 font-semibold border-b-2 py-4 text-gray-800  border-gray-200">
-          Payment Details
-        </h3>
-        <div className="px-6 pb-8 flex flex-col gap-4">
-          {/* Currency Type */}
-          <div>
-            <label className="block text-gray-500 font-medium mb-1">
-              Currency
-            </label>
-            <select
-              name="currencyType"
+      <Wrapper>
+        <Heading
+          name={"Payment Details"}
+          toggleContent={toggleContent}
+          isCollapsed={!isVisible}
+          isVisible={isVisible}
+        />
+        <CollapseWrapper isVisible={isVisible}>
+          <div className="px-6 pb-8 flex flex-col gap-4">
+            {/* Currency Type */}
+            <SelectField
+              label={"Currency"}
+              selectName={"currencyType"}
               value={formData.currencyType}
-              onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="">Select Currency Type</option>
-              <option value="₹">Indian Rupees</option>
-              <option value="$">Dollar</option>
-            </select>
-          </div>
+              handleChange={handleChange}
+              arr={CURRENCY_TYPE}
+            />
 
-          <div className="flex gap-4">
-            <div className="w-full">
-              <label className="block text-gray-500 font-medium mb-1">
-                Fuel Rate:
-              </label>
-              <input
+            <div className="flex gap-4">
+              <InputField
+                label={"Fuel Rate"}
                 type="number"
-                name="fuelRate"
+                name={"fuelRate"}
                 value={formData.fuelRate}
-                onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                handleChange={handleChange}
+                placeholder="109"
               />
-            </div>
-
-            <div className="w-full">
-              <label className="block text-gray-600 font-medium mb-1">
-                Total Amount:
-              </label>
-              <input
+              <InputField
+                label={"Total Amount"}
                 type="number"
-                name="totalAmount"
+                name={"totalAmount"}
                 value={formData.totalAmount}
-                onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                handleChange={handleChange}
+                placeholder="1000"
               />
             </div>
-          </div>
 
-          <div className="flex gap-4">
-            <div className="w-full">
-              <label className="block text-gray-600 font-medium mb-1">
-                Fuel Bill Date:
-              </label>
-              <input
+            <div className="flex gap-4">
+              <InputField
+                label={"Fuel Bill Date"}
                 type="date"
-                name="date"
+                name={"date"}
                 value={formData.date}
-                onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                handleChange={handleChange}
               />
-            </div>
-
-            <div className="w-full">
-              <label className="block text-gray-600 font-medium mb-1">
-                Fuel Bill Time:
-              </label>
-              <input
+              <InputField
+                label={"Fuel Bill Time"}
                 type="time"
-                name="time"
+                name={"time"}
                 value={formData.time}
-                onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                handleChange={handleChange}
               />
             </div>
           </div>
-        </div>
-      </div>
+        </CollapseWrapper>
+      </Wrapper>
     </>
   );
 };

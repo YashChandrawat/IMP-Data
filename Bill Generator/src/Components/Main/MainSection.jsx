@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import FuelBill from "../FuelBill/FuelBill";
 import DriverSalary from "../DriverSalary/DriverSalary";
 import DailyHelper from "../DailyHelper/DailyHelper";
@@ -71,41 +72,41 @@ const sections = [
   { name: "Cab Bill", icon: <Car size="20" color="currentColor" /> },
 ];
 
-const renderComponent = (section) => {
-  switch (section) {
-    case "Fuel Bills":
+const renderComponent = (billType) => {
+  switch (billType) {
+    case "fuel-bills":
       return <FuelBill />;
-    case "Driver Salary":
+    case "driver-salary":
       return <DriverSalary />;
-    case "Daily Helper":
+    case "daily-helper":
       return <DailyHelper />;
-    case "Rent Recipt":
+    case "rent-recipt":
       return <RentRecipt />;
-    case "Book Invoice":
+    case "book-invoice":
       return <BookInvoice />;
-    case "Internet Invoice":
+    case "internet-invoice":
       return <InternetInvoice />;
-    case "Restaurent Bill":
+    case "restaurent-bill":
       return <RestaurentBill />;
-    case "Recharge Receipt":
+    case "recharge-receipt":
       return <RechargeReceipt />;
-    case "E-Commerce Invoice":
+    case "e-commerce-invoice":
       return <ECommerceInvoice />;
-    case "Medical Bill":
+    case "medical-bill":
       return <MedicalBill />;
-    case "General Bill":
+    case "general-bill":
       return <GeneralBill />;
-    case "Stationary Bill":
+    case "stationary-bill":
       return <StationaryBill />;
-    case "LTA Recipt":
+    case "lta-recipt":
       return <LTARecipt />;
-    case "Hotel Bill":
+    case "hotel-bill":
       return <HotelBill />;
-    case "Gym Bill":
+    case "gym-bill":
       return <GymBill />;
-    case "Mart Bill":
+    case "mart-bill":
       return <MartBill />;
-    case "Cab Bill":
+    case "cab-bill":
       return <CabBill />;
     default:
       return <FuelBill />;
@@ -113,32 +114,43 @@ const renderComponent = (section) => {
 };
 
 const MainSection = () => {
-  const [selectedSection, setSelectedSection] = useState("Fuel Bills");
+  const { billType } = useParams();
+  const navigate = useNavigate();
+  const [selectedSection, setSelectedSection] = useState("fuel-bills");
+
+  const handleSectionChange = (name) => {
+    const formattedLabel = name.toLowerCase().replace(/\s+/g, "-");
+    setSelectedSection(formattedLabel);
+    navigate(`/bills/${formattedLabel}`); // Use an absolute path here
+  };
 
   return (
-    <div className="max-w-[83%] mx-auto p-6 rounded-lg space-y-8 mt-12">
-      <h1 className="font-semibold text-lg">Which bill do you want to generate?</h1>
+    <div className="max-w-[91%] mx-auto p-4 md:p-6 rounded-lg space-y-8 mt-12">
+      <h1 className="font-semibold text-lg md:text-xl text-left md:text-left">
+        Which bill do you want to generate?
+      </h1>
+
       {/* Section Selection */}
       <div className="flex flex-wrap gap-4">
         {sections.map(({ name, icon }, index) => (
           <button
             key={index}
-            onClick={() => setSelectedSection(name)}
-            className={`flex items-center space-x-2 text-sm px-4 py-3 border rounded-lg shadow-sm cursor-pointer transition-all ${
-              selectedSection === name
+            onClick={() => handleSectionChange(name)}
+            className={`flex items-center space-x-2 text-sm lg:px-4 px-2 sm:px-2 py-3 border rounded-lg shadow-sm cursor-pointer transition-all ${
+              billType === name.toLowerCase().replace(/\s+/g, "-")
                 ? "bg-[#4935D9] text-white font-semibold shadow-lg"
                 : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
             }`}
           >
             {icon}
-            <span>{name}</span>
+            <span className="truncate">{name}</span>
           </button>
         ))}
       </div>
 
       {/* Render Selected Component */}
-      <div className="template-preview rounded-lg shadow-sm">
-        {renderComponent(selectedSection)}
+      <div className="template-preview rounded-lg w-full">
+        {renderComponent(billType)}
       </div>
     </div>
   );

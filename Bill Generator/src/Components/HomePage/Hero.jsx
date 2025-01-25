@@ -206,12 +206,14 @@ const Hero = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  const containerCss = "px-[5.5vw] box-border"
+  const containerCss = "px-[5.5vw] box-border";
 
   return (
     <div className="flex flex-col items-center gap-20 overflow-x-hidden">
       {/* Hero section */}
-      <div className={`flex flex-col justify-between items-center lg:items-start h-auto lg:h-screen py-12 lg:py-24 relative px-[5.5vw] box-border ${containerCss}`}>
+      <div
+        className={`flex flex-col justify-between items-center lg:items-start h-auto lg:h-screen py-12 lg:py-24 relative px-[5.5vw] box-border ${containerCss}`}
+      >
         <div className="flex flex-col lg:flex-row items-center lg:justify-between w-full relative">
           {/* Background Blur */}
           <div className="sm:w-[455px] sm:h-[455px] lg:w-[701px] lg:h-[701px] rounded-full bg-[#FFE3EC] blur-[100px] lg:blur-[100px] z-10 opacity-60 absolute lg:-left-48 lg:-top-14 -top-48 "></div>
@@ -229,7 +231,7 @@ const Hero = () => {
               invoices with attractive templates straight from your web browser.
             </p>
             <button
-              onClick={() => navigate("/bills")}
+              onClick={() => navigate("/bills/fuel-bills")}
               className="rounded-lg px-6 py-3 bg-[#4935D9] text-white font-semibold hover:bg-[#3728a6] transition-all duration-300 w-fit mx-auto lg:mx-0"
             >
               Generate Bill Now
@@ -267,10 +269,17 @@ const Hero = () => {
             >
               {items.map((item, index) => (
                 <div key={index} className="mr-4">
-                  <div className="p-4 text-center rounded-lg bg-[#F8F3FC66] shadow-xl flex justify-center items-center gap-2">
+                  <button
+                    onClick={() => {
+                      navigate(
+                        `bills/${item.label.toLowerCase().replace(/\s+/g, "-")}`
+                      );
+                    }}
+                    className="p-4 w-full text-center rounded-lg bg-[#F8F3FC66] shadow-xl flex justify-center items-center gap-2"
+                  >
                     <p>{item.icon}</p>
                     <p className="text-xs sm:text-sm">{item.label}</p>
-                  </div>
+                  </button>
                 </div>
               ))}
             </ResponsiveCarousel>
@@ -333,11 +342,7 @@ const Hero = () => {
 
               {/* Tablet Screens */}
               <div className="hidden md:flex lg:hidden justify-center">
-                <img
-                  src={feedbackTablet1}
-                  alt=""
-                  className="w-[186.67px]"
-                />
+                <img src={feedbackTablet1} alt="" className="w-[186.67px]" />
                 <div className="flex flex-col items-center text-center">
                   <h1 className="text-xl font-semibold mb-4 w-[60%]">
                     Here's what our users are saying about us

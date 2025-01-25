@@ -19,7 +19,10 @@ import {
   Weight,
   Wifi,
 } from "iconsax-react";
+import { useNavigate } from "react-router-dom";
+
 const Dropdown = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -83,14 +86,21 @@ const Dropdown = () => {
     { label: "Cab Bill", icon: <Car size="20" color="currentColor" /> },
   ];
 
+  // Updated function to handle clicks and log label in the desired format
+  function handleRoute(label) {
+    const formattedLabel = label.toLowerCase().replace(/\s+/g, "-");
+    console.log("Clicked item:", formattedLabel);
+    // Optional: Navigate to a route based on the formatted label
+    navigate(`/bills/${formattedLabel}`);
+  }
+
   return (
     <div className="relative inline-block text-left">
       {/* Dropdown Button */}
       <button
         id="dropdownDefaultButton"
         onMouseEnter={toggleDropdown}
-        className="flex items-center gap-2
-        "
+        className="flex items-center gap-2"
         type="button"
       >
         <span>Bills</span>
@@ -110,13 +120,13 @@ const Dropdown = () => {
           >
             {items.map((item, index) => (
               <li key={index}>
-                <a
-                  href="#"
-                  className="flex gap-2 items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                <button
+                  className="w-full flex gap-2 items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  onClick={() => handleRoute(item.label)} // Pass the label to the function
                 >
                   <span>{item.icon}</span>
                   <span>{item.label}</span>
-                </a>
+                </button>
               </li>
             ))}
           </ul>

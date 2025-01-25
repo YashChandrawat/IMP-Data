@@ -10,6 +10,12 @@ import Heading from "../../Reuseable Components/Heading";
 import GymPaymentDetails from "../Common/GymPaymentDetails";
 import UploadImage from "../../Reuseable Components/UploadImage";
 import { formatDate } from "../../Reusable Function/formatDate";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
+import CollapseWrapper from "../../Reuseable Components/CollapseWrapper";
 
 const GymBillTemplate = () => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -109,9 +115,15 @@ const GymBillTemplate = () => {
     return taxAmt.toFixed(2);
   }
 
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
+
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-white p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Please fill the details
         </h2>
@@ -130,95 +142,102 @@ const GymBillTemplate = () => {
             sectionName={"Logo Details"}
           />
           <Wrapper>
-            <Heading name={"Item Details"} />
-            <div className="px-4">
-              <table className="w-full border-collapse text-sm text-left">
-                <thead className=" border-b text-center">
-                  <tr>
-                    <th className="px-4 py-2">Name & Description</th>
-                    <th className="px-4 py-2">Price</th>
-                    <th className="px-4 py-2">Quantity</th>
-                    <th className="px-4 py-2">Sub Total</th>
-                    <th className="px-4 py-2">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {formData.itemDetails.map((row, index) => (
-                    <tr key={index} className="border-b">
-                      <td className="px-4 py-2">
-                        <input
-                          type="text"
-                          value={row.name}
-                          className="w-full border rounded p-2"
-                          onChange={(e) =>
-                            handleChangeInRoomDetails(
-                              index,
-                              "name",
-                              e.target.value
-                            )
-                          }
-                        />
-                        <textarea
-                          className="w-full border rounded p-2"
-                          value={row.desc}
-                          onChange={(e) =>
-                            handleChangeInRoomDetails(
-                              index,
-                              "desc",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </td>
-                      <td className="px-4 py-2">
-                        <input
-                          type="number"
-                          className="w-full border rounded p-2 text-right"
-                          value={row.price}
-                          onChange={(e) =>
-                            handleChangeInRoomDetails(
-                              index,
-                              "price",
-                              parseInt(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </td>
-                      <td className="px-4 py-2">
-                        <input
-                          type="number"
-                          className="w-full border rounded p-2 text-right"
-                          value={row.quantity}
-                          onChange={(e) =>
-                            handleChangeInRoomDetails(
-                              index,
-                              "quantity",
-                              parseInt(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </td>
-                      <td className="px-4 py-2 text-right">{row.subtotal}</td>
-                      <td className="px-4 py-2 flex items-center space-x-2">
-                        <button
-                          className="bg-orange-500 hover:bg-orange-600 text-white rounded-full p-2"
-                          onClick={addRow}
-                        >
-                          +
-                        </button>
-                        <button
-                          className="bg-red-500 hover:bg-red-600 text-white rounded-full p-2"
-                          onClick={() => removeRow(index)}
-                          disabled={formData.itemDetails.length === 1}
-                        >
-                          -
-                        </button>
-                      </td>
+            <Heading
+              name={"Item Details"}
+              toggleContent={toggleContent}
+              isCollapsed={!isVisible}
+              isVisible={isVisible}
+            />
+            <CollapseWrapper isVisible={isVisible}>
+              <div className="px-2 overflow-scroll no-scrollbar">
+                <table className="w-full border-collapse text-sm text-left">
+                  <thead className=" border-b text-center">
+                    <tr>
+                      <th className="px-4 py-2">Name & Description</th>
+                      <th className="px-4 py-2">Price</th>
+                      <th className="px-4 py-2">Quantity</th>
+                      <th className="px-4 py-2">Sub Total</th>
+                      <th className="px-4 py-2">Action</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {formData.itemDetails.map((row, index) => (
+                      <tr key={index} className="border-b">
+                        <td className="px-4 py-2">
+                          <input
+                            type="text"
+                            value={row.name}
+                            className="w-full border rounded p-2"
+                            onChange={(e) =>
+                              handleChangeInRoomDetails(
+                                index,
+                                "name",
+                                e.target.value
+                              )
+                            }
+                          />
+                          <textarea
+                            className="w-full border rounded p-2"
+                            value={row.desc}
+                            onChange={(e) =>
+                              handleChangeInRoomDetails(
+                                index,
+                                "desc",
+                                e.target.value
+                              )
+                            }
+                          />
+                        </td>
+                        <td className="px-4 py-2">
+                          <input
+                            type="number"
+                            className="w-full border rounded p-2 text-right"
+                            value={row.price}
+                            onChange={(e) =>
+                              handleChangeInRoomDetails(
+                                index,
+                                "price",
+                                parseInt(e.target.value) || 0
+                              )
+                            }
+                          />
+                        </td>
+                        <td className="px-4 py-2">
+                          <input
+                            type="number"
+                            className="w-full border rounded p-2 text-right"
+                            value={row.quantity}
+                            onChange={(e) =>
+                              handleChangeInRoomDetails(
+                                index,
+                                "quantity",
+                                parseInt(e.target.value) || 0
+                              )
+                            }
+                          />
+                        </td>
+                        <td className="px-4 py-2 text-right">{row.subtotal}</td>
+                        <td className="px-4 py-2 flex items-center space-x-2">
+                          <button
+                            className="bg-orange-500 hover:bg-orange-600 text-white rounded-full p-2"
+                            onClick={addRow}
+                          >
+                            +
+                          </button>
+                          <button
+                            className="bg-red-500 hover:bg-red-600 text-white rounded-full p-2"
+                            onClick={() => removeRow(index)}
+                            disabled={formData.itemDetails.length === 1}
+                          >
+                            -
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CollapseWrapper>
           </Wrapper>
           <GymPaymentDetails formData={formData} handleChange={handleChange} />
           <UploadImage
@@ -254,40 +273,41 @@ const GymBillTemplate = () => {
       </div>
 
       {/* Bill Preview */}
-      <div className="w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
         <div id="gymBillTemplate">
-          <div className="font-nunito max-w-4xl mx-auto p-10 bg-white shadow-lg rounded-md">
+          <div className="font-nunito max-w-4xl mx-auto p-6 md:p-10 bg-white shadow-lg rounded-md">
+            {/* Header Section */}
             <div className="flex flex-col font-spaceMono text-end text-xs mb-4">
               <p>
-                <span className="font-bold">Invoice:</span>
-                {formData.invoiceNo}
+                <span className="font-bold">Invoice:</span> {formData.invoiceNo}
               </p>
               <p>
-                <span className="font-bold">Invoice Date:</span>
+                <span className="font-bold">Invoice Date:</span>{" "}
                 {formatDate(formData.invoiceDate)}
               </p>
             </div>
 
-            <div className="w-full font-montserrat bg-[#f87f73] bg-custom-gradient rounded-xl flex px-6 py-2 text-md justify-between gap-2">
-              <div className="flex justify-center">
+            {/* Gym Info Section */}
+            <div className="w-full font-montserrat bg-[#f87f73] bg-custom-gradient rounded-xl flex flex-col md:flex-row px-6 py-2 text-md justify-between gap-4">
+              <div className="flex justify-center md:w-[45%]">
                 <div>
                   <img
                     src={formData.logoUrl}
                     alt="logo"
-                    className="w-20 h-20"
+                    className="w-16 h-16 sm:w-20 sm:h-20"
                   />
                 </div>
-                <div className="w-[45%] font-medium">
+                <div className="w-full md:w-[45%] font-medium">
                   <p>{formData.gymName}</p>
                   <p>{formData.gymAddress}</p>
                   <p>{formData.gymNo}</p>
                   <p>{formData.gymEmail}</p>
                 </div>
               </div>
-              <div className="text-end w-[45%]">
+              <div className="text-end md:w-[45%]">
                 <p>
                   <span className="font-bold">User Id: </span>
                   {formData.userNo}
@@ -307,41 +327,43 @@ const GymBillTemplate = () => {
               </div>
             </div>
 
+            {/* Account Summary Section */}
             <div className="font-spaceMono mt-6">
               <div>
                 <p>Account Summary</p>
               </div>
-              <div className=" flex gap-4 mt-6">
-                <div className="flex flex-col justify-between px-2 py-1 bg-gray-300 rounded-xl h-[11rem] text-center">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-6">
+                <div className="flex flex-col justify-between px-4 py-2 bg-gray-300 rounded-xl h-[11rem] text-center">
                   <span className="text-gray-500">Bill From Date</span>
                   <span>{formatDate(formData.billFromDate)}</span>
                 </div>
-                <div className="flex flex-col justify-between px-2 py-1 bg-gray-300 rounded-xl h-[11rem] text-center">
+                <div className="flex flex-col justify-between px-4 py-2 bg-gray-300 rounded-xl h-[11rem] text-center">
                   <span className="text-gray-500">Billing Cycle</span>
                   <span>{formData.billingCycle}</span>
                 </div>
-                <div className="flex flex-col justify-between px-2 py-1 bg-gray-300 rounded-xl h-[11rem] text-center">
+                <div className="flex flex-col justify-between px-4 py-2 bg-gray-300 rounded-xl h-[11rem] text-center">
                   <span className="text-gray-500">Due Date</span>
                   <span>{formatDate(formData.billToDate)}</span>
                 </div>
-                <div className="flex flex-col justify-between px-2 py-1 bg-gray-300 rounded-xl h-[11rem] text-center">
+                <div className="flex flex-col justify-between px-4 py-2 bg-gray-300 rounded-xl h-[11rem] text-center">
                   <span className="text-gray-500">Amount</span>
                   <span>{calculateTotal()}</span>
                 </div>
-                <div className="flex flex-col justify-between px-2 py-1 bg-gray-300 rounded-xl h-[11rem] text-center">
+                <div className="flex flex-col justify-between px-4 py-2 bg-gray-300 rounded-xl h-[11rem] text-center">
                   <span className="text-gray-500">Payment Mode</span>
                   <span>{formData.paymentMethod}</span>
                 </div>
               </div>
             </div>
 
+            {/* Billing Details Section */}
             <div className="mt-6">
               <h2 className="text-lg font-extrabold mb-4 px-2 py-1 bg-gray-200">
                 Billing Details
               </h2>
-              <table className="w-full border-collapse border-b border-gray-300  text-sm font-spaceMono">
+              <table className="w-full border-collapse border-b border-gray-300 text-sm font-spaceMono">
                 <thead>
-                  <tr className="">
+                  <tr>
                     <th className="border-t border-gray-300 px-2 py-2 text-left">
                       Gym Item
                     </th>
@@ -360,10 +382,7 @@ const GymBillTemplate = () => {
                   {formData.itemDetails.map((item, index) => (
                     <tr key={index}>
                       <td className="border-t border-gray-300 px-2 py-2">
-                        <span
-                          className="block text-lg font-montserrat
-                        "
-                        >
+                        <span className="block text-lg font-montserrat">
                           {item.name}
                         </span>
                         <span className="block text-gray-500 text-sm">
@@ -433,12 +452,10 @@ const GymBillTemplate = () => {
               </table>
             </div>
 
+            {/* Instructions for Gym Section */}
             <div className="mt-6 font-spaceMono">
               <h2 className="text-sm">Instructions for Gym</h2>
-              <ol
-                type="1"
-                className="list-decimal ml-5 px-8 text-justify mt-2 text-sm"
-              >
+              <ol className="list-decimal ml-5 px-8 text-justify mt-2 text-sm">
                 <li>
                   Check-In: Upon arrival, check in at the front desk if
                   required.
@@ -490,12 +507,13 @@ const GymBillTemplate = () => {
               </ol>
             </div>
 
-            <div className="mt-4 font-montserrat flex justify-between gap-4 px-4 mb-4">
+            {/* Remark & Signature Section */}
+            <div className="mt-4 font-montserrat flex flex-col md:flex-row justify-between gap-4 px-4 mb-4">
               <div>
                 <p className="text-xl font-semibold">Remark</p>
                 <p className="text-sm">{formData.remark}</p>
               </div>
-              <div>
+              <div className="flex flex-col items-center md:items-start">
                 <p className="text-xl font-semibold">Signature</p>
                 <img
                   src={formData.signatureDetails}
@@ -506,6 +524,7 @@ const GymBillTemplate = () => {
             </div>
           </div>
         </div>
+
         <p className="mt-2 px-6 text-gray-500">
           Watermark will be removed from actual pdf
         </p>

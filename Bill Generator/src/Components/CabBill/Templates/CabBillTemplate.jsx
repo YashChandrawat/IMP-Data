@@ -8,6 +8,11 @@ import VehicleDetails from "../Common/VehicleDetails";
 import LocationDetails from "../Common/LocationDetails";
 import UploadImage from "../../Reuseable Components/UploadImage";
 import { formatDate } from "../../Reusable Function/formatDate";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const CabBillTemplate = ({ template1, template2 }) => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -74,8 +79,8 @@ const CabBillTemplate = ({ template1, template2 }) => {
   }
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-white p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Please fill the details
         </h2>
@@ -142,7 +147,7 @@ const CabBillTemplate = ({ template1, template2 }) => {
       </div>
 
       {/* Bill Preview */}
-      <div className="w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>

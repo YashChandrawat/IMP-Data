@@ -1,3 +1,8 @@
+import { useState } from "react";
+import Heading from "../../../Reuseable Components/Heading";
+import Wrapper from "../../../Reuseable Components/Wrapper";
+import CollapseWrapper from "../../../Reuseable Components/CollapseWrapper";
+
 const LogoDetail = ({
   formData,
   setFormData,
@@ -88,34 +93,46 @@ const LogoDetail = ({
         return null;
     }
   };
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
 
   return (
-    <div className="bg-white rounded-2xl border-2 border-gray-200 space-y-4 shadow-lg">
+    <Wrapper>
       {/* Header */}
-      <h3 className="text-lg px-6 font-semibold border-b-2 py-4 text-gray-800 border-gray-200">
-        {sectionName}
-      </h3>
+      <Heading
+        name={sectionName}
+        toggleContent={toggleContent}
+        isCollapsed={!isVisible}
+        isVisible={isVisible}
+      />
+      <CollapseWrapper isVisible={isVisible}>
+        {/* Radio Options */}
+        <div className="px-6 pb-4 flex flex-col gap-4 sm:justify-between">
+          {["URL", "Gallery"].map((logo, index) => (
+            <label
+              key={index}
+              className="flex items-center gap-2 text-gray-700"
+            >
+              <input
+                type="radio"
+                name="logoDetail"
+                value={logo}
+                checked={logoDetail === logo}
+                onChange={(e) => setLogoDetail(e.target.value)}
+                className="h-4 w-4 accent-blue-500"
+              />
+              <span>{logo}</span>
+            </label>
+          ))}
+        </div>
 
-      {/* Radio Options */}
-      <div className="px-6 pb-4 flex flex-col gap-4">
-        {["URL", "Gallery"].map((logo, index) => (
-          <label key={index} className="flex items-center gap-2 text-gray-700">
-            <input
-              type="radio"
-              name="logoDetail"
-              value={logo}
-              checked={logoDetail === logo}
-              onChange={(e) => setLogoDetail(e.target.value)}
-              className="h-4 w-4 accent-blue-500"
-            />
-            <span>{logo}</span>
-          </label>
-        ))}
-      </div>
-
-      {/* Rendered Content */}
-      <div className="template-preview px-6 pb-6">{renderTemplate()}</div>
-    </div>
+        {/* Rendered Content */}
+        <div className="template-preview px-6 pb-6">{renderTemplate()}</div>
+      </CollapseWrapper>
+    </Wrapper>
   );
 };
 

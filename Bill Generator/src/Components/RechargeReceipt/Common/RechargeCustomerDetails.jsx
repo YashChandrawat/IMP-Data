@@ -1,77 +1,77 @@
-const RechargeCustomerDetails = ({ formData, handleChange }) => {
-  return (
-    <div className="bg-white rounded-2xl border-2 border-gray-200 shadow-lg">
-      {/* Header */}
-      <h3 className="text-lg px-6 font-semibold border-b-2 py-4 mb-4 text-gray-800 border-gray-200">
-        Customer Details
-      </h3>
+import { useState } from "react";
+import CollapseWrapper from "../../Reuseable Components/CollapseWrapper";
+import Heading from "../../Reuseable Components/Heading";
+import Wrapper from "../../Reuseable Components/Wrapper";
+import InputField from "../../Reuseable Components/InputField";
 
-      <div className="px-6 pb-6 flex flex-col gap-6">
-        {/* Customer  Name */}
-        <div className="flex flex-col gap-2 w-[100%]">
-          <label className="text-md font-medium text-gray-600">
-            Customer Name
-          </label>
-          <input
-            type="text"
-            name="customerName"
+const RechargeCustomerDetails = ({ formData, handleChange }) => {
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
+
+  return (
+    <Wrapper>
+      {/* Header */}
+      <Heading
+        name={"Customer Details"}
+        toggleContent={toggleContent}
+        isCollapsed={!isVisible}
+        isVisible={isVisible}
+      />
+      <CollapseWrapper isVisible={isVisible}>
+        <div className="px-6 pb-6 flex flex-col gap-6">
+          {/* Customer  Name */}
+          <InputField
+            label={"Customer Name"}
+            type={"text"}
+            name={"customerName"}
             value={formData.customerName}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
+            handleChange={handleChange}
+            placeholder="John Doe"
           />
-        </div>
-        {/* Customer  Address */}
-        <div className="flex flex-col gap-2 w-[100%]">
-          <label className="text-md font-medium text-gray-600">
-            Customer Address
-          </label>
-          <input
-            type="text"
-            name="customerAddress"
+
+          {/* Customer Address */}
+          <InputField
+            label={"Customer Address"}
+            type={"text"}
+            name={"customerAddress"}
             value={formData.customerAddress}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
+            handleChange={handleChange}
+            placeholder="181 Street, USA"
           />
-        </div>
-        {/* Landmark */}
-        <div className="flex flex-col gap-2 w-[100%]">
-          <label className="text-md font-medium text-gray-600">Landmark</label>
-          <input
-            type="text"
-            name="landmark"
+
+          {/* Landmark */}
+          <InputField
+            label={"Landmark"}
+            type={"text"}
+            name={"landmark"}
             value={formData.landmark}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
+            handleChange={handleChange}
+            placeholder="Near Central Hall..."
           />
         </div>
-      </div>
-      <div className="px-6 pb-6 flex gap-6">
-        <div className="flex flex-col gap-2 w-[100%]">
-          <label className="text-md font-medium text-gray-600">
-            Customer ID
-          </label>
-          <input
-            type="text"
-            name="customerId"
+        <div className="px-6 pb-6 flex flex-col sm:flex-row gap-6">
+          <InputField
+            label={"Customer Id"}
+            type={"text"}
+            name={"customerId"}
             value={formData.customerId}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
+            handleChange={handleChange}
+            placeholder="9876134"
           />
-        </div>
-        <div className="flex flex-col gap-2 w-[100%]">
-          <label className="text-md font-medium text-gray-600">
-            Invoice No
-          </label>
-          <input
-            type="text"
-            name="invoiceNo"
+          <InputField
+            label={"Invoice No"}
+            type={"text"}
+            name={"invoiceNo"}
             value={formData.invoiceNo}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
+            handleChange={handleChange}
+            placeholder="3564fE5"
           />
         </div>
-      </div>
-    </div>
+      </CollapseWrapper>
+    </Wrapper>
   );
 };
 

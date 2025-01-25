@@ -5,6 +5,11 @@ import LogoDetail from "../../FuelBill/Templates/Common/LogoDetail";
 import RentEmpDetails from "../Common/RentEmpDetails";
 import LandlordDetails from "../Common/LandlordDetails";
 import RentPaymentDetails from "../Common/RentPaymentDetails";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const RentTemplate3 = () => {
   const [template3, setTemplate3] = useState(true);
@@ -37,8 +42,8 @@ const RentTemplate3 = () => {
   };
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-[#fffff] p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6 ">
           Please fill the details
         </h2>
@@ -85,12 +90,12 @@ const RentTemplate3 = () => {
       </div>
 
       {/* Bill Preview */}
-      <div className="lg:w-1/2w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
         <div id="rentTemplate3">
-          <div className="bg-white border border-gray-300 shadow-md rounded-md p-8 max-w-xl mx-auto font-sans text-gray-800">
+          <div className="bg-white border border-gray-300 shadow-md rounded-md p-8 max-w-xl font-sans text-gray-800">
             {/* Header */}
             <div className="flex justify-end mb-6">
               <h1 className="font-bold text-md">Date: {formData.fromDate}</h1>

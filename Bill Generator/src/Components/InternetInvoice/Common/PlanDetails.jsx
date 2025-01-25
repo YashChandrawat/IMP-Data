@@ -1,74 +1,60 @@
+import { useState } from "react";
+import Heading from "../../Reuseable Components/Heading";
+import SelectField from "../../Reuseable Components/SelectField";
+import Wrapper from "../../Reuseable Components/Wrapper";
+import {
+  MONTH_CYCLE,
+  TRAFFIC_PLAN_PACKAGE,
+  TRAFFIC_PLAN_SPEED,
+} from "../../Utils/constants";
+import CollapseWrapper from "../../Reuseable Components/CollapseWrapper";
+
 const PlanDetails = ({ formData, handleChange }) => {
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
   return (
-    <div className="bg-white rounded-2xl border-2 border-gray-200 shadow-lg">
+    <Wrapper>
       {/* Header */}
-      <h3 className="text-lg px-6 font-semibold border-b-2 py-4 mb-4 text-gray-800 border-gray-200">
-        Plan Details
-      </h3>
-
-      <div className="px-6 pb-6 flex gap-6">
-        {/* Traffic Plan Speed */}
-        <div className="flex flex-col gap-2 w-[50%]">
-          <label className="text-md font-medium text-gray-600">
-            Traffic Plan Speed
-          </label>
-          <select
-            name="trafficPlanSpeed"
+      <Heading
+        name={"Plan Details"}
+        toggleContent={toggleContent}
+        isCollapsed={!isVisible}
+        isVisible={isVisible}
+      />
+      <CollapseWrapper isVisible={isVisible}>
+        <div className="px-6 pb-6 flex gap-6">
+          {/* Traffic Plan Speed */}
+          <SelectField
+            label={"Traffic Plan Speed"}
+            selectName={"trafficPlanSpeed"}
             value={formData.trafficPlanSpeed}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            <option value="">Select One</option>
-            <option value="10MBPS">10MBPS</option>
-            <option value="20MBPS">20MBPS</option>
-            <option value="40MBPS">40MBPS</option>
-            <option value="50MBPS">50MBPS</option>
-            <option value="100MBPS">100MBPS</option>
-            <option value="150MBPS">150MBPS</option>
-            <option value="200MBPS">200MBPS</option>
-            <option value="500MBPS">500MBPS</option>
-            <option value="1GBPS">1GBPS</option>
-          </select>
-        </div>
+            handleChange={handleChange}
+            arr={TRAFFIC_PLAN_SPEED}
+          />
 
-        {/* Traffic Plan Package */}
-        <div className="flex flex-col gap-2 w-[50%]">
-          <label className="text-md font-medium text-gray-600">
-            Traffic Plan Speed
-          </label>
-          <select
-            name="trafficPlanPackage"
+          {/* Traffic Plan Package */}
+          <SelectField
+            label={"Traffic Plan Package"}
+            selectName={"trafficPlanPackage"}
             value={formData.trafficPlanPackage}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            <option value="">Select One</option>
-            <option value="Limited">Limited</option>
-            <option value="Unlimited">Unlimited</option>
-            <option value="FUP">FUP</option>
-          </select>
-        </div>
+            handleChange={handleChange}
+            arr={TRAFFIC_PLAN_PACKAGE}
+          />
 
-        {/* Traffic Plan */}
-        <div className="flex flex-col gap-2 w-[50%]">
-          <label className="text-md font-medium text-gray-600">
-            Traffic Plan Speed
-          </label>
-          <select
-            name="trafficPlan"
+          {/* Traffic Plan */}
+          <SelectField
+            label={"Traffic Plan Speed"}
+            selectName={"trafficPlan"}
             value={formData.trafficPlan}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
-            <option value="">Select One</option>
-            <option value="Monthly">Monthly</option>
-            <option value="Quaterly">Quaterly</option>
-            <option value="Half Yearly">Half Yearly</option>
-            <option value="Annual">Annual</option>
-          </select>
+            handleChange={handleChange}
+            arr={MONTH_CYCLE}
+          />
         </div>
-      </div>
-    </div>
+      </CollapseWrapper>
+    </Wrapper>
   );
 };
 

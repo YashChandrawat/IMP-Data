@@ -5,6 +5,11 @@ import LogoDetail from "../../FuelBill/Templates/Common/LogoDetail";
 import RentEmpDetails from "../Common/RentEmpDetails";
 import LandlordDetails from "../Common/LandlordDetails";
 import RentPaymentDetails from "../Common/RentPaymentDetails";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const RentTemplate2 = () => {
   const [template2, setTemplate2] = useState(true);
@@ -36,8 +41,8 @@ const RentTemplate2 = () => {
   };
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-[#fffff] p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6 ">
           Please fill the details
         </h2>
@@ -84,7 +89,7 @@ const RentTemplate2 = () => {
       </div>
 
       {/* Bill Preview */}
-      <div className="lg:w-1/2w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>

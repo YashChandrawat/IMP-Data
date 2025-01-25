@@ -7,6 +7,11 @@ import ISPDetails from "../Common/ISPDetails";
 import CustomerDetails from "../Common/CustomerDetails";
 import LogoDetail from "../../FuelBill/Templates/Common/LogoDetail";
 import PaymentDetails from "../Common/PaymentDetails";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const InternetTemplate1 = () => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -40,8 +45,8 @@ const InternetTemplate1 = () => {
   //   }
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-[#fffff] p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6 ">
           Please fill the details
         </h2>
@@ -88,7 +93,7 @@ const InternetTemplate1 = () => {
       </div>
 
       {/* Bill Preview */}
-      <div className="lg:w-1/2w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>

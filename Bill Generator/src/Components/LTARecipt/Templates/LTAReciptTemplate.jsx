@@ -9,6 +9,11 @@ import TravelDetails from "../Common/TravelDetails";
 import PaymentDetailsLTA from "../Common/PaymentDetailsLTA";
 import { formatDate } from "../../Reusable Function/formatDate";
 import { calculateTaxAmount } from "../../Reusable Function/calculateTaxAmount";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const LTAReciptTemplate = () => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -57,8 +62,8 @@ const LTAReciptTemplate = () => {
   }
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-white p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Please fill the details
         </h2>
@@ -108,32 +113,36 @@ const LTAReciptTemplate = () => {
       </div>
 
       {/* Bill Preview */}
-      <div className="w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
         <div id="ltaReciptBill">
-          <div className="font-nunito max-w-4xl mx-auto px-9 py-4 bg-white shadow-lg rounded-md">
+          <div className="font-nunito max-w-4xl mx-auto px-4 py-4 bg-white shadow-lg rounded-md">
             <div>
-              <span className="bg-yellow-300 font-semibold">
+              <span className="bg-yellow-300 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">
                 Congratulations! You have booked a reschedulable ticket. You can
                 advance or postpone this journey till{" "}
                 {formatDate(formData.reportingDate)} {formData.departureTime}
               </span>
             </div>
-            <div className="mt-4 flex justify-between">
+            <div className="mt-4 flex flex-col sm:flex-row justify-between">
               {/* Img */}
-              <span className="pr-3 border-r border-gray-300 w-[17%] h-[17%]">
-                <img src={formData.logoUrl} alt="Logo" className="w-20 h-20 " />
+              <span className="pr-3 border-r border-gray-300 w-full sm:w-[17%] h-auto sm:h-[17%] mb-4 sm:mb-0">
+                <img
+                  src={formData.logoUrl}
+                  alt="Logo"
+                  className="w-20 h-20 mx-auto sm:mx-0"
+                />
               </span>
 
               {/* ETicket */}
-              <div>
+              <div className="text-center sm:text-left">
                 <p className="text-2xl font-semibold">eTICKET</p>
               </div>
 
               {/* Right Most Part */}
-              <div className="text-right mb-4">
+              <div className="text-center sm:text-right mb-4">
                 <p className="font-bold">Need help with your trip?</p>
                 <p className="font-bold">Boarding Point Ph. No.:</p>
                 <p>{formData.boardingPointNo}</p>
@@ -142,9 +151,9 @@ const LTAReciptTemplate = () => {
                 <p>Write to us here</p>
               </div>
             </div>
-            <div className="w-[100%] bg-gray-500 h-[0.2px]"></div>
+            <div className="w-full bg-gray-500 h-[0.2px]"></div>
 
-            <div className="flex justify-between gap-4 mt-1">
+            <div className="flex flex-col sm:flex-row justify-between gap-4 mt-1">
               <div className="text-left flex flex-col">
                 <span className="text-lg flex gap-4">
                   <span className="font-semibold text-lg">
@@ -159,7 +168,7 @@ const LTAReciptTemplate = () => {
                   <span>{formData.reportingDate}</span>
                 </span>
               </div>
-              <div className="text-right text-xs">
+              <div className="text-right text-xs mt-4 sm:mt-0">
                 <p className="font-semibold">Ticket no: {formData.ticketNo}</p>
                 <p className="font-thin">
                   PNR no: <br />
@@ -168,69 +177,69 @@ const LTAReciptTemplate = () => {
               </div>
             </div>
 
-            <div className="w-[100%] bg-orange-300 h-[0.2px] mt-1"></div>
+            <div className="w-full bg-orange-300 h-[0.2px] mt-1"></div>
 
-            <div className="flex justify-evenly gap-4 py-5">
-              <div>
+            <div className="flex flex-wrap justify-evenly gap-4 py-5">
+              <div className="w-full sm:w-auto">
                 <p className="font-semibold">{formData.travelName}</p>
                 <p>{formData.travelType}</p>
               </div>
-              <div>
+              <div className="w-full sm:w-auto">
                 <p className="font-semibold">{formData.reportingDate}</p>
                 <p>Reporting Date</p>
               </div>
-              <div>
+              <div className="w-full sm:w-auto">
                 <p className="font-semibold">{formData.departureTime}</p>
                 <p>Departure Time</p>
               </div>
-              <div>
+              <div className="w-full sm:w-auto">
                 <p className="font-semibold">{formData.noOfPerson}</p>
-                <p>No of passanger</p>
+                <p>No of passenger</p>
               </div>
             </div>
-            <div className="w-[100%] bg-gray-500 h-[0.2px] mt-1"></div>
+            <div className="w-full bg-gray-500 h-[0.2px] mt-1"></div>
 
-            <div className="flex justify-evenly gap-4 py-5">
+            <div className="flex flex-wrap justify-evenly gap-4 py-5">
               <div>
                 <p className="font-semibold">Boarding point details</p>
               </div>
-              <div>
+              <div className="w-full sm:w-auto">
                 <p className="font-semibold">{formData.location}</p>
                 <p>Location</p>
               </div>
-              <div>
+              <div className="w-full sm:w-auto">
                 <p className="font-semibold">{formData.landmark}</p>
                 <p>Landmark</p>
               </div>
-              <div>
+              <div className="w-full sm:w-auto">
                 <p className="font-semibold">{formData.travelAddress}</p>
                 <p>Address</p>
               </div>
             </div>
-            <div className="w-[100%] bg-gray-500 h-[0.2px] mt-1"></div>
+            <div className="w-full bg-gray-500 h-[0.2px] mt-1"></div>
 
-            <div className="flex justify-evenly gap-4 py-5">
+            <div className="flex flex-wrap justify-evenly gap-4 py-5">
               <div>
                 <p className="font-semibold">Dropping point details</p>
               </div>
-              <div>
+              <div className="w-full sm:w-auto">
                 <p className="font-semibold">{formData.droppingPointTime}</p>
                 <p>Dropping point time</p>
               </div>
-              <div>
+              <div className="w-full sm:w-auto">
                 <p className="font-semibold">
                   {formatDate(formData.droppingPointDate)}
                 </p>
                 <p>Dropping point date</p>
               </div>
-              <div>
+              <div className="w-full sm:w-auto">
                 <p className="font-semibold">{formData.droppingAddress}</p>
                 <p>Address</p>
               </div>
             </div>
-            <div className="w-[100%] bg-gray-500 h-[0.2px] mt-1"></div>
+            <div className="w-full bg-gray-500 h-[0.2px] mt-1"></div>
 
-            <div className="flex justify-between gap-4 py-5 w-[70%]">
+            <div className="flex flex-wrap justify-between gap-4 py-5 w-full sm:w-[70%]">
               <div>
                 <p className="font-semibold">Passenger Details (Age, Gender)</p>
                 <p>{formData.nameAgeGender}</p>
@@ -240,13 +249,13 @@ const LTAReciptTemplate = () => {
                 <p>{formData.seatNo}</p>
               </div>
             </div>
-            <div className="w-[100%] bg-gray-500 h-[0.2px] mt-1"></div>
+            <div className="w-full bg-gray-500 h-[0.2px] mt-1"></div>
 
             <div className="flex flex-col gap-2 mb-4">
               <div>
                 <p>
-                  NOTE : This operator accepts mTicket, you need not carry a
-                  print out
+                  NOTE: This operator accepts mTicket, you need not carry a
+                  printout
                 </p>
               </div>
               <div className="justify-items-end">
@@ -260,14 +269,14 @@ const LTAReciptTemplate = () => {
                   (18 % GST and service charge applicable, if any)
                 </p>
                 <p>
-                  Net amount :{" "}
+                  Net amount:{" "}
                   <span className="font-bold">
                     {formData.currencyType}{" "}
                     {calculateTaxAmount(formData.tax, formData.amount)}
                   </span>
                 </p>
                 <p>
-                  Taxable amount :{" "}
+                  Taxable amount:{" "}
                   <span className="font-bold">
                     {formData.currencyType}{" "}
                     {(
@@ -286,8 +295,8 @@ const LTAReciptTemplate = () => {
                 <div className="flex-1 h-[4px] bg-black"></div>
               </div>
 
-              <div className="flex gap-6">
-                <div className="mt-6 space-y-4 text-[9px] w-[70%]">
+              <div className="flex flex-col sm:flex-row gap-6">
+                <div className="mt-6 space-y-4 text-[9px] w-full sm:w-[70%]">
                   <p>
                     Please note the following regarding the luggage policy for
                     your journey
@@ -301,8 +310,7 @@ const LTAReciptTemplate = () => {
                   <p>
                     Passengers should not carry any goods like weapons,
                     inflammable, firearms, ammunition, drugs, liquor, smuggled
-                    goods, etc., and any other articles that are prohibited
-                    under law.
+                    goods, etc.
                   </p>
                   <p>
                     Travel Operator reserves the right to deny boarding or
@@ -317,7 +325,7 @@ const LTAReciptTemplate = () => {
                   </p>
                 </div>
 
-                <div className="mt-8">
+                <div className="mt-8 w-full sm:w-auto">
                   <table className="w-full border-t border-gray-300 text-left text-[9px]">
                     <thead>
                       <tr>
@@ -357,6 +365,7 @@ const LTAReciptTemplate = () => {
             </div>
           </div>
         </div>
+
         <p className="mt-2 px-6 text-gray-500">
           Watermark will be removed from actual pdf
         </p>

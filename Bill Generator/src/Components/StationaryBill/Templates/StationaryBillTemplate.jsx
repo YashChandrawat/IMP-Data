@@ -15,6 +15,11 @@ import {
   calculateSubTotal,
   returnTotal,
 } from "../../Reusable Function/exclusiveGst";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const StationaryBillTemplate = () => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -109,8 +114,8 @@ const StationaryBillTemplate = () => {
   };
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-white p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Please fill the details
         </h2>
@@ -168,28 +173,31 @@ const StationaryBillTemplate = () => {
       </div>
 
       {/* Bill Preview */}
-      <div className="w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
         <div id="stationaryBillTemplate">
-          <div className="font-nunito max-w-4xl mx-auto p-6 border border-gray-300 rounded-lg shadow-md">
+          <div className="font-nunito max-w-full sm:max-w-4xl mx-auto p-6 border border-gray-300 rounded-lg shadow-md">
             {/* Header Section */}
             <h1 className="text-lg font-semibold text-center">
               {formData.stationaryName}
             </h1>
-            <div className="flex justify-between mb-4">
-              <div className="text-left">
-                <img src={formData.logoUrl} alt="Logo" className="w-20 h-20" />
-                <p className="text-md font-semibold text-left">
+            <div className="flex flex-col sm:flex-row justify-between mb-4">
+              <div className="text-left mb-4 sm:mb-0">
+                <img
+                  src={formData.logoUrl}
+                  alt="Logo"
+                  className="w-20 h-20 mx-auto sm:mx-0"
+                />
+                <p className="text-md font-semibold text-center sm:text-left">
                   {formData.stationaryName}
                 </p>
-
-                <p className="text-md text-left">
+                <p className="text-md text-center sm:text-left">
                   {formData.stationaryAddress}
                 </p>
               </div>
-              <div className="flex flex-col gap-10">
+              <div className="flex flex-col gap-4 sm:gap-10">
                 <div className="text-right">
                   <h1 className="text-md font-medium">
                     Receipt no: {formData.invoiceNo}
@@ -226,16 +234,16 @@ const StationaryBillTemplate = () => {
               <tbody>
                 {formData.orderName.map((item, index) => (
                   <tr key={index}>
-                    <td className="border-[1px] border-black  px-2 py-2">
+                    <td className="border-[1px] border-black px-2 py-2">
                       {item.desc}
                     </td>
-                    <td className="border-[1px] border-black  px-2 py-2 text-right">
+                    <td className="border-[1px] border-black px-2 py-2 text-right">
                       {formData.currencyType} {item.itemPrice}
                     </td>
-                    <td className="border-[1px] border-black  px-2 py-2 text-right">
+                    <td className="border-[1px] border-black px-2 py-2 text-right">
                       {item.quantity}
                     </td>
-                    <td className="border-[1px] border-black  px-2 py-2 text-right">
+                    <td className="border-[1px] border-black px-2 py-2 text-right">
                       {formData.currencyType} {item.total}
                     </td>
                   </tr>
@@ -244,7 +252,7 @@ const StationaryBillTemplate = () => {
             </table>
 
             {/* Subtotal Section */}
-            <div className="flex justify-between mb-4 mt-10">
+            <div className="flex flex-col sm:flex-row justify-between mb-4 mt-10">
               <p className="text-sm mt-1">
                 <span className="font-bold">
                   <i>Remarks/Instruction:</i>
@@ -254,29 +262,29 @@ const StationaryBillTemplate = () => {
               <table className="table-auto text-sm border-collapse ">
                 <tbody>
                   <tr>
-                    <td className=" px-4 py-2 ">Subtotal</td>
-                    <td className=" px-4 py-2 text-right">
+                    <td className="px-4 py-2">Subtotal</td>
+                    <td className="px-4 py-2 text-right">
                       {formData.currencyType}{" "}
                       {calculateSubTotal(formData.orderName)}
                     </td>
                   </tr>
                   <tr>
-                    <td className=" px-4 py-2 ">CGST: {formData.tax / 2}%</td>
-                    <td className=" px-4 py-2 text-right">
+                    <td className="px-4 py-2">CGST: {formData.tax / 2}%</td>
+                    <td className="px-4 py-2 text-right">
                       {formData.currencyType}{" "}
                       {calculateExculsiveCSGT(formData.orderName, formData.tax)}
                     </td>
                   </tr>
                   <tr>
-                    <td className=" px-4 py-2 ">SGST: {formData.tax / 2}%</td>
-                    <td className=" px-4 py-2 text-right">
+                    <td className="px-4 py-2">SGST: {formData.tax / 2}%</td>
+                    <td className="px-4 py-2 text-right">
                       {formData.currencyType}{" "}
                       {calculateExculsiveCSGT(formData.orderName, formData.tax)}
                     </td>
                   </tr>
                   <tr className="bg-gray-200">
-                    <td className=" px-4 py-2 font-bold">Total Amount</td>
-                    <td className=" px-4 py-2 font-bold text-right">
+                    <td className="px-4 py-2 font-bold">Total Amount</td>
+                    <td className="px-4 py-2 font-bold text-right">
                       {formData.currencyType}{" "}
                       {returnTotal(formData.orderName, formData.tax)}
                     </td>
@@ -286,11 +294,12 @@ const StationaryBillTemplate = () => {
             </div>
 
             {/* Footer Section */}
-            <div className="text-center text-xs  border-t border-gray-300 pt-2 mt-10">
+            <div className="text-center text-xs border-t border-gray-300 pt-2 mt-10">
               SAVE PAPER SAVE NATURE !! THANKS FOR SHOPPING WITH US.
             </div>
           </div>
         </div>
+
         <p className="mt-2 px-6 text-gray-500">
           Watermark will be removed from actual pdf
         </p>

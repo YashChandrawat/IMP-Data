@@ -5,6 +5,11 @@ import LogoDetail from "../../FuelBill/Templates/Common/LogoDetail";
 import RentEmpDetails from "../Common/RentEmpDetails";
 import LandlordDetails from "../Common/LandlordDetails";
 import RentPaymentDetails from "../Common/RentPaymentDetails";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const RentTemplate1 = () => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -33,8 +38,8 @@ const RentTemplate1 = () => {
   };
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-[#fffff] p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6 ">
           Please fill the details
         </h2>
@@ -77,12 +82,12 @@ const RentTemplate1 = () => {
       </div>
 
       {/* Bill Preview */}
-      <div className="lg:w-1/2w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
         <div id="rentTemplate1">
-          <div className="bg-white border border-gray-300 shadow-md p-8 font-nunito rounded-md max-w-lg mx-auto text-gray-800">
+          <div className="bg-white border border-gray-300 shadow-md p-8 font-nunito rounded-md max-w-lg  text-gray-800">
             <div className="mb-6">
               <h1 className="font-bold text-end">Date: {formData.date}</h1>
             </div>

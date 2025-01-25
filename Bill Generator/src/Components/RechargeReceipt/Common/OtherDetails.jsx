@@ -1,119 +1,101 @@
-const OtherDetails = ({ formData, handleChange }) => {
-  return (
-    <div className="bg-white rounded-2xl border-2 border-gray-200 shadow-lg">
-      {/* Header */}
-      <h3 className="text-lg px-6 font-semibold border-b-2 py-4 mb-4 text-gray-800 border-gray-200">
-        Other Details
-      </h3>
+import { useState } from "react";
+import CollapseWrapper from "../../Reuseable Components/CollapseWrapper";
+import Heading from "../../Reuseable Components/Heading";
+import Wrapper from "../../Reuseable Components/Wrapper";
+import InputField from "../../Reuseable Components/InputField";
+import SelectField from "../../Reuseable Components/SelectField";
+import { MONTH_CYCLE, PAYMENTIN, SERVICE } from "../../Utils/constants";
 
-      <div className="px-6 pb-6 flex flex-col gap-6">
-        {/* Upper Section */}
-        <div className="flex gap-4">
-          {/* Bill From Date */}
-          <div className="flex flex-col gap-2 w-[100%]">
-            <label className="text-md font-medium text-gray-600">
-              Bill From Date
-            </label>
-            <input
+const OtherDetails = ({ formData, handleChange }) => {
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
+
+  return (
+    <Wrapper>
+      {/* Header */}
+      <Heading
+        name={"Other Details"}
+        toggleContent={toggleContent}
+        isCollapsed={!isVisible}
+        isVisible={isVisible}
+      />
+      <CollapseWrapper isVisible={isVisible}>
+        <div className="px-6 pb-6 flex flex-col gap-6">
+          {/* Upper Section */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            {/* Bill From Date */}
+            <InputField
+              label={"Bill From Date"}
               type="date"
-              name="fromDate"
+              name={"fromDate"}
               value={formData.fromDate}
-              className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-              onChange={handleChange}
+              handleChange={handleChange}
             />
-          </div>
-          {/* Bill To Date */}
-          <div className="flex flex-col gap-2 w-[100%]">
-            <label className="text-md font-medium text-gray-600">
-              Bill To Date
-            </label>
-            <input
+            <InputField
+              label={"Bill to Date"}
               type="date"
-              name="toDate"
+              name={"toDate"}
               value={formData.toDate}
-              className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-              onChange={handleChange}
+              handleChange={handleChange}
             />
           </div>
-        </div>
-        {/* Middle Section */}
-        <div className="flex gap-4">
-          {/* Billing Time */}
-          <div className="flex flex-col gap-2 w-[100%]">
-            <label className="text-md font-medium text-gray-600">Time</label>
-            <input
+
+          {/* Middle Section */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            {/* Billing Time */}
+            <InputField
+              label={"Time"}
               type="time"
-              name="time"
+              name={"time"}
               value={formData.time}
-              className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-              onChange={handleChange}
+              handleChange={handleChange}
+            />
+            {/* Service */}
+            <SelectField
+              label={"Service"}
+              selectName={"service"}
+              value={formData.service}
+              handleChange={handleChange}
+              arr={SERVICE}
             />
           </div>
-          {/* Service */}
-          <div className="flex flex-col gap-2 w-[100%]">
-            <label className="block text-gray-500 font-medium">Service</label>
-            <select
-              name="service"
-              value={formData.service}
-              onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="">Select One</option>
-              <option value="Postpaid">Postpaid</option>
-              <option value="Prepaid">Prepaid</option>
-            </select>
-          </div>
-        </div>
-        {/* Bottom Section */}
-        <div className="flex gap-4">
-          {/* Payment In */}
-          <div className="flex flex-col gap-2 w-[100%]">
-            <label className="text-md font-medium text-gray-600">
-              Payment In
-            </label>
-            <select
-              name="paymentIn"
+
+          {/* Bottom Section */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            {/* Payment In */}
+            <SelectField
+              label={"Payment In"}
+              selectName={"paymentIn"}
               value={formData.paymentIn}
-              onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="">Select One</option>
-              <option value="Advance">Advance</option>
-              <option value="Immediate">Immediate</option>
-            </select>
-          </div>
-          {/* Billing Cycle */}
-          <div className="flex flex-col gap-2 w-[100%]">
-            <label className="block text-gray-500 font-medium ">
-              Billing Cycle
-            </label>
-            <select
-              name="billingCycle"
+              handleChange={handleChange}
+              arr={PAYMENTIN}
+            />
+
+            {/* Billing Cycle */}
+            <SelectField
+              label={"Billing Cycle"}
+              selectName={"billingCycle"}
               value={formData.billingCycle}
-              onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="">Select One</option>
-              <option value="Monthly">Monthly</option>
-              <option value="Quaterly">Quaterly</option>
-              <option value="Half Yearly">Half Yearly</option>
-              <option value="Annual">Annual</option>
-            </select>
+              handleChange={handleChange}
+              arr={MONTH_CYCLE}
+            />
           </div>
-        </div>
-        {/* Mobile No */}
-        <div className="flex flex-col gap-2 w-[100%]">
-          <label className="text-md font-medium text-gray-600">Mobile No</label>
-          <input
+
+          {/* Mobile No */}
+          <InputField
+            label={"Mobile No"}
             type="number"
-            name="mobileNumber"
+            name={"mobileNumber"}
             value={formData.mobileNumber}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
+            handleChange={handleChange}
+            placeholder="6547891230"
           />
         </div>
-      </div>
-    </div>
+      </CollapseWrapper>
+    </Wrapper>
   );
 };
 

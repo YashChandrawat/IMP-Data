@@ -1,25 +1,36 @@
-const DriverDetails = ({ formData, handleChange }) => {
-  return (
-    <div className="bg-white rounded-[2rem]  space-y-4 border-2 border-gray-200">
-      <h3 className="text-lg px-6 font-semibold border-b-2 py-4 text-gray-800  border-gray-200">
-        Driver Details
-      </h3>
+import { useState } from "react";
+import CollapseWrapper from "../../Reuseable Components/CollapseWrapper";
+import Heading from "../../Reuseable Components/Heading";
+import Wrapper from "../../Reuseable Components/Wrapper";
+import InputField from "../../Reuseable Components/InputField";
 
-      <div className="px-6 pb-8 flex flex-col gap-4">
-        <div>
-          <label className="block text-gray-500 font-medium mb-1">
-            Driver Name:
-          </label>
-          <input
+const DriverDetails = ({ formData, handleChange }) => {
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
+  return (
+    <Wrapper>
+      <Heading
+        name={"Driver Details"}
+        toggleContent={toggleContent}
+        isCollapsed={!isVisible}
+        isVisible={isVisible}
+      />
+      <CollapseWrapper isVisible={isVisible}>
+        <div className="px-6 pb-8 flex flex-col gap-4">
+          <InputField
+            label={"Driver Name"}
             type="text"
-            name="driverName"
+            name={"driverName"}
             value={formData.driverName}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            handleChange={handleChange}
+            placeholder="John"
           />
         </div>
-      </div>
-    </div>
+      </CollapseWrapper>
+    </Wrapper>
   );
 };
 

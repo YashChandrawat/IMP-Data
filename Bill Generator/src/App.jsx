@@ -15,7 +15,7 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Hero />} />
-        <Route path="/bills" element={<MainSection />} />
+        <Route path="/bills/:billType" element={<MainSection />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>

@@ -4,6 +4,11 @@ import EmployeeDetails from "../Common/EmployeeDetails";
 import DownloadFile from "../../FuelBill/Templates/Common/DownloadFile";
 import LogoDetail from "../../FuelBill/Templates/Common/LogoDetail";
 import printBill from "../../Utils/printBill";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const DriverTemplate4 = () => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -45,8 +50,8 @@ const DriverTemplate4 = () => {
   };
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-[#fffff] p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6 ">
           Please fill the details
         </h2>
@@ -173,7 +178,7 @@ const DriverTemplate4 = () => {
         </div>
       </div>
 
-      <div className="lg:w-1/2w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>

@@ -3,6 +3,12 @@ import PaymentDetail from "./Common/PaymentDetail";
 import CustomerDetails from "./Common/CustomerDetails";
 import LogoDetail from "./Common/LogoDetail";
 import DownloadFile from "./Common/DownloadFile";
+import FuelStationDetails from "./Common/FuelStationDetails";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const Template3 = () => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -90,82 +96,15 @@ const Template3 = () => {
     printWindow.print();
   };
   return (
-    <div className="flex justify-between min-h-screen">
+    <div className={`${mainTemplateContainer}`}>
       {/* Left Side */}
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-[#fffff] p-6 rounded-[2rem]">
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6 ">
           Please fill the details
         </h2>
         <form className="space-y-6">
           {/* Fuel Station Details */}
-          <div className="bg-white rounded-[2rem]  space-y-4 border-2 border-gray-200">
-            <h3 className="text-lg px-6 font-semibold border-b-2 py-4 text-gray-800  border-gray-200">
-              Full Station Details
-            </h3>
-
-            <div className="px-6 pb-8 flex flex-col gap-4">
-              {/* Fuel Station Name */}
-              <div>
-                <label className="block text-gray-500 font-medium mb-1">
-                  Fuel Station Name:
-                </label>
-                <input
-                  type="text"
-                  name="stationName"
-                  value={formData.stationName}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
-
-              {/* Fuel Station Address */}
-              <div>
-                <label className="block text-gray-500 font-medium mb-1">
-                  Fuel Station Address:
-                </label>
-                <input
-                  type="text"
-                  name="stationAddress"
-                  value={formData.stationAddress}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
-
-              <div className="flex gap-4">
-                {/* Invoice Number */}
-                <div className="w-full">
-                  <label className="block text-gray-500 font-medium mb-1">
-                    Invoice Number:
-                  </label>
-                  <input
-                    type="number"
-                    name="invoiceNumber"
-                    value={formData.invoiceNumber}
-                    onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  />
-                </div>
-                {/* Payment Method */}
-                <div className="w-full">
-                  <label className="block text-gray-500 font-medium mb-1">
-                    Payment Method:
-                  </label>
-                  <select
-                    name="paymentMethod"
-                    value={formData.paymentMethod}
-                    onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  >
-                    <option value="">Select Payment Method</option>
-                    <option value="Cash">Cash</option>
-                    <option value="Online">Online</option>
-                    <option value="Card">Card</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
+          <FuelStationDetails formData={formData} handleChange={handleChange} />
 
           {/* Payment Details */}
           <PaymentDetail
@@ -209,13 +148,13 @@ const Template3 = () => {
       </div>
 
       {/* Right Side */}
-      <div className="lg:w-1/2w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
         <div
           id="template3"
-          className="pressStart bg-white border border-gray-300 mx-auto max-w-[50%] p-4 text-xs leading-relaxed rounded-3xl"
+          className="pressStart bg-white border border-gray-300 max-w-[100%] p-4 text-xs leading-relaxed rounded-3xl"
         >
           <div className="flex justify-center mb-4">
             <img

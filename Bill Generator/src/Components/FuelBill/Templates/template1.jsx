@@ -1,5 +1,13 @@
 import { useState } from "react";
 import LogoDetail from "../Templates/Common/LogoDetail";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
+import FuelStationDetails from "./Common/FuelStationDetails";
+import PaymentDetail from "./Common/PaymentDetail";
+import CustomerDetails from "./Common/CustomerDetails";
 
 const Template1 = () => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -167,240 +175,41 @@ const Template1 = () => {
   };
 
   return (
-    <div className="flex justify-between min-h-screen">
+    <div className={`${mainTemplateContainer}`}>
       {/* Fuel Station Details */}
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-[#fffff] p-6 rounded-[2rem]">
-        <h2 className="text-2xl font-medium text-gray-800 mb-6 ">
+      <div className={`${templateLeftContainer}`}>
+        <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Please fill the details
         </h2>
 
         <form className="space-y-6">
-          <div className="bg-white rounded-[2rem]  space-y-4 border-2 border-gray-200">
-            <h3 className="text-lg px-6 font-semibold border-b-2 py-4 text-gray-800  border-gray-200">
-              Full Station Details
-            </h3>
+          {/* Full Station Details Section */}
+          <FuelStationDetails formData={formData} handleChange={handleChange} />
 
-            <div className="px-6 pb-8 flex flex-col gap-4">
-              {/* Fuel Station Name */}
-              <div>
-                <label className="block text-gray-500 font-medium mb-1">
-                  Fuel Station Name:
-                </label>
-                <input
-                  type="text"
-                  name="stationName"
-                  value={formData.stationName}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
-
-              {/* Fuel Station Address */}
-              <div>
-                <label className="block text-gray-500 font-medium mb-1">
-                  Fuel Station Address:
-                </label>
-                <input
-                  type="text"
-                  name="stationAddress"
-                  value={formData.stationAddress}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
-
-              <div className="flex gap-4">
-                {/* Invoice Number */}
-                <div className="w-full">
-                  <label className="block text-gray-500 font-medium mb-1">
-                    Invoice Number:
-                  </label>
-                  <input
-                    type="number"
-                    name="invoiceNumber"
-                    value={formData.invoiceNumber}
-                    onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  />
-                </div>
-                {/* Payment Method */}
-                <div className="w-full">
-                  <label className="block text-gray-500 font-medium mb-1">
-                    Payment Method:
-                  </label>
-                  <select
-                    name="paymentMethod"
-                    value={formData.paymentMethod}
-                    onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  >
-                    <option value="">Select Payment Method</option>
-                    <option value="Cash">Cash</option>
-                    <option value="Online">Online</option>
-                    <option value="Card">Card</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-[2rem] border-2 border-gray-200 space-y-4">
-            <h3 className="text-lg px-6 font-semibold border-b-2 py-4 text-gray-800  border-gray-200">
-              Payment Details
-            </h3>
-            <div className="px-6 pb-8 flex flex-col gap-4">
-              {/* Currency Type */}
-              <div>
-                <label className="block text-gray-500 font-medium mb-1">
-                  Currency
-                </label>
-                <select
-                  name="currencyType"
-                  value={formData.currencyType}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <option value="">Select Currency Type</option>
-                  <option value="₹">Indian Rupees</option>
-                  <option value="$">Dollar</option>
-                </select>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="w-full">
-                  <label className="block text-gray-500 font-medium mb-1">
-                    Fuel Rate:
-                  </label>
-                  <input
-                    type="number"
-                    name="fuelRate"
-                    value={formData.fuelRate}
-                    onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  />
-                </div>
-
-                <div className="w-full">
-                  <label className="block text-gray-600 font-medium mb-1">
-                    Total Amount:
-                  </label>
-                  <input
-                    type="number"
-                    name="totalAmount"
-                    value={formData.totalAmount}
-                    onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  />
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="w-full">
-                  <label className="block text-gray-600 font-medium mb-1">
-                    Fuel Bill Date:
-                  </label>
-                  <input
-                    type="date"
-                    name="date"
-                    value={formData.date}
-                    onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  />
-                </div>
-
-                <div className="w-full">
-                  <label className="block text-gray-600 font-medium mb-1">
-                    Fuel Bill Time:
-                  </label>
-                  <input
-                    type="time"
-                    name="time"
-                    value={formData.time}
-                    onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-[2rem] border-2 border-gray-200 space-y-4">
-            <h3 className="text-lg px-6 font-semibold border-b-2 py-4 text-gray-800  border-gray-200">
-              Customer Details
-            </h3>
-            <div className="px-6 pb-8 flex flex-col gap-4">
-              <div>
-                <label className="block text-gray-500 font-medium mb-1">
-                  Customer Name:
-                </label>
-                <input
-                  type="text"
-                  name="customerName"
-                  value={formData.customerName}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
-
-              {/* Vehicle Number */}
-              <div>
-                <label className="block text-gray-500 font-medium mb-1">
-                  Vehicle Number:
-                </label>
-                <input
-                  type="text"
-                  name="vehicleNumber"
-                  value={formData.vehicleNumber}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                />
-              </div>
-
-              {/* Vehicle Type */}
-              <div>
-                <label className="block text-gray-500 font-medium mb-1">
-                  Vehicle Type:
-                </label>
-                <select
-                  name="vehicleType"
-                  value={formData.vehicleType}
-                  onChange={handleChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <option value="">Select Vehicle Type</option>
-                  <option value="petrol">Petrol</option>
-                  <option value="diesel">Diesel</option>
-                  <option value="cng">CNG</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <LogoDetail
+          {/* Payment Details */}
+          <PaymentDetail
             formData={formData}
             setFormData={setFormData}
-            logoDetail={logoDetail}
-            setLogoDetail={setLogoDetail}
-            selectedFile={selectedFile}
-            setSelectedFile={setSelectedFile}
-            sectionName={"Logo Details"}
+            handleChange={handleChange}
           />
 
-          <div className="bg-white rounded-2xl border-2 border-gray-200 shadow-lg ">
-            {/* Header */}
-            <h3 className="text-lg px-6 font-semibold border-b-2 py-4 mb-4 text-gray-800 border-gray-200">
+          {/* Customer Details Section */}
+          <CustomerDetails formData={formData} handleChange={handleChange} />
+
+          {/* File Details Section */}
+          <div className="bg-white rounded-[2rem] border-2 border-gray-200 shadow-lg">
+            <h3 className="text-lg px-6 font-semibold border-b-2 py-4 text-gray-800 border-gray-200">
               File Details
             </h3>
-
-            <div className="px-6 pb-6 flex flex-col gap-6">
-              <div className="flex flex-col gap-2">
-                <label className="text-md font-medium text-gray-600">
-                  Download file name
+            <div className="px-6 pb-6">
+              <div>
+                <label className="block text-gray-500 font-medium mb-1">
+                  Download File Name:
                 </label>
                 <input
                   type="text"
                   placeholder="Example: abc,xyz..."
-                  className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400"
                   onChange={(e) => (formData.fileDownloadName = e.target.value)}
                 />
                 <p className="text-sm text-gray-500">
@@ -410,6 +219,7 @@ const Template1 = () => {
             </div>
           </div>
         </form>
+
         <div className="flex justify-end gap-4 mt-4">
           <button
             className="px-6 py-2 bg-[#4935D9] text-white font-semibold rounded-lg shadow-md hover:bg-[#5541e6] focus:outline-none focus:ring-2 focus:ring-emerald-400"
@@ -427,7 +237,7 @@ const Template1 = () => {
       </div>
 
       {/* Bill Template */}
-      <div className="w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>

@@ -7,7 +7,7 @@ const InputField = ({
   placeholder = "",
 }) => {
   return (
-    <div className="w-[100%]">
+    <div className="w-full">
       <label htmlFor={name} className="block text-gray-500 font-medium mb-1">
         {label}
       </label>

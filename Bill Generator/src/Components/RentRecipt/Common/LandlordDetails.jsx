@@ -1,56 +1,58 @@
-const LandlordDetails = ({ formData, handleChange, template2 }) => {
-  return (
-    <div className="bg-white rounded-[2rem]  space-y-4 border-2 border-gray-200">
-      <h3 className="text-lg px-6 font-semibold border-b-2 py-4 text-gray-800  border-gray-200">
-        Landlord Details
-      </h3>
+import { useState } from "react";
+import CollapseWrapper from "../../Reuseable Components/CollapseWrapper";
+import Heading from "../../Reuseable Components/Heading";
+import Wrapper from "../../Reuseable Components/Wrapper";
+import InputField from "../../Reuseable Components/InputField";
+import SelectField from "../../Reuseable Components/SelectField";
+import { RECEIVED_NAME } from "../../Utils/constants";
 
-      <div className="px-6 pb-8 flex flex-col gap-4">
-        <div>
-          <label className="block text-gray-500 font-medium mb-1">
-            Landlord Name:
-          </label>
-          <input
+const LandlordDetails = ({ formData, handleChange, template2 }) => {
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
+  return (
+    <Wrapper>
+      <Heading
+        name={"Landlord Details"}
+        toggleContent={toggleContent}
+        isCollapsed={!isVisible}
+        isVisible={isVisible}
+      />
+      <CollapseWrapper isVisible={isVisible}>
+        <div className="px-6 pb-8 flex flex-col gap-4">
+          <InputField
+            label={"Landlord Name"}
             type="text"
-            name="landlordName"
+            name={"landlordName"}
             value={formData.landlordName}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            handleChange={handleChange}
+            placeholder="Paul Rollins"
           />
-        </div>
-        {template2 && (
-          <>
-            <div>
-              <label className="block text-gray-500 font-medium mb-1">
-                Received Name:
-              </label>
-              <input
+
+          {template2 && (
+            <>
+              <InputField
+                label={"Received Name"}
                 type="text"
-                name="receivedName"
+                name={"receivedName"}
                 value={formData.receivedName}
-                onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                handleChange={handleChange}
+                placeholder=""
               />
-            </div>
-            <div>
-              <label className="block text-gray-500 font-medium mb-1">
-                Received By:
-              </label>
-              <select
-                name="receivedBy"
+              <SelectField
+                label={"Received By"}
+                selectName={"receivedBy"}
                 value={formData.receivedBy}
-                onChange={handleChange}
-                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              >
-                <option value="">Select Received Name</option>
-                <option value="Landlord">Landlord</option>
-                <option value="Manager">Manager</option>
-              </select>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+                handleChange={handleChange}
+                arr={RECEIVED_NAME}
+              />
+            </>
+          )}
+        </div>
+      </CollapseWrapper>
+    </Wrapper>
   );
 };
 

@@ -1,67 +1,68 @@
+import { useState } from "react";
+import Heading from "../../Reuseable Components/Heading";
+import InputField from "../../Reuseable Components/InputField";
+import Wrapper from "../../Reuseable Components/Wrapper";
+import CollapseWrapper from "../../Reuseable Components/CollapseWrapper";
+
 const BillingDetails = ({ formData, handleChange }) => {
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
   return (
-    <div className="bg-white rounded-2xl border-2 border-gray-200 shadow-lg">
+    <Wrapper>
       {/* Header */}
-      <h3 className="text-lg px-6 font-semibold border-b-2 py-4 mb-4 text-gray-800 border-gray-200">
-        Order Details
-      </h3>
-
-      <div className="px-6 pb-6 flex gap-6">
-        {/* Table No */}
-        <div className="flex flex-col gap-2 w-[50%]">
-          <label className="text-md font-medium text-gray-600">
-            Table Number
-          </label>
-          <input
+      <Heading
+        name={"Order Details"}
+        toggleContent={toggleContent}
+        isCollapsed={!isVisible}
+        isVisible={isVisible}
+      />
+      <CollapseWrapper isVisible={isVisible}>
+        <div className="px-6 pb-6 flex gap-6">
+          {/* Table No */}
+          <InputField
+            label={"Table Number"}
             type="number"
-            name="tableNo"
+            name={"tableNo"}
             value={formData.tableNo}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
+            handleChange={handleChange}
+            placeholder="19"
           />
-        </div>
-        {/* Invoice Number */}
-        <div className="flex flex-col gap-2 w-[50%]">
-          <label className="text-md font-medium text-gray-600">
-            Invoice Number
-          </label>
-          <input
-            type="number"
-            name="invoiceNo"
-            value={formData.invoiceNo}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
-          />
-        </div>
-      </div>
 
-      <div className="px-6 pb-6 flex gap-6">
-        {/* Bill Date */}
-        <div className="flex flex-col gap-2 w-[50%]">
-          <label className="text-md font-medium text-gray-600">Bill Date</label>
-          <input
+          {/* Invoice Number */}
+          <InputField
+            label={"Invoice Number"}
+            type="number"
+            name={"invoiceNo"}
+            value={formData.invoiceNo}
+            handleChange={handleChange}
+            placeholder="64tH54"
+          />
+        </div>
+
+        <div className="px-6 pb-6 flex gap-6">
+          {/* Bill Date */}
+          <InputField
+            label={"Bill Date"}
             type="date"
-            name="billDate"
+            name={"billDate"}
             value={formData.billDate}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
+            handleChange={handleChange}
           />
-        </div>
-        {/* Billing Time */}
-        <div className="flex flex-col gap-2 w-[50%]">
-          <label className="text-md font-medium text-gray-600">
-            Billing Time
-          </label>
-          <input
+
+          {/* Billing Time */}
+          <InputField
+            label={"Bill Time"}
             type="time"
-            name="billTime"
+            name={"billTime"}
             value={formData.billTime}
-            className="px-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent text-gray-700"
-            onChange={handleChange}
+            handleChange={handleChange}
           />
         </div>
-      </div>
-    </div>
+      </CollapseWrapper>
+    </Wrapper>
   );
 };
 

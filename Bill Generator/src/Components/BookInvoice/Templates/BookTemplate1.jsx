@@ -4,6 +4,11 @@ import DownloadFile from "../../FuelBill/Templates/Common/DownloadFile";
 import BookDetails from "../Common/BookDetails";
 import BookPaymentDetails from "./BookPaymentDetails";
 import CustomerDetails from "../Common/CustomerDetails";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const BookTemplate1 = () => {
   const [formData, setFormData] = useState({
@@ -31,8 +36,8 @@ const BookTemplate1 = () => {
   }
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-[#fffff] p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6 ">
           Please fill the details
         </h2>
@@ -65,7 +70,7 @@ const BookTemplate1 = () => {
       </div>
 
       {/* Bill Preview */}
-      <div className="lg:w-1/2w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>

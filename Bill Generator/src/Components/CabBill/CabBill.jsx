@@ -1,5 +1,12 @@
 import { useState } from "react";
 import CabBillTemplate from "./Templates/CabBillTemplate";
+import {
+  heading,
+  labelClass,
+  mainContainer,
+  renderClass,
+  templateContainer,
+} from "../Utils/constants";
 
 const CabBill = () => {
   const [selectedTemplate, setSelectedTemplate] = useState("template1");
@@ -16,17 +23,15 @@ const CabBill = () => {
     }
   };
   return (
-    <div className="max-w-[100%] mx-auto p-6 rounded-lg space-y-8 mt-12">
-      <h2 className="text-3xl font-semibold border-b-2 py-4 text-gray-800">
-        Cab Bill
-      </h2>
+    <div className={`${mainContainer}`}>
+      <h2 className={`${heading}`}>Cab Bill</h2>
 
-      <div className="space-y-4">
-        <div className="flex space-x-6 ml-6">
+      <div className="space-y-6">
+        <div className={`${templateContainer}`}>
           {["template1", "template2"].map((template, index) => (
             <label
               key={index}
-              className={`inline-flex items-center space-x-2 text-md px-4 py-3 border rounded-[2rem] shadow-md cursor-pointer transition-all ${
+              className={`${labelClass} ${
                 selectedTemplate === template
                   ? "text-[#4935D9] border-[#4935D9]  ring-[#4935D9] px-9"
                   : "text-gray-600 border-gray-300 hover:bg-gray-100"
@@ -56,9 +61,7 @@ const CabBill = () => {
       </div>
 
       {/* Template Preview Area */}
-      <div className="template-preview rounded-lg shadow-sm">
-        {renderTemplate()}
-      </div>
+      <div className={`${renderClass}`}>{renderTemplate()}</div>
     </div>
   );
 };

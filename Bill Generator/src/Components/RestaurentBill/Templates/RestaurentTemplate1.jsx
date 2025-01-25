@@ -7,6 +7,11 @@ import OrderDetails from "../Common/OrderDetails";
 import BillingDetails from "../Common/BillingDetails";
 import CustomerDetails from "../../InternetInvoice/Common/CustomerDetails";
 import PaymentDetails from "../../InternetInvoice/Common/PaymentDetails";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const RestaurentTemplate1 = ({ template1, template2 }) => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -109,8 +114,8 @@ const RestaurentTemplate1 = ({ template1, template2 }) => {
   };
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-white p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Please fill the details
         </h2>
@@ -179,20 +184,20 @@ const RestaurentTemplate1 = ({ template1, template2 }) => {
       </div>
 
       {/* Bill Preview */}
-      <div className="w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
         {template1 && (
           <div id="restaurentTemplate1">
-            <div className=" max-w-sm mx-auto p-6 bg-white text-black font-pressStart2P border border-gray-300 rounded shadow-md">
+            <div className=" max-w-sm  p-6 bg-white text-black font-pressStart2P border border-gray-300 rounded shadow-md">
               {/* Logo Section */}
               <div className="flex flex-col items-center mb-4">
-                <div className="bg-gray-300 p-4 rounded-full mb-2">
+                <div className=" p-4 rounded-full mb-2">
                   <img
                     src={formData.logoUrl}
                     alt="Logo"
-                    className="h-10 w-10"
+                    className="h-14 w-14"
                   />
                 </div>
                 <p className="text-center text-lg font-bold">WELCOME!!!</p>
@@ -291,8 +296,8 @@ const RestaurentTemplate1 = ({ template1, template2 }) => {
         )}
         {template2 && (
           <div id="restaurentTemplate2">
-            <div className="flex justify-center items-center min-h-screen bg-gray-100">
-              <div className="w-[400px] bg-white border border-gray-300 rounded-lg p-5 shadow-md">
+            <div className="flex items-center">
+              <div className="max-w-xl bg-white border border-gray-300 rounded-lg p-5 shadow-md">
                 {/* Logo */}
                 <div className="flex justify-center mb-5">
                   <img

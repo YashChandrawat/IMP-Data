@@ -8,6 +8,12 @@ import MartDetails from "../Common/MartDetails";
 import BillingDetailsMart from "../Common/BillingDetailsMart";
 import PaymentDetailsMart from "../Common/PaymentDetailsMart";
 import { formatDate } from "../../Reusable Function/formatDate";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
+import CollapseWrapper from "../../Reuseable Components/CollapseWrapper";
 
 const MartBillTemplate1 = ({ template1, template2 }) => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -94,9 +100,15 @@ const MartBillTemplate1 = ({ template1, template2 }) => {
     return taxAmt.toFixed(2);
   }
 
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
+
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-white p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Please fill the details
         </h2>
@@ -116,83 +128,90 @@ const MartBillTemplate1 = ({ template1, template2 }) => {
             sectionName={"Logo Details"}
           />
           <Wrapper>
-            <Heading name={"Order Details"} />
-            <div className="px-4">
-              <table className="w-full border-collapse text-sm text-left">
-                <thead className=" border-b text-center">
-                  <tr>
-                    <th className="px-4 py-2">Description</th>
-                    <th className="px-4 py-2">Price</th>
-                    <th className="px-4 py-2">Quantity</th>
-                    <th className="px-4 py-2">Sub Total</th>
-                    <th className="px-4 py-2">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {formData.itemDetails.map((row, index) => (
-                    <tr key={index} className="border-b">
-                      <td className="px-4 py-2">
-                        <textarea
-                          className="w-full border rounded p-2"
-                          value={row.desc}
-                          onChange={(e) =>
-                            handleChangeInRoomDetails(
-                              index,
-                              "desc",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </td>
-                      <td className="px-4 py-2">
-                        <input
-                          type="number"
-                          className="w-full border rounded p-2 text-right"
-                          value={row.price}
-                          onChange={(e) =>
-                            handleChangeInRoomDetails(
-                              index,
-                              "price",
-                              parseInt(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </td>
-                      <td className="px-4 py-2">
-                        <input
-                          type="number"
-                          className="w-full border rounded p-2 text-right"
-                          value={row.quantity}
-                          onChange={(e) =>
-                            handleChangeInRoomDetails(
-                              index,
-                              "quantity",
-                              parseInt(e.target.value) || 0
-                            )
-                          }
-                        />
-                      </td>
-                      <td className="px-4 py-2 text-right">{row.subtotal}</td>
-                      <td className="px-4 py-2 flex items-center space-x-2">
-                        <button
-                          className="bg-orange-500 hover:bg-orange-600 text-white rounded-full p-2"
-                          onClick={addRow}
-                        >
-                          +
-                        </button>
-                        <button
-                          className="bg-red-500 hover:bg-red-600 text-white rounded-full p-2"
-                          onClick={() => removeRow(index)}
-                          disabled={formData.itemDetails.length === 1}
-                        >
-                          -
-                        </button>
-                      </td>
+            <Heading
+              name={"Order Details"}
+              toggleContent={toggleContent}
+              isCollapsed={!isVisible}
+              isVisible={isVisible}
+            />
+            <CollapseWrapper isVisible={isVisible}>
+              <div className="px-4 overflow-scroll no-scrollbar">
+                <table className="w-full border-collapse text-sm text-left">
+                  <thead className=" border-b text-center">
+                    <tr>
+                      <th className="px-4 py-2">Description</th>
+                      <th className="px-4 py-2">Price</th>
+                      <th className="px-4 py-2">Quantity</th>
+                      <th className="px-4 py-2">Sub Total</th>
+                      <th className="px-4 py-2">Action</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {formData.itemDetails.map((row, index) => (
+                      <tr key={index} className="border-b">
+                        <td className="px-4 py-2">
+                          <textarea
+                            className="w-full border rounded p-2"
+                            value={row.desc}
+                            onChange={(e) =>
+                              handleChangeInRoomDetails(
+                                index,
+                                "desc",
+                                e.target.value
+                              )
+                            }
+                          />
+                        </td>
+                        <td className="px-4 py-2">
+                          <input
+                            type="number"
+                            className="w-full border rounded p-2 text-right"
+                            value={row.price}
+                            onChange={(e) =>
+                              handleChangeInRoomDetails(
+                                index,
+                                "price",
+                                parseInt(e.target.value) || 0
+                              )
+                            }
+                          />
+                        </td>
+                        <td className="px-4 py-2">
+                          <input
+                            type="number"
+                            className="w-full border rounded p-2 text-right"
+                            value={row.quantity}
+                            onChange={(e) =>
+                              handleChangeInRoomDetails(
+                                index,
+                                "quantity",
+                                parseInt(e.target.value) || 0
+                              )
+                            }
+                          />
+                        </td>
+                        <td className="px-4 py-2 text-right">{row.subtotal}</td>
+                        <td className="px-4 py-2 flex items-center space-x-2">
+                          <button
+                            className="bg-orange-500 hover:bg-orange-600 text-white rounded-full p-2"
+                            onClick={addRow}
+                          >
+                            +
+                          </button>
+                          <button
+                            className="bg-red-500 hover:bg-red-600 text-white rounded-full p-2"
+                            onClick={() => removeRow(index)}
+                            disabled={formData.itemDetails.length === 1}
+                          >
+                            -
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CollapseWrapper>
           </Wrapper>
 
           <PaymentDetailsMart formData={formData} handleChange={handleChange} />
@@ -224,39 +243,48 @@ const MartBillTemplate1 = ({ template1, template2 }) => {
       </div>
 
       {/* Bill Preview */}
-      <div className="w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
         {template1 && (
-          <div id="martBillTemplate1">
-            <div className="max-w-md p-4 border border-gray-300 rounded shadow font-spaceMono">
+          <div
+            id="martBillTemplate1"
+            className="flex justify-start px-0 sm:px-2"
+          >
+            <div className="max-w-md w-full sm:w-auto p-4 border border-gray-300 rounded shadow font-spaceMono">
               <div className="text-center text-lg">
+                {/* Logo and Store Info */}
                 <div className="flex flex-col items-center">
                   <img
                     src={formData.logoUrl}
                     alt="Logo"
-                    className="w-20 h-20"
+                    className="w-16 h-16 sm:w-20 sm:h-20"
                   />
-                  <p>{formData.martName}</p>
-                  <p>{formData.martAddress}</p>
-                  <p>Phone No: {formData.phoneNo}</p>
-                  <p>FSSAI No.: {formData.fssaiNo}</p>
-                  <h1 className=" text-lg mt-2">RETAIL INVOICE</h1>
+                  <p className="text-sm sm:text-base">{formData.martName}</p>
+                  <p className="text-sm sm:text-base">{formData.martAddress}</p>
+                  <p className="text-sm sm:text-base">
+                    Phone No: {formData.phoneNo}
+                  </p>
+                  <p className="text-sm sm:text-base">
+                    FSSAI No.: {formData.fssaiNo}
+                  </p>
+                  <h1 className="text-base sm:text-lg mt-2">RETAIL INVOICE</h1>
                 </div>
-                <div className="text-left">
+
+                {/* Bill Details */}
+                <div className="text-left text-sm sm:text-base">
                   <p className="mt-2">
-                    <span className="">BILL NO:</span> {formData.invoiceNo}
+                    <span>BILL NO:</span> {formData.invoiceNo}
                   </p>
                   <p>
-                    <span className="">BILL DATE:</span>{" "}
-                    {formatDate(formData.billDate)}{" "}
-                    <span className="">TIME:</span> {formData.billTime}
+                    <span>BILL DATE:</span> {formatDate(formData.billDate)}{" "}
+                    <span>TIME:</span> {formData.billTime}
                   </p>
                 </div>
 
                 {/* Table */}
-                <table className="w-full text-left border-collapse mt-4 border-b-2 border-dashed border-black">
+                <table className="w-full text-left border-collapse mt-4 border-b-2 border-dashed border-black text-xs sm:text-sm">
                   <thead>
                     <tr className="border-y-2 border-dashed border-black">
                       <th className="py-2">Particulars</th>
@@ -326,19 +354,15 @@ const MartBillTemplate1 = ({ template1, template2 }) => {
               </div>
 
               {/* Footer */}
-              <div className="text-center mt-4 text-lg">
+              <div className="text-center mt-4 text-xs sm:text-sm">
                 <p>
-                  <span className="">
-                    Payment Method: {formData.paymentMethod}
-                  </span>
+                  <span>Payment Method: {formData.paymentMethod}</span>
                 </p>
                 <p>
-                  <span className="">Transaction ID:</span> 5PHIeZwuB70g
+                  <span>Transaction ID:</span> 5PHIeZwuB70g
                 </p>
                 <p>
-                  <span className="">
-                    Customer Name: {formData.customerName}
-                  </span>
+                  <span>Customer Name: {formData.customerName}</span>
                 </p>
                 <p className="text-center mt-2 mb-4">
                   Thank You! Please visit again
@@ -347,9 +371,10 @@ const MartBillTemplate1 = ({ template1, template2 }) => {
             </div>
           </div>
         )}
+
         {template2 && (
           <div id="martBillTemplate2">
-            <div className="max-w-[30rem]  p-6 bg-white shadow-lg rounded-md font-nunito border border-gray-300">
+            <div className="max-w-[30rem] p-6 bg-white shadow-lg rounded-md font-nunito border border-gray-300 md:max-w-md lg:max-w-lg">
               {/* Header Section */}
               <div className="text-center">
                 <img
@@ -372,7 +397,7 @@ const MartBillTemplate1 = ({ template1, template2 }) => {
               <div className="border-t border-dashed mt-6 border-gray-400 mb-6" />
 
               {/* Items Table */}
-              <table className="w-full border-collapse text-sm ">
+              <table className="w-full border-collapse text-sm">
                 <thead>
                   <tr className="border-b border-dashed border-gray-300 text-base">
                     <th className="py-4 text-left">Sn.</th>
@@ -383,12 +408,12 @@ const MartBillTemplate1 = ({ template1, template2 }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {formData.itemDetails.map((item) => (
+                  {formData.itemDetails.map((item, index) => (
                     <tr
                       key={item.id}
                       className="border-t border-dashed border-gray-300"
                     >
-                      <td className="py-4 text-left">{1}</td>
+                      <td className="py-4 text-left">{index + 1}</td>
                       <td className="py-4">{item.desc}</td>
                       <td className="py-4 text-right">{item.quantity}</td>
                       <td className="py-4 text-right">₹ {item.price}</td>
@@ -423,7 +448,7 @@ const MartBillTemplate1 = ({ template1, template2 }) => {
               </div>
 
               {/* Footer */}
-              <div className="mt-1 text-center text-sm text-gray-700">
+              <div className="mt-4 text-center text-sm text-gray-700">
                 <p>Payment Method: {formData.paymentMethod}</p>
                 <p>Transaction ID: {formData.invoiceNo}</p>
                 <p>Customer Name: {formData.customerName}</p>
@@ -432,6 +457,7 @@ const MartBillTemplate1 = ({ template1, template2 }) => {
             </div>
           </div>
         )}
+
         <p className="mt-2 px-6 text-gray-500">
           Watermark will be removed from actual pdf
         </p>

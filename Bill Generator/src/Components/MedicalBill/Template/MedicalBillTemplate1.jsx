@@ -7,6 +7,11 @@ import PatientDetails from "../Common/PatientDetails";
 import LogoDetail from "../../FuelBill/Templates/Common/LogoDetail";
 import DownloadFile from "../../FuelBill/Templates/Common/DownloadFile";
 import Summary from "../Common/Summary";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const MedicalBillTemplate1 = () => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -75,70 +80,6 @@ const MedicalBillTemplate1 = () => {
     setFormData((prev) => ({ ...prev, summaryBills: updatedBills }));
   };
 
-  // const handleAddRow = () => {
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     orderName: [
-  //       ...prevData.orderName,
-  //       { desc: "", itemPrice: "", quantity: "", total: 0 },
-  //     ],
-  //   }));
-  // };
-
-  // const handleRemoveRow = (index) => {
-  //   setFormData((prevData) => {
-  //     const updatedOrderName = prevData.orderName.filter((_, i) => i !== index);
-  //     const updatedSubTotal = updatedOrderName.reduce(
-  //       (sum, item) => sum + item.total,
-  //       0
-  //     );
-  //     return {
-  //       ...prevData,
-  //       orderName: updatedOrderName,
-  //       subTotal: updatedSubTotal,
-  //     };
-  //   });
-  // };
-
-  // const handleOrderChange = (e, index, field) => {
-  //   const { value } = e.target;
-  //   setFormData((prevData) => {
-  //     const updatedOrderName = prevData.orderName.map((item, i) => {
-  //       if (i === index) {
-  //         const updatedItem = { ...item, [field]: value };
-
-  //         // Calculate total for this item if quantity and itemPrice are provided
-  //         if (field === "quantity" || field === "itemPrice") {
-  //           const quantity =
-  //             field === "quantity" ? +value : +updatedItem.quantity;
-  //           const itemPrice =
-  //             field === "itemPrice" ? +value : +updatedItem.itemPrice;
-  //           updatedItem.total = quantity * itemPrice || 0;
-  //         }
-
-  //         return updatedItem;
-  //       }
-  //       return item;
-  //     });
-
-  //     const updatedSubTotal = updatedOrderName.reduce(
-  //       (sum, item) => sum + item.total,
-  //       0
-  //     );
-
-  //     return {
-  //       ...prevData,
-  //       orderName: updatedOrderName,
-  //       subTotal: updatedSubTotal,
-  //     };
-  //   });
-  // };
-
-  // const calculateItemTotal = (item) => {
-  //   var temp = item.quantity * item.itemPrice;
-  //   return temp;
-  // };
-
   const calculateSubtotal = () => {
     var total = 0;
     for (let index = 0; index < formData.summaryBills.length; index++) {
@@ -154,8 +95,8 @@ const MedicalBillTemplate1 = () => {
     return final.toFixed(2);
   }
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-white p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Please fill the details
         </h2>
@@ -205,30 +146,30 @@ const MedicalBillTemplate1 = () => {
       </div>
 
       {/* Bill Preview */}
-      <div className="w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
         <div id="medicalPrint1">
           <div className="font-nunito max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-md">
             {/* Header */}
-            <div className="border-b border-gray-300 pb-6 flex justify-between">
+            <div className="border-b border-gray-300 pb-6 flex justify-between flex-wrap">
               <div className="flex flex-col justify-end">
                 <p className="text-2xl font-bold">{formData.hospitalName}</p>
                 <p>Invoice No. {formData.invoiceNo}</p>
               </div>
-              <div>
+              <div className="mt-4 sm:mt-0">
                 <img
                   src={formData.logoUrl}
                   alt="Hospital-Logo"
-                  className="w-20 h-20"
+                  className="w-20 h-20 mx-auto sm:mx-0"
                 />
               </div>
             </div>
 
-            <div className="flex justify-between pb-8">
+            <div className="flex flex-col sm:flex-row justify-between pb-8">
               {/* Left */}
-              <div className="flex flex-col gap-2 mt-6">
+              <div className="flex flex-col gap-2 mt-6 sm:w-1/2">
                 <div>
                   <p className="font-bold">Hospital details:</p>
                   <p>{formData.hospitalDetails}</p>
@@ -240,7 +181,7 @@ const MedicalBillTemplate1 = () => {
                 </div>
               </div>
               {/* Right */}
-              <div className="mt-2">
+              <div className="mt-2 sm:mt-0 sm:w-1/2">
                 <p className="font-bold text-lg">{formData.hospitalName}</p>
                 <p>{formData.hospitalAddress}</p>
               </div>
@@ -252,9 +193,9 @@ const MedicalBillTemplate1 = () => {
             </div>
 
             {/* Content Patient Information */}
-            <div className="flex justify-between mt-4">
+            <div className="flex flex-col sm:flex-row justify-between mt-4">
               {/* Left */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 sm:w-1/3">
                 <div>
                   <p className="font-bold">Patient Name:</p>
                   <p>{formData.patientName}</p>
@@ -274,7 +215,7 @@ const MedicalBillTemplate1 = () => {
                 </div>
               </div>
               {/* Middle */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 sm:w-1/3 mt-4 sm:mt-0">
                 <div>
                   <p className="font-bold">Patient Issue:</p>
                   <p>{formData.patientIssue}</p>
@@ -293,7 +234,7 @@ const MedicalBillTemplate1 = () => {
                 </div>
               </div>
               {/* Right */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 sm:w-1/3 mt-4 sm:mt-0">
                 <div>
                   <p className="font-bold">Address:</p>
                   <p>{formData.patientAddress}</p>
@@ -344,15 +285,15 @@ const MedicalBillTemplate1 = () => {
             </table>
 
             {/* Below table */}
-            <div className="flex justify-between p-2 mt-4 mb-2">
+            <div className="flex flex-col sm:flex-row justify-between p-2 mt-4 mb-2">
               {/* left part */}
-              <div>
+              <div className="sm:w-1/2">
                 <p className="font-bold">Pay By</p>
                 <p>{formData.paymentMethod}</p>
                 <p>Amount: {calculateSubtotal()}</p>
               </div>
               {/* right part */}
-              <div className="text-right">
+              <div className="text-right sm:w-1/2 mt-4 sm:mt-0">
                 <p>Tax: {formData.tax}%</p>
                 <p>
                   CGST: {formData.tax / 2}% - {formData.currencyType}{" "}
@@ -378,14 +319,14 @@ const MedicalBillTemplate1 = () => {
             {/* Footer */}
             <div className="p-4 text-sm border-t">
               <h3 className="text-base font-bold mb-2">Remark:</h3>
-              <div className="flex justify-between">
-                <p className="mb-4 w-[55%] text-lg ml-4">
+              <div className="flex flex-col sm:flex-row justify-between">
+                <p className="mb-4 w-full sm:w-[55%] text-lg ml-4">
                   IN CASE OF EMERGENCY CONSULT IMMEDIATELY IF YOU GET PAIN,
                   PAINFUL MOVEMENTS, REDNESS, PUS OR BLEEDING. FOLLOW UP AFTER 5
                   DAYS. MEET <b>{formData.doctorName}</b>,{" "}
                   {formData.hospitalDetails}
                 </p>
-                <div className="text-lg w-[20%]">
+                <div className="text-lg sm:w-[20%]">
                   <p>{formData.doctorName}</p>
                   <p>{formData.hospitalDetails}</p>
                 </div>
@@ -401,6 +342,7 @@ const MedicalBillTemplate1 = () => {
             </div>
           </div>
         </div>
+
         <p className="mt-2 px-6 text-gray-500">
           Watermark will be removed from actual pdf
         </p>

@@ -5,6 +5,11 @@ import PaymentDetails from "../../DriverSalary/Common/PaymentDetails";
 import LogoDetail from "../../FuelBill/Templates/Common/LogoDetail";
 import DownloadFile from "../../FuelBill/Templates/Common/DownloadFile";
 import printBill from "../../Utils/printBill";
+import {
+  mainTemplateContainer,
+  templateLeftContainer,
+  templateRightContainer,
+} from "../../Utils/constants";
 
 const HelperTemplate2 = () => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -41,8 +46,8 @@ const HelperTemplate2 = () => {
   };
 
   return (
-    <div className="flex justify-between min-h-screen">
-      <div className="w-full md:w-1/2 lg:w-1/2 bg-[#fffff] p-6 rounded-[2rem]">
+    <div className={`${mainTemplateContainer}`}>
+      <div className={`${templateLeftContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6 ">
           Please fill the details
         </h2>
@@ -86,13 +91,13 @@ const HelperTemplate2 = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-1/2 lg:w-1/2 p-6">
+      <div className={`${templateRightContainer}`}>
         <h2 className="text-2xl font-medium text-gray-800 mb-6">
           Live Preview
         </h2>
         <div
           id="helperTemplate2"
-          className="bg-white rounded-md shadow-md w-[80%] p-10 font-nunito"
+          className="bg-white rounded-md shadow-md w-[100%] p-10 font-nunito"
         >
           <div className="text-right mb-4">
             <p className="text-sm font-bold">Date: 12 Dec 2024</p>

@@ -1,37 +1,44 @@
-const RentEmpDetails = ({ formData, handleChange }) => {
-  return (
-    <div className="bg-white rounded-[2rem]  space-y-4 border-2 border-gray-200">
-      <h3 className="text-lg px-6 font-semibold border-b-2 py-4 text-gray-800  border-gray-200">
-        Employee Details
-      </h3>
+import { useState } from "react";
+import CollapseWrapper from "../../Reuseable Components/CollapseWrapper";
+import Heading from "../../Reuseable Components/Heading";
+import Wrapper from "../../Reuseable Components/Wrapper";
+import InputField from "../../Reuseable Components/InputField";
 
-      <div className="px-6 pb-8 flex flex-col gap-4">
-        <div>
-          <label className="block text-gray-500 font-medium mb-1">
-            Employee Name:
-          </label>
-          <input
+const RentEmpDetails = ({ formData, handleChange }) => {
+  const [isVisible, setIsVisible] = useState(true); // State to toggle visibility
+
+  const toggleContent = () => {
+    setIsVisible(!isVisible);
+  };
+  return (
+    <Wrapper>
+      <Heading
+        name={"Employee Details"}
+        toggleContent={toggleContent}
+        isCollapsed={!isVisible}
+        isVisible={isVisible}
+      />
+      <CollapseWrapper isVisible={isVisible}>
+        <div className="px-6 pb-8 flex flex-col gap-4">
+          <InputField
+            label={"Employee Name"}
             type="text"
-            name="empName"
+            name={"empName"}
             value={formData.empName}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            handleChange={handleChange}
+            placeholder="John Doe"
           />
-        </div>
-        <div>
-          <label className="block text-gray-500 font-medium mb-1">
-            Rent House Address:
-          </label>
-          <input
+          <InputField
+            label={"Rent House Address"}
             type="text"
-            name="rentHouseAddress"
+            name={"rentHouseAddress"}
             value={formData.rentHouseAddress}
-            onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            handleChange={handleChange}
+            placeholder="181 Street, USA"
           />
         </div>
-      </div>
-    </div>
+      </CollapseWrapper>
+    </Wrapper>
   );
 };
 
