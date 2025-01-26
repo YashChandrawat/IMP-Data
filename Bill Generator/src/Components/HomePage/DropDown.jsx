@@ -95,7 +95,7 @@ const Dropdown = ({ isMobile }) => {
     <div
       className={`relative ${isMobile ? "block" : "inline-block"} text-left`}
     >
-      {/* Dropdown Button */}
+      {/* Dropdown Button with transition added*/}
       <button
         onClick={toggleDropdown}
         className="flex items-center gap-2 hover:text-[#4935D9] justify-between w-full"
