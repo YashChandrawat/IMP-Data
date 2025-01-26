@@ -1,4 +1,4 @@
-import { ArrowDown2, CloseSquare } from "iconsax-react"; // Import Close Icon
+import { ArrowDown2, CloseSquare } from "iconsax-react";
 import { useState } from "react";
 import {
   AirplaneSquare,
@@ -103,29 +103,42 @@ const Dropdown = ({ isMobile }) => {
       >
         <span>Bills</span>
         {isOpen ? (
-          <CloseSquare size="20" className="text-red-500" />
+          <ArrowDown2
+            size="20"
+            className="transition-transform duration-300 rotate-180"
+          />
         ) : (
-          <ArrowDown2 size="20" />
+          <ArrowDown2
+            size="20"
+            className={`transition-transform duration-300 rotate-0
+            }`}
+          />
         )}
       </button>
 
       {/* Dropdown Menu with Transition */}
       <div
-        className={`z-50 ${
-          isMobile ? "static w-full h-auto" : "absolute"
+        className={`z-50 mt-2 ${
+          isMobile ? "static w-full h-auto" : "absolute bg-white"
         } rounded-lg w-[250px] text-black transition-all duration-300 ease-in-out ${
           isOpen ? "h-[50vh] opacity-100" : "max-h-0 opacity-0"
-        } overflow-hidden`}
+        } overflow-scroll no-scrollbar`}
       >
         {isOpen && (
           <ul
-            className="py-2 text-sm text-gray-700 flex flex-wrap gap-2"
+            className={`text-sm text-gray-700  ${
+              isMobile ? "flex flex-wrap" : ""
+            } gap-2`}
             onMouseLeave={!isMobile ? closeDropdown : null}
           >
             {items.map((item, index) => (
               <li key={index}>
                 <button
-                  className="w-auto flex flex-wrap rounded-lg shadow bg-white gap-2 items-center border px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#4935D9] dark:hover:text-white"
+                  className={`${
+                    isMobile
+                      ? "w-auto flex flex-wrap gap-2 border"
+                      : "w-[100%] flex gap-2"
+                  }  rounded-lg shadow bg-white  items-center  px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#4935D9] dark:hover:text-white`}
                   onClick={() => handleRoute(item.label)}
                 >
                   <span>{item.icon}</span>
