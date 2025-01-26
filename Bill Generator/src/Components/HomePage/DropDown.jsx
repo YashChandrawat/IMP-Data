@@ -1,4 +1,4 @@
-import { ArrowDown2 } from "iconsax-react";
+import { ArrowDown2, CloseSquare } from "iconsax-react"; // Import Close Icon
 import { useState } from "react";
 import {
   AirplaneSquare,
@@ -21,7 +21,7 @@ import {
 } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
 
-const Dropdown = () => {
+const Dropdown = ({ isMobile }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -53,7 +53,7 @@ const Dropdown = () => {
       icon: <Wifi size="20" color="currentColor" />,
     },
     {
-      label: "Restaurent Bill",
+      label: "Restaurant Bill",
       icon: <Reserve size="20" color="currentColor" />,
     },
     {
@@ -86,43 +86,47 @@ const Dropdown = () => {
     { label: "Cab Bill", icon: <Car size="20" color="currentColor" /> },
   ];
 
-  // Updated function to handle clicks and log label in the desired format
-  function handleRoute(label) {
+  const handleRoute = (label) => {
     const formattedLabel = label.toLowerCase().replace(/\s+/g, "-");
-    console.log("Clicked item:", formattedLabel);
-    // Optional: Navigate to a route based on the formatted label
     navigate(`/bills/${formattedLabel}`);
-  }
+  };
 
   return (
-    <div className="relative inline-block text-left">
+    <div
+      className={`relative ${isMobile ? "block" : "inline-block"} text-left`}
+    >
       {/* Dropdown Button */}
       <button
-        id="dropdownDefaultButton"
-        onMouseEnter={toggleDropdown}
-        className="flex items-center gap-2"
+        onClick={toggleDropdown}
+        className="flex items-center gap-2 hover:text-[#4935D9] justify-between w-full"
         type="button"
       >
         <span>Bills</span>
-        <ArrowDown2 size="16" />
+        {isOpen ? (
+          <CloseSquare size="20" className="text-red-500" />
+        ) : (
+          <ArrowDown2 size="20" />
+        )}
       </button>
 
-      {/* Dropdown Menu */}
-      {isOpen && (
-        <div
-          id="dropdown"
-          className="z-50 absolute h-96 overflow-y-scroll no-scrollbar mt-2 bg-white rounded-lg shadow w-56 text-black"
-        >
+      {/* Dropdown Menu with Transition */}
+      <div
+        className={`z-50 ${
+          isMobile ? "static w-full h-auto" : "absolute"
+        } rounded-lg w-[250px] text-black transition-all duration-300 ease-in-out ${
+          isOpen ? "h-[50vh] opacity-100" : "max-h-0 opacity-0"
+        } overflow-hidden`}
+      >
+        {isOpen && (
           <ul
-            className="py-2 text-sm text-gray-700"
-            aria-labelledby="dropdownDefaultButton"
-            onMouseLeave={closeDropdown}
+            className="py-2 text-sm text-gray-700 flex flex-wrap gap-2"
+            onMouseLeave={!isMobile ? closeDropdown : null}
           >
             {items.map((item, index) => (
               <li key={index}>
                 <button
-                  className="w-full flex gap-2 items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  onClick={() => handleRoute(item.label)} // Pass the label to the function
+                  className="w-auto flex flex-wrap rounded-lg shadow bg-white gap-2 items-center border px-4 py-2 hover:bg-gray-100 dark:hover:bg-[#4935D9] dark:hover:text-white"
+                  onClick={() => handleRoute(item.label)}
                 >
                   <span>{item.icon}</span>
                   <span>{item.label}</span>
@@ -130,8 +134,8 @@ const Dropdown = () => {
               </li>
             ))}
           </ul>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

@@ -209,7 +209,7 @@ const Hero = () => {
   const containerCss = "px-[5.5vw] box-border";
 
   return (
-    <div className="flex flex-col items-center gap-20 overflow-x-hidden">
+    <div className="flex flex-col items-center gap-16 overflow-x-hidden">
       {/* Hero section */}
       <div
         className={`flex flex-col justify-between items-center lg:items-start h-auto lg:h-screen py-12 lg:py-24 relative px-[5.5vw] box-border ${containerCss}`}
@@ -275,7 +275,7 @@ const Hero = () => {
                         `bills/${item.label.toLowerCase().replace(/\s+/g, "-")}`
                       );
                     }}
-                    className="p-4 w-full text-center rounded-lg bg-[#F8F3FC66] shadow-xl flex justify-center items-center gap-2"
+                    className="p-4 w-full text-center rounded-lg bg-[#F8F3FC66] hover:bg-[#4935D9] hover:text-white hover:font-semibold shadow-xl flex justify-center items-center gap-2"
                   >
                     <p>{item.icon}</p>
                     <p className="text-xs sm:text-sm">{item.label}</p>
@@ -292,23 +292,24 @@ const Hero = () => {
       </div>
 
       {/* Other section - Update Here*/}
-      <div className="flex flex-col w-full items-center">
+      <div className="flex flex-col w-full items-center pt-32">
         <div className="flex flex-col justify-between items-center w-full gap-4 relative z-50">
-          <p className="w-[128px] h-[35px] bg-[#4935D914] text-[#4935D9] rounded-[20px] px-[16px] py-[8px]">
-            Client History
+          <p className="w-[100px] sm:w-[128px] md:w-[140px] h-auto bg-[#4935D914] text-[10px] sm:text-xs md:text-sm text-[#4935D9] flex justify-center rounded-full px-4 py-2">
+            <span className="">Client History</span>
           </p>
-          <h2 className="text-3xl font-medium md:text-5xl sm:text-2xl">
+
+          <h2 className="text-xl font-medium md:text-5xl sm:text-2xl">
             Our Satisfied Clients
           </h2>
           <img
             src={nextImage}
             alt=""
-            className=" relative left-[1vw] w-[calc(100%-1vw)] z-[20] -mt-28"
+            className=" relative left-[1vw] w-[calc(100%-1vw)] z-[20] -mt-20"
           />
         </div>
 
-        <div className="w-full px-6 -mt-[40vh] relative z-10">
-          <div className="rounded-3xl relative flex items-center justify-center bg-white w-full overflow-hidden pt-80">
+        <div className="w-full px-6 -mt-[11vh] lg:-mt-[43vh] sm:-mt-[15vh] relative z-10">
+          <div className="rounded-3xl relative flex items-center justify-center w-full overflow-hidden pt-28 md:pt-60 sm:pt-64 ">
             {/* Background Blurs */}
             <div className="absolute w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full bg-[#FFE3EC] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-20 -left-8"></div>
             <div className="absolute w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full bg-[#96ACFF] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-20 -right-8"></div>
@@ -341,22 +342,26 @@ const Hero = () => {
               </div>
 
               {/* Tablet Screens */}
-              <div className="hidden md:flex lg:hidden justify-center">
-                <img src={feedbackTablet1} alt="" className="w-[186.67px]" />
-                <div className="flex flex-col items-center text-center">
-                  <h1 className="text-xl font-semibold mb-4 w-[60%]">
+              <div className="hidden md:flex lg:hidden justify-center gap-6 px-4">
+                <img
+                  src={feedbackTablet1}
+                  alt="Feedback Image 1"
+                  className="w-[160px] md:w-[186.67px] h-[598px] z-50"
+                />
+                <div className="flex flex-col gap-6 text-center items-center w-[30%] max-w-[300px]">
+                  <h1 className="text-lg md:text-xl font-semibold mb-4">
                     Here's what our users are saying about us
                   </h1>
                   <img
                     src={feedbackTablet2}
-                    alt=""
-                    className="w-[186.67px] h-[616px]"
+                    alt="Feedback Image 2"
+                    className="w-[160px] md:w-[186.67px] h-auto z-50"
                   />
                 </div>
                 <img
                   src={feedbackTablet3}
-                  alt=""
-                  className="w-[186.67px] h-[760px]"
+                  alt="Feedback Image 3"
+                  className="w-[160px] md:w-[186.67px] h-auto z-50"
                 />
               </div>
 
@@ -365,7 +370,7 @@ const Hero = () => {
                 <h1 className="text-xl font-semibold text-center w-[80%] z-50">
                   Here's what our users are saying about us
                 </h1>
-                <div className="flex">
+                <div className="flex gap-2">
                   <img
                     src={feedbackMobile1}
                     alt=""
@@ -385,7 +390,7 @@ const Hero = () => {
         {/* <div className="h-[200vh] rounded-3xl md:w-[95vw]  overflow-hidden flex justify-center sm:py-64 sm:top-96 top-24 py-24 sm:w-[100vw] right-3 md:right-24 md:top-96 md:py-72 md:px-20"></div> */}
       </div>
 
-      <div className="flex flex-col h-auto lg:h-[100vh] w-full px-4 sm:px-8 lg:px-20">
+      <div className="flex flex-col h-auto lg:h-[100vh] w-full px-4 sm:px-8 lg:px-[5.5vw] pt-48">
         {/* Header */}
         <div className="mx-auto text-center flex flex-col items-center space-y-6">
           <span className="bg-[#4935D914] text-[#4935D9] rounded-[20px] px-4 py-2 text-sm sm:text-base lg:text-lg">
@@ -401,7 +406,9 @@ const Hero = () => {
         </div>
 
         {/* Feature Grid */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full max-w-7xl mx-auto">
+        <div
+          className={`mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 w-full mx-auto `}
+        >
           {features.map((feature, index) => (
             <div key={index} className="text-center p-4 sm:p-6">
               {/* Icon Wrapper */}
@@ -421,7 +428,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="min-h-[180vh] flex flex-col justify-center items-center px-4 sm:px-8 lg:px-20">
+      <div
+        className={`min-h-[120vh] flex flex-col justify-center items-center pt-96  ${containerCss}`}
+      >
         {/* Header */}
         <div className="mx-auto text-center flex flex-col items-center space-y-6">
           <span className="w-[126px] h-[35px] rounded-[20px] px-4 py-2 bg-[#4935D914] text-[#4935D9] text-sm sm:text-base">
@@ -437,12 +446,16 @@ const Hero = () => {
         </div>
 
         {/* Features Section */}
-        <div className="flex flex-col sm:flex-row sm:justify-center text-center gap-6 mt-10 relative w-full max-w-7xl">
+        <div
+          className={`flex flex-col sm:flex-row sm:justify-center text-center gap-6 mt-12 relative w-full`}
+        >
           {whyUs.map((item, index) => (
             <div
               key={index}
-              className={`flex flex-col gap-4 justify-evenly items-center bg-white rounded-xl shadow-2xl shadow-[#4935D90F] px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12 ${
-                index === 1 ? "sm:top-10 sm:translate-y-0" : "sm:top-0"
+              className={`flex flex-col gap-4 justify-evenly items-center bg-white rounded-xl shadow-3xl shadow-[#4835d92f] px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-16  ${
+                index === 1
+                  ? "relative top-0 md:top-0 lg:top-[48px] sm:translate-y-0"
+                  : "sm:top-0"
               } ${index === 1 ? "translate-y-0" : "translate-y-0"}`}
             >
               <p className="bg-[#4935D90F] rounded-lg p-4 text-center text-lg sm:text-xl lg:text-2xl">
@@ -451,7 +464,7 @@ const Hero = () => {
               <h1 className="text-lg sm:text-xl lg:text-2xl font-medium">
                 {item.title}
               </h1>
-              <p className="text-sm sm:text-base lg:text-lg text-gray-500 w-[90%] sm:w-[80%]">
+              <p className="text-sm sm:text-base lg:text-lg text-gray-500 w-[90%] sm:w-[95%]">
                 {item.description}
               </p>
             </div>
@@ -459,7 +472,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="min-h-screen flex flex-col justify-center gap-10 px-4 sm:px-8 lg:px-20">
+      <div
+        className={`h-screen flex flex-col gap-10 px-4 sm:px-8 lg:px-20 pt-48 ${containerCss}`}
+      >
         {/* Header */}
         <div className="mx-auto text-center flex flex-col items-center space-y-6">
           <span className="w-[126px] h-[35px] rounded-[20px] px-4 py-2 bg-[#4935D914] text-[#4935D9] text-sm sm:text-base">
@@ -516,9 +531,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="main-box flex justify-center items-center h-auto py-8 sm:py-16 px-4 sm:px-8">
+      <div className="main-box">
         <div
-          className="box py-8 sm:py-16 px-4 sm:px-8 rounded-2xl shadow-2xl bg-white flex flex-col items-center space-y-6 max-w-lg w-full"
+          className="box py-8 sm:py-16 px-4 sm:px-8 rounded-2xl shadow-2xl bg-white flex flex-col items-center space-y-6 w-full"
           id="demo"
         >
           {/* Image */}

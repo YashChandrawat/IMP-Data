@@ -3,7 +3,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t py-10 sm:py-16">
+    <footer className="w-full border-t py-10 sm:py-16 px-[5.5vw] box-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:justify-between gap-8">
           {/* Logo and Contact Section */}
@@ -133,47 +133,16 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Pricing Section */}
-            <div>
-              <h4 className="text-base font-semibold text-gray-800">Pricing</h4>
-              <ul className="mt-4 space-y-2 text-sm text-gray-600">
-                <li>
-                  <a href="#" className="hover:text-gray-900">
-                    Pay as you go
-                  </a>
-                </li>
-              </ul>
-            </div>
-
             {/* Company Section */}
             <div>
               <h4 className="text-base font-semibold text-gray-800">Company</h4>
               <ul className="mt-4 space-y-2 text-sm text-gray-600">
                 <li>
                   <a href="#" className="hover:text-gray-900">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-gray-900">
                     Contact
                   </a>
                 </li>
-                <li>
-                  <a href="#" className="hover:text-gray-900">
-                    Testimonials
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-gray-900">
-                    Career
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-gray-900">
-                    Status
-                  </a>
-                </li>
+
                 <li>
                   <a href="#" className="hover:text-gray-900">
                     Terms
@@ -182,16 +151,6 @@ const Footer = () => {
                 <li>
                   <a href="#" className="hover:text-gray-900">
                     Privacy & Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-gray-900">
-                    Disclaimer
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-gray-900">
-                    Blog
                   </a>
                 </li>
               </ul>
