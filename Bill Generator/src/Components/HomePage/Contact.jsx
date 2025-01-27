@@ -1,12 +1,15 @@
-import { useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import contactUs from "../../Assests/contactUs.png";
 import dImg from "../../Assests/dImg.png";
 import InputField from "../Reuseable Components/InputField";
 import Footer from "./Footer";
-import emailjs from "@emailjs/browser";
+import { ToastContainer, toast } from "react-toastify";
+
+import { useForm } from "@formspree/react";
 
 const Contact = () => {
-  const form = useRef();
+  const [state, handleSubmit] = useForm("xnnjjkvn");
+  const [formSubmitted, setFormSubmitted] = useState(false); // Track form submission
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,21 +25,29 @@ const Contact = () => {
     }));
   };
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    // Show toast notifications only after the form is submitted
+    if (formSubmitted) {
+      if (state.succeeded) {
+        toast.success("Message Delivered Successfully!");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          message: "",
+        }); // Clear the form after success
+        setFormSubmitted(false); // Reset form submission state
+      } else {
+        toast.error("Failed to send the message. Try again later!");
+        setFormSubmitted(false); // Reset form submission state
+      }
+    }
+  }, [formSubmitted]); // Run only when formSubmitted or state changes
 
-    emailjs
-      .sendForm("service_h926hie", "YOUR_TEMPLATE_ID", form.current, {
-        publicKey: "YOUR_PUBLIC_KEY",
-      })
-      .then(
-        () => {
-          console.log("SUCCESS!");
-        },
-        (error) => {
-          console.log("FAILED...", error.text);
-        }
-      );
+  const handleFormSubmit = (e) => {
+    e.preventDefault(); // Prevent default form submission
+    setFormSubmitted(true); // Mark the form as submitted
+    handleSubmit(e); // Call Formspree's handleSubmit
   };
 
   return (
@@ -70,10 +81,8 @@ const Contact = () => {
         {/* Form */}
         <div className="p-6 sm:p-10 bg-white rounded-b-3xl sm:rounded-r-3xl sm:rounded-bl-none w-full">
           <form
-            ref={form}
-            action=""
             className="flex flex-col gap-4"
-            onSubmit={sendEmail}
+            onSubmit={handleFormSubmit} // Custom form submit handler
           >
             <div className="flex flex-col sm:flex-row gap-6">
               <InputField
@@ -109,11 +118,15 @@ const Contact = () => {
               handleChange={handleChange}
               placeholder=""
             />
-            <button className="bg-[#4935D9] text-white px-4 py-2 rounded-lg w-full sm:w-[25%] hover:bg-purple-700 transition-colors duration-300">
+            <button
+              type="submit"
+              className="bg-[#4935D9] text-white px-4 py-2 rounded-lg w-full sm:w-[25%] hover:bg-purple-700 transition-colors duration-300"
+            >
               Submit
             </button>
           </form>
         </div>
+        <ToastContainer />
       </div>
 
       {/* CTA Section */}
