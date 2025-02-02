@@ -8,6 +8,7 @@ import {
 import FuelStationDetails from "./Common/FuelStationDetails";
 import PaymentDetail from "./Common/PaymentDetail";
 import CustomerDetails from "./Common/CustomerDetails";
+import DownloadFile from "./Common/DownloadFile";
 
 const Template1 = () => {
   const [logoDetail, setLogoDetail] = useState("URL");
@@ -196,28 +197,8 @@ const Template1 = () => {
           {/* Customer Details Section */}
           <CustomerDetails formData={formData} handleChange={handleChange} />
 
-          {/* File Details Section */}
-          <div className="bg-white rounded-[2rem] border-2 border-gray-200 shadow-lg">
-            <h3 className="text-lg px-6 font-semibold border-b-2 py-4 text-gray-800 border-gray-200">
-              File Details
-            </h3>
-            <div className="px-6 pb-6">
-              <div>
-                <label className="block text-gray-500 font-medium mb-1">
-                  Download File Name:
-                </label>
-                <input
-                  type="text"
-                  placeholder="Example: abc,xyz..."
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400"
-                  onChange={(e) => (formData.fileDownloadName = e.target.value)}
-                />
-                <p className="text-sm text-gray-500">
-                  This will be used as the name of the generated PDF file.
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* Download File Name */}
+          <DownloadFile formData={formData} />
         </form>
 
         <div className="flex justify-end gap-4 mt-4">

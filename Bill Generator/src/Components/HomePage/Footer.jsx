@@ -3,7 +3,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t py-10 sm:py-16 px-[5.5vw] box-border">
+    <footer className="w-full border-t border-gray-400 py-10 sm:py-16 px-[5.5vw] box-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:justify-between gap-8">
           {/* Logo and Contact Section */}

@@ -318,7 +318,7 @@ export const templateContainer =
   "flex flex-wrap justify-start items-start lg:justify-start gap-4";
 
 export const labelClass =
-  "inline-flex items-center space-x-2 text-sm lg:text-md px-3 lg:px-7 py-2 lg:py-3 border rounded-[2rem] shadow-md cursor-pointer transition-all";
+  "inline-flex items-center space-x-2 text-sm lg:text-md px-3 lg:px-7 py-2 lg:py-3 border rounded-[2rem] cursor-pointer transition-all";
 
 export const renderClass = "template-preview rounded-lg shadow-sm";
 

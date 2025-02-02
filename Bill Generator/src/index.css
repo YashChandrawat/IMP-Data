@@ -93,17 +93,6 @@ opacity: 0px;
   align-items: center;
 } */
 
-.main-box {
-  /* margin: 0; */
-  width: 100vw;
-  position: relative;
-  /* right: 8vw; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  /* background: #f3f4f8;  */
-}
 .main-box2 {
   /* margin: 0; */
   width: 100vw;
@@ -114,16 +103,23 @@ opacity: 0px;
   /* background: #f3f4f8;  */
 }
 
+.main-box {
+  width: 100vw;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 #demo {
   background: white;
-  /* color: white; */
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
   width: 80%;
   gap: 3em;
-  /* box-shadow: 0 0 0 3px inset; */
   position: relative;
   transform-style: preserve-3d;
 }
@@ -131,22 +127,39 @@ opacity: 0px;
 .box {
   position: relative;
   transform-style: preserve-3d;
+  border-radius: 16px;
+  overflow: hidden;
 }
+
+/* Gradient Glow Effect */
 .box::before {
   content: "";
   position: absolute;
-  inset: -1rem;
-  /* background: conic-gradient(from 270deg,#96acff, #ffe3ec); */
+  /* inset: 1rem; */
   background: linear-gradient(
     45deg,
     #ffe3ec 45%,
-    rgba(118, 208, 254, 0.2) 52.5%,
+    rgba(118, 208, 254, 0.3) 52.5%,
     #96acff 100%
   );
-  filter: blur(50px);
+  filter: blur(25px);
   transform: translate3d(0px, 0px, -1px);
   border-radius: inherit;
   pointer-events: none;
+  opacity: 100; /* Adjust opacity for subtle effect */
+  z-index: -3;
+}
+
+/* Background Image */
+.box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./Assests/Union.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
 }
 
 @layer utilities {

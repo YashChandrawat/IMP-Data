@@ -9,39 +9,28 @@ import feedbackTablet2 from "../../Assests/feedbackTablet2.png";
 import feedbackTablet3 from "../../Assests/feedbackTablet3.png";
 import feedbackMobile1 from "../../Assests/feedbackMobile1.png";
 import feedbackMobile2 from "../../Assests/feedbackMobile2.png";
+import Union from "../../Assests/Union.png";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import dImg from "../../Assests/dImg.png";
 import { useNavigate } from "react-router";
 import { Carousel as ResponsiveCarousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel CSS
 import {
   Add,
-  AirplaneSquare,
-  Bag,
   Bill,
-  Book,
-  Building,
   Buildings2,
-  Car,
-  Driving,
   Edit,
-  GasStation,
   Happyemoji,
-  Hospital,
   MainComponent,
-  Minus,
   MonitorMobbile,
   Personalcard,
-  ProfileCircle,
   ReceiptItem,
-  Reserve,
-  RulerPen,
   SmsTracking,
-  UserSquare,
-  Weight,
-  Wifi,
 } from "iconsax-react";
 import { useEffect, useState } from "react";
 import Footer from "./Footer";
+import Carousel from "./Carousel";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -71,58 +60,6 @@ const Hero = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  const items = [
-    {
-      label: "Fuel Bills",
-      icon: <GasStation size="20" color="currentColor" />,
-    },
-    {
-      label: "Driver Salary",
-      icon: <Driving size="20" color="currentColor" />,
-    },
-    {
-      label: "Daily Helper",
-      icon: <ProfileCircle size="20" color="currentColor" />,
-    },
-    { label: "Rent Recipt", icon: <Building size="20" color="currentColor" /> },
-    { label: "Book Invoice", icon: <Book size="20" color="currentColor" /> },
-    {
-      label: "Internet Invoice",
-      icon: <Wifi size="20" color="currentColor" />,
-    },
-    {
-      label: "Restaurent Bill",
-      icon: <Reserve size="20" color="currentColor" />,
-    },
-    {
-      label: "Recharge Receipt",
-      icon: <MonitorMobbile size="20" color="currentColor" />,
-    },
-    {
-      label: "E-Commerce Invoice",
-      icon: <Personalcard size="20" color="currentColor" />,
-    },
-    {
-      label: "Medical Bill",
-      icon: <Hospital size="20" color="currentColor" />,
-    },
-    { label: "General Bill", icon: <Bill size="20" color="currentColor" /> },
-    {
-      label: "Stationary Bill",
-      icon: <RulerPen size="20" color="currentColor" />,
-    },
-    {
-      label: "LTA Recipt",
-      icon: <AirplaneSquare size="20" color="currentColor" />,
-    },
-    {
-      label: "Hotel Bill",
-      icon: <UserSquare size="20" color="currentColor" />,
-    },
-    { label: "Gym Bill", icon: <Weight size="20" color="currentColor" /> },
-    { label: "Mart Bill", icon: <Bag size="20" color="currentColor" /> },
-    { label: "Cab Bill", icon: <Car size="20" color="currentColor" /> },
-  ];
 
   const features = [
     {
@@ -219,20 +156,20 @@ const Hero = () => {
           <div className="sm:w-[455px] sm:h-[455px] lg:w-[701px] lg:h-[701px] rounded-full bg-[#FFE3EC] blur-[100px] lg:blur-[100px] z-10 opacity-60 absolute lg:-left-48 lg:-top-14 -top-48 "></div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start gap-6 lg:gap-10 text-center lg:text-left relative z-30 px-4 lg:px-0">
+          <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start  text-center lg:text-left relative z-30 px-4 lg:px-0">
             <span className="px-4 py-2 border border-transparent rounded-full bg-[#4935D914] text-[#4935D9] text-xs lg:text-sm font-medium inline-block w-fit mx-auto md:mx-auto lg:mx-0">
               Generate Unlimited Number of Bills for Free
             </span>
-            <h1 className="font-bold text-5xl sm:text-6xl lg:text-6xl  text-balance text-gray-900 leading-tight w-[100%] max-w-[80vw]">
+            <h1 className="font-bold text-5xl sm:text-6xl lg:text-6xl mt-[24px] text-balance text-gray-900 leading-tight w-[100%] max-w-[80vw]">
               Accurate, fast and Secure Bill Generator
             </h1>
-            <p className="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed lg:text-justify w-[85%] max-w-[80vw] mx-auto sm:w-full">
+            <p className="text-gray-600 text-sm sm:text-base mt-[24px] lg:text-lg leading-relaxed lg:text-justify w-[85%] max-w-[80vw] mx-auto sm:w-full">
               Bill Generator lets you quickly create receipts, bills, and
               invoices with attractive templates straight from your web browser.
             </p>
             <button
               onClick={() => navigate("/bills/fuel-bills")}
-              className="rounded-lg px-6 py-3 bg-[#4935D9] text-white font-semibold hover:bg-[#3728a6] transition-all duration-300 w-fit mx-auto lg:mx-0"
+              className="rounded-lg px-6 py-3 mt-[48px] bg-[#4935D9] text-white font-semibold hover:bg-[#3728a6] transition-all duration-300 w-fit mx-auto lg:mx-0"
             >
               Generate Bill Now
             </button>
@@ -249,40 +186,12 @@ const Hero = () => {
         </div>
 
         {/* Guidance Section */}
-        <div className="flex items-center flex-col gap-6 w-full mt-12 z-40 px-4">
+        <div className="flex items-center flex-col gap-6 w-full mt-12 z-40 box-border">
           <h4 className="font-semibold text-lg sm:text-xl text-center">
             Generate Bills for
           </h4>
-          <div className="max-w-7xl w-full">
-            <ResponsiveCarousel
-              showThumbs={false}
-              infiniteLoop
-              autoPlay
-              autoFocus
-              stopOnHover
-              interval={2000}
-              showStatus={false}
-              showArrows={false}
-              showIndicators={false}
-              centerMode
-              centerSlidePercentage={slidePercentage} // Dynamically calculated
-            >
-              {items.map((item, index) => (
-                <div key={index} className="mr-4">
-                  <button
-                    onClick={() => {
-                      navigate(
-                        `bills/${item.label.toLowerCase().replace(/\s+/g, "-")}`
-                      );
-                    }}
-                    className="p-4 w-full text-center rounded-lg bg-[#F8F3FC66] hover:bg-[#4935D9] hover:text-white hover:font-semibold shadow-xl flex justify-center items-center gap-2"
-                  >
-                    <p>{item.icon}</p>
-                    <p className="text-xs sm:text-sm">{item.label}</p>
-                  </button>
-                </div>
-              ))}
-            </ResponsiveCarousel>
+          <div className="max-w-7xl mt-4">
+            <Carousel />
           </div>
         </div>
 
@@ -292,7 +201,7 @@ const Hero = () => {
       </div>
 
       {/* Other section - Update Here*/}
-      <div className="flex flex-col w-full items-center pt-32">
+      <div className="flex flex-col w-full items-center pt-40">
         <div className="flex flex-col justify-between items-center w-full gap-4 relative z-50">
           <p className="w-[100px] sm:w-[128px] md:w-[140px] h-auto bg-[#4935D914] text-[10px] sm:text-xs md:text-sm text-[#4935D9] flex justify-center rounded-full px-4 py-2">
             <span className="">Client History</span>
@@ -304,24 +213,24 @@ const Hero = () => {
           <img
             src={nextImage}
             alt=""
-            className=" relative left-[1vw] w-[calc(100%-1vw)] z-[20] -mt-20"
+            className=" relative left-[1vw] w-[calc(100%-1vw)] z-[20] -mt-32"
           />
         </div>
 
-        <div className="w-full px-6 -mt-[11vh] lg:-mt-[43vh] sm:-mt-[15vh] relative z-10">
+        <div className="w-full px-6 -mt-[11vh] lg:-mt-[43vh] sm:-mt-[15vh] relative z-10 border-b border-gray-300 pb-32">
           <div className="rounded-3xl relative flex items-center justify-center w-full overflow-hidden pt-28 md:pt-60 sm:pt-64 ">
             {/* Background Blurs */}
             <div className="absolute w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full bg-[#FFE3EC] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-20 -left-8"></div>
             <div className="absolute w-[250px] h-[250px] lg:w-[704px] lg:h-[704px] rounded-full bg-[#96ACFF] blur-[100px] lg:blur-[250px] z-10 opacity-60 -top-20 -right-8"></div>
 
             {/* Content */}
-            <div className="overflow-hidden rounded-3xl w-full max-w-7xl">
+            <div className="overflow-hidden rounded-3xl w-full max-w-7xl ">
               {/* Large Screens */}
-              <div className="hidden lg:flex justify-between items-center gap-8">
+              <div className="hidden lg:flex justify-between gap-8">
                 <img src={feedBack1} alt="" className="w-[286px] h-auto z-50" />
 
                 <div className="flex flex-col items-center text-center">
-                  <h1 className="text-4xl font-medium mb-8 z-50">
+                  <h1 className="text-4xl font-medium mb-8 z-50 w-[75%] place-content-start">
                     Here's what our users are saying about us
                   </h1>
                   <div className="flex gap-4">
@@ -390,7 +299,7 @@ const Hero = () => {
         {/* <div className="h-[200vh] rounded-3xl md:w-[95vw]  overflow-hidden flex justify-center sm:py-64 sm:top-96 top-24 py-24 sm:w-[100vw] right-3 md:right-24 md:top-96 md:py-72 md:px-20"></div> */}
       </div>
 
-      <div className="flex flex-col h-auto lg:h-[100vh] w-full px-4 sm:px-8 lg:px-[5.5vw] pt-48">
+      <div className="flex flex-col justify-center h-auto lg:h-[120vh] w-full px-4 sm:px-8 lg:px-[5.5vw] pt-24 pb-48 border-b border-gray-500">
         {/* Header */}
         <div className="mx-auto text-center flex flex-col items-center space-y-6">
           <span className="bg-[#4935D914] text-[#4935D9] rounded-[20px] px-4 py-2 text-sm sm:text-base lg:text-lg">
@@ -429,10 +338,10 @@ const Hero = () => {
       </div>
 
       <div
-        className={`min-h-[120vh] flex flex-col justify-center items-center pt-96  ${containerCss}`}
+        className={`min-h-[100vh] flex flex-col justify-center items-center w-full pb-16`}
       >
         {/* Header */}
-        <div className="mx-auto text-center flex flex-col items-center space-y-6">
+        <div className="mx-auto text-center flex flex-col items-center space-y-6 w-full">
           <span className="w-[126px] h-[35px] rounded-[20px] px-4 py-2 bg-[#4935D914] text-[#4935D9] text-sm sm:text-base">
             Why Us
           </span>
@@ -452,11 +361,12 @@ const Hero = () => {
           {whyUs.map((item, index) => (
             <div
               key={index}
-              className={`flex flex-col gap-4 justify-evenly items-center bg-white rounded-xl shadow-3xl shadow-[#4835d92f] px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-16  ${
-                index === 1
-                  ? "relative top-0 md:top-0 lg:top-[48px] sm:translate-y-0"
-                  : "sm:top-0"
-              } ${index === 1 ? "translate-y-0" : "translate-y-0"}`}
+              className={`flex flex-col space-y-4 items-center bg-white rounded-[24px] shadow-2xl shadow-[#4835d91e] 
+          px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-16 w-full sm:w-[307px] md:w-[347px] lg:w-[387px] h-auto ${
+            index === 1
+              ? "relative top-0 md:top-0 lg:top-[48px] sm:translate-y-0"
+              : "sm:top-0"
+          } ${index === 1 ? "translate-y-0" : "translate-y-0"}}`}
             >
               <p className="bg-[#4935D90F] rounded-lg p-4 text-center text-lg sm:text-xl lg:text-2xl">
                 {item.icon}
@@ -464,7 +374,7 @@ const Hero = () => {
               <h1 className="text-lg sm:text-xl lg:text-2xl font-medium">
                 {item.title}
               </h1>
-              <p className="text-sm sm:text-base lg:text-lg text-gray-500 w-[90%] sm:w-[95%]">
+              <p className="text-sm sm:text-base lg:text-sm text-gray-500 w-[100%] sm:w-[100%] text-center">
                 {item.description}
               </p>
             </div>
@@ -473,14 +383,14 @@ const Hero = () => {
       </div>
 
       <div
-        className={`h-screen flex flex-col gap-10 px-4 sm:px-8 lg:px-20 pt-48 ${containerCss}`}
+        className={`h-screen flex flex-col gap-10 px-4 sm:px-8 lg:px-20 pt-44 ${containerCss} w-full border-t border-gray-500`}
       >
         {/* Header */}
         <div className="mx-auto text-center flex flex-col items-center space-y-6">
           <span className="w-[126px] h-[35px] rounded-[20px] px-4 py-2 bg-[#4935D914] text-[#4935D9] text-sm sm:text-base">
             F&Q's
           </span>
-          <h2 className="mt-6 text-2xl sm:text-3xl lg:text-5xl font-medium text-gray-900 w-full sm:w-[80%] lg:w-[60%]">
+          <h2 className="mt-6 text-2xl sm:text-3xl lg:text-5xl font-medium text-gray-900 w-full sm:w-[80%] lg:w-[80%]">
             Know More By FAQ
           </h2>
           <p className="mt-4 text-gray-500 text-sm sm:text-base lg:text-lg w-full sm:w-[80%] lg:w-[60%]">
@@ -494,10 +404,10 @@ const Hero = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-gray-200 rounded-xl mb-4 overflow-hidden shadow-sm"
+              className="border border-gray-300 rounded-xl mb-4 overflow-hidden shadow-sm"
             >
               <div
-                className="flex justify-between items-center px-4 sm:px-6 py-4 cursor-pointer bg-white"
+                className="flex justify-between items-center px-4 sm:px-6 py-4 cursor-pointer "
                 onClick={() => toggleFAQ(index)}
               >
                 <h3 className="text-base sm:text-lg font-medium text-gray-900">
@@ -531,9 +441,9 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="main-box">
+      <div className="main-box border-t border-gray-400 pt-12">
         <div
-          className="box py-8 sm:py-16 px-4 sm:px-8 rounded-2xl shadow-2xl bg-white flex flex-col items-center space-y-6 w-full"
+          className="box py-8 sm:py-16 px-4 sm:px-8 rounded-2xl shadow-2xl bg-white flex flex-col justify-between items-center w-full"
           id="demo"
         >
           {/* Image */}
@@ -544,18 +454,18 @@ const Hero = () => {
           />
 
           {/* Text Content */}
-          <div className="flex flex-col gap-4 text-center">
+          <div className="flex flex-col gap-1 text-center">
             <h1 className="text-2xl sm:text-4xl font-medium">
               Let’s Start Now
             </h1>
-            <p className="text-sm sm:text-base text-gray-500">
+            <p className="text-sm sm:text-base text-gray-400">
               Generate your bills and invoices with a simple process.
             </p>
           </div>
 
           {/* Button */}
-          <button className="bg-[#4935D9] text-white w-full sm:w-[40%] py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors duration-300">
-            Let’s Get Started
+          <button className="bg-[#4935D9] text-white font-light text-base md:w-[13%] sm:w-[40%] py-3 px-2 rounded-lg hover:bg-purple-700 transition-colors duration-300">
+            Let’s Started
           </button>
         </div>
       </div>
