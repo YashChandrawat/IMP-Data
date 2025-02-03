@@ -153,23 +153,25 @@ const Hero = () => {
       >
         <div className="flex flex-col lg:flex-row items-center lg:justify-between w-full relative">
           {/* Background Blur */}
-          <div className="sm:w-[455px] sm:h-[455px] lg:w-[701px] lg:h-[701px] rounded-full bg-[#FFE3EC] blur-[100px] lg:blur-[100px] z-10 opacity-60 absolute lg:-left-48 lg:-top-14 -top-48 "></div>
+          <div className="sm:w-[455px] sm:h-[455px] lg:w-[701px] lg:h-[701px] rounded-full bg-[#FFE3EC] blur-[100px] lg:blur-[100px] z-10 opacity-60 absolute sm:left-48 sm:top- lg:-left-48 lg:-top-14 -top-48 "></div>
+
+          <div className="w-[600px] h-[455px] md:w-[0px] md:h-[0px] lg:w-[0px] lg:h-[0px] rounded-full bg-[#FFE3EC] blur-[100px] sm:blur-[100px] z-10 opacity-80 absolute sm:-top-0 -top-24 "></div>
 
           {/* Left Section */}
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start  text-center lg:text-left relative z-30 px-4 lg:px-0">
-            <span className="px-4 py-2 border border-transparent rounded-full bg-[#4935D914] text-[#4935D9] text-xs lg:text-sm font-medium inline-block w-fit mx-auto md:mx-auto lg:mx-0">
+            <span className="px-4 py-2 border border-transparent rounded-full bg-[#4935D914] text-[#4935D9] text-sm lg:text-sm font-medium inline-block w-fit mx-auto md:mx-auto lg:mx-0">
               Generate Unlimited Number of Bills for Free
             </span>
-            <h1 className="font-bold text-5xl sm:text-6xl lg:text-6xl mt-[24px] text-balance text-gray-900 leading-tight w-[100%] max-w-[80vw]">
-              Accurate, fast and Secure Bill Generator
+            <h1 className="font-bold text-4xl sm:text-6xl lg:text-6xl mt-[24px] sm:text-balance lg:text-balance text-gray-900 leading-tight w-[100%] max-w-[90vw]">
+              Accurate, fast and secure Bill Generator
             </h1>
-            <p className="text-gray-600 text-sm sm:text-base mt-[24px] lg:text-lg leading-relaxed lg:text-justify w-[85%] max-w-[80vw] mx-auto sm:w-full">
+            <p className="text-gray-500 text-sm sm:text-base mt-[24px] lg:text-lg leading-relaxed lg:text-justify w-[85%] max-w-[95vw] mx-auto sm:w-full">
               Bill Generator lets you quickly create receipts, bills, and
               invoices with attractive templates straight from your web browser.
             </p>
             <button
               onClick={() => navigate("/bills/fuel-bills")}
-              className="rounded-lg px-6 py-3 mt-[48px] bg-[#4935D9] text-white font-semibold hover:bg-[#3728a6] transition-all duration-300 w-fit mx-auto lg:mx-0"
+              className="rounded-lg px-6 py-3 mt-[48px] bg-[#4935D9] text-white font-normal text-base hover:bg-[#3728a6] transition-all duration-300 lg:w-fit w-[93vw] md:w-[90vw] mx-auto lg:mx-0"
             >
               Generate Bill Now
             </button>
@@ -299,7 +301,7 @@ const Hero = () => {
         {/* <div className="h-[200vh] rounded-3xl md:w-[95vw]  overflow-hidden flex justify-center sm:py-64 sm:top-96 top-24 py-24 sm:w-[100vw] right-3 md:right-24 md:top-96 md:py-72 md:px-20"></div> */}
       </div>
 
-      <div className="flex flex-col justify-center h-auto lg:h-[120vh] w-full px-4 sm:px-8 lg:px-[5.5vw] pt-24 pb-48 border-b border-gray-500">
+      <div className="flex flex-col justify-center h-auto lg:h-[120vh] w-full px-4 sm:px-8 lg:px-[5.5vw] lg:pt-24 sm:pt-12 pb-48 border-b border-gray-500">
         {/* Header */}
         <div className="mx-auto text-center flex flex-col items-center space-y-6">
           <span className="bg-[#4935D914] text-[#4935D9] rounded-[20px] px-4 py-2 text-sm sm:text-base lg:text-lg">
@@ -321,15 +323,15 @@ const Hero = () => {
           {features.map((feature, index) => (
             <div key={index} className="text-center p-4 sm:p-6">
               {/* Icon Wrapper */}
-              <div className="flex items-center justify-center border border-[#EAECF5] shadow-sm w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 mx-auto mb-4 rounded-xl text-base sm:text-lg lg:text-xl font-semibold bg-white">
+              <div className="flex items-center justify-center border border-[#EAECF5] shadow-sm w-14 h-14 px-2 sm:w-12 sm:h-12 lg:w-14 lg:h-14 mx-auto mb-4 rounded-xl text-base sm:text-lg lg:text-xl font-semibold bg-white">
                 {feature.icon}
               </div>
               {/* Title */}
-              <h3 className="text-lg sm:text-xl lg:text-2xl font-medium text-gray-900">
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-medium text-gray-900 ">
                 {feature.title}
               </h3>
               {/* Description */}
-              <p className="mt-2 text-gray-500 text-sm sm:text-base lg:text-lg">
+              <p className="mt-2 text-gray-500 text-sm sm:text-base lg:text-lg w-[80%] lg:w-fit text-center mx-auto ">
                 {feature.description}
               </p>
             </div>
@@ -356,7 +358,7 @@ const Hero = () => {
 
         {/* Features Section */}
         <div
-          className={`flex flex-col sm:flex-row sm:justify-center text-center gap-6 mt-12 relative w-full`}
+          className={`flex flex-col sm:flex-row sm:justify-center text-center gap-6 mt-12 relative w-full p-6`}
         >
           {whyUs.map((item, index) => (
             <div
